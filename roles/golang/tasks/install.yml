@@ -1,0 +1,35 @@
+---
+
+- name: Determine Go Architecture
+  ansible.builtin.set_fact:
+    go_architecture: "{{ {'x86_64': 'amd64', 'armv7l': 'armv6l'}[ansible_architecture] | default('amd64') }}"
+
+# get_url, instead of unarchive, is used to download the tarball so that the checksum can be verified.
+- name: Download Go Binary Release
+  ansible.builtin.get_url:
+    checksum: "{{ vars['go']['checksum'][go_architecture] }}"
+    url: "https://golang.org/dl/go{{ go.version }}.linux-{{ go_architecture }}.tar.gz"
+    dest: "/home/{{ account.localadmin.username }}/workspaces/tools"
+  register: go_tarball
+
+- ansible.builtin.set_fact:
+    go_root: "/home/{{ account.localadmin.username }}/workspaces/tools/{{ go_tarball.dest | basename | replace('.tar.gz', '') }}"
+
+- name: Extract Tarball
+  ansible.builtin.unarchive:
+    src: "{{ go_tarball.dest }}"
+    dest: "/home/{{ account.localadmin.username }}/workspaces/tools"
+    remote_src: yes
+    creates: "{{ go_root }}"
+
+# Just a personal preference. This helps me track which versions I've used.
+- name: Rename go directory to include version
+  ansible.builtin.command:
+    cmd: mv "/home/{{ account.localadmin.username }}/workspaces/tools/go" "{{ go_root }}"
+    creates: "{{ go_root }}"
+
+- name: "Add Go Binary to {{ account.localadmin.username }}'s PATH"
+  ansible.builtin.lineinfile:
+    path: "/home/{{ account.localadmin.username }}/.bashrc"
+    state: present
+    line: 'export PATH="{{ go_root }}/bin:${PATH}"'

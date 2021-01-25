@@ -1,0 +1,23 @@
+---
+# This playbook configures the Host environment with tools needed to work on this project.
+#
+# Note: at this time only Linux is supported, on the following architectures:
+# - 64-bit (x64)
+# - 32-bit Arm
+#
+# Usage: this playbook can be run, as follows:
+#
+#    $ eval "$(pyenv init -)"
+#    $ poetry run ansible-playbook devenv.yml
+
+- hosts: all
+  environment:
+    PATH: "/usr/local/go/bin:{{ ansible_env.PATH }}"
+  name: Provision Development Environment
+  gather_facts: yes
+  tasks:
+    - ansible.builtin.import_role: name=devenv
+    - ansible.builtin.import_role: name=golang
+    - ansible.builtin.import_role: name=packer
+      vars:
+        packer_builder_arm_plugin: true

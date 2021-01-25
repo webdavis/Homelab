@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+
+# This script is a wrapper for the `packer` command, rotating the Packer log
+# files after each Packer run.
+#######################################################################################
+
+set -e
+
+# Exit immediately if the ANSIBLE_VAULT_PASSWORD environment variable isn't set.
+[[ -n "$ANSIBLE_VAULT_PASSWORD" ]] || exit 1
+
+script_dir="$(cd ${BASH_SOURCE[0]%/*} && pwd)"
+
+# Grab a timestamp now.
+timestamp="$(date '+%FT%H:%M:%S%z')"
+
+interrupt() {
+  echo "INTERRUPT: $(basename ${BASH_SOURCE[0]##*/}): received interrupt signal" >&2
+  exit 130
+}
+
+trap interrupt INT
+trap interrupt QUIT
+trap interrupt TERM
+
+logs_dir="${script_dir}/logs/packer"
+if [[ ! -d "$logs_dir" ]]; then
+  install --directory --mode=0700 "$logs_dir"
+fi
+
+# Turn on the Packer logger.
+PACKER_LOG=1
+PACKER_LOG_PATH="${logs_dir}/packer-${timestamp}.log"
+
+# Handle errors manually, so that we can still manage the logs if things fail.
+set +e
+error_code=0
+
+# Write output to both stdout and the log file.
+exec > >(tee -a "$PACKER_LOG_PATH") 2>&1
+
+# Run packer validate.
+if [[ $error_code -eq 0 ]]; then
+  echo "$ sudo --preserve-env=ANSIBLE_VAULT_PASSWORD packer validate $@"
+  sudo --preserve-env=ANSIBLE_VAULT_PASSWORD packer validate "$@"
+  error_code=$?
+  echo -e "\n"
+fi
+
+# Run packer build.
+if [[ $error_code -eq 0 ]]; then
+  echo "$ sudo --preserve-env=ANSIBLE_VAULT_PASSWORD packer build -machine-readable $@"
+  sudo --preserve-env=ANSIBLE_VAULT_PASSWORD packer build -machine-readable "$@"
+  error_code=$?
+  echo -e "\n"
+fi
+
+exec > /dev/tty
+
+echo "Log written to: logs/packer/packer-${timestamp}.log"
+exit $error_code

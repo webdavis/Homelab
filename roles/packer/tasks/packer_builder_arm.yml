@@ -1,0 +1,46 @@
+---
+
+- name: Install Virtualization Dependencies
+  ansible.builtin.apt: "name={{ item }} update_cache=true cache_valid_time={{ 60 * 15 }}"
+  loop:
+    - qemu-user-static
+  become: yes
+
+- ansible.builtin.set_fact:
+    packer_builder_arm_folder: "/home/{{ account.localadmin.username }}/workspaces/installers/packer-builder-arm"
+    packer_builder_arm_binary: "/home/{{ account.localadmin.username }}/workspaces/installers/packer-builder-arm/packer-builder-arm"
+
+- name: Clone packer-builder-arm Plugin
+  ansible.builtin.git:
+    repo: https://github.com/mkaczanowski/packer-builder-arm.git
+    dest: "{{ packer_builder_arm_folder }}"
+    version: "{{ packer.plugin.packer_builder_arm.hash }}"
+  register: packer_builder_arm_clone
+
+- name: Download go modules
+  ansible.builtin.command: "{{ go_root }}/bin/go mod download"
+  args:
+    chdir: "{{ packer_builder_arm_folder }}"
+  
+- name: Compile plugin
+  ansible.builtin.command: "{{ go_root }}/bin/go build"
+  args:
+    chdir: "{{ packer_builder_arm_folder }}"
+    creates: "{{ packer_builder_arm_binary }}"
+
+- name: Remove packer-builder-arm
+  ansible.builtin.file:
+    path: /usr/local/bin/packer-builder-arm
+    state: absent
+  when: packer_builder_arm_clone.changed
+  become: yes
+  
+- name: Copy packer-builder-arm to same directory as Packer binary
+  ansible.builtin.copy:
+    remote_src: yes
+    src: "{{ packer_builder_arm_binary }}"
+    dest: /usr/local/bin
+    group: root
+    owner: root
+    mode: u=rwx,g=rx,u=rx
+  become: yes

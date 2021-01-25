@@ -1,0 +1,34 @@
+---
+
+- name: Determine Packer Architecture
+  ansible.builtin.set_fact:
+    packer_architecture: "{{ {'x86_64': 'amd64', 'armv7l': 'arm'}[ansible_architecture] | default('amd64') }}"
+
+- name: Download Pre-compiled Packer Binary
+  ansible.builtin.get_url:
+    checksum: "{{ vars['packer']['checksum'][packer_architecture] }}"
+    url: "https://releases.hashicorp.com/packer/{{ packer.version }}/packer_{{ packer.version }}_linux_{{ packer_architecture }}.zip"
+    dest: "/home/{{ account.localadmin.username }}/workspaces/tools"
+  register: packer_zipped
+
+- debug:
+    msg: "Downloaded {{ packer_zipped.dest | basename }}"
+  when: packer_zipped.changed
+
+- name: Remove Packer Binary
+  ansible.builtin.file:
+    path: /usr/local/bin/packer
+    state: absent
+  when: packer_zipped.changed
+  become: yes
+  
+- name: Unzip Packer image
+  ansible.builtin.unarchive:
+    src: "{{ packer_zipped.dest }}"
+    dest: /usr/local/bin
+    remote_src: yes
+    creates: /usr/local/bin/packer
+  become: yes
+
+- ansible.builtin.import_tasks: packer_builder_arm.yml
+  when: (packer_builder_arm_plugin | default(true))

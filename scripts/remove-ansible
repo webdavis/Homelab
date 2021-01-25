@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -e
+
+# Purge the local Ansible installation.
+sudo rm -rf /root/.local/ /root/.ansible
+
+sudo apt-get remove -y python3-dev python3-pip
+sudo apt-get autoremove -y
+sudo apt-get autoclean

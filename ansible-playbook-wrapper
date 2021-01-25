@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+
+# This script is a wrapper for the `ansible-playbook` command, rotating the Ansible log
+# files after each Ansible run.
+#######################################################################################
+
+set -e
+
+script_dir="$(cd ${BASH_SOURCE[0]%/*} && pwd)"
+
+original_log="${script_dir}/ansible.log"
+
+# Grab a timestamp now.
+timestamp="$(date '+%FT%H:%M:%S%z')"
+
+timestamp_log() {
+  logs_dir="${script_dir}/logs/ansible"
+  if [[ ! -d "$logs_dir" ]]; then
+    install --directory --mode=0700 "$logs_dir"
+  fi
+
+  timestamped_log="${logs_dir}/ansible-${timestamp}.log"
+  mv "$original_log" "$timestamped_log"
+  echo "Log written to: logs/ansible/ansible-${timestamp}.log"
+}
+
+interrupt() {
+  echo "INTERRUPT: $(basename ${BASH_SOURCE[0]##*/}): received interrupt signal" >&2
+  timestamp_log
+  exit 130
+}
+
+trap interrupt INT
+trap interrupt QUIT
+trap interrupt TERM
+
+# Handle errors manually, so that we can still manage the logs if things fail.
+set +e
+error_code=0
+
+# Write output to both stdout and the log file.
+exec > >(tee -a "$original_log") 2>&1
+
+# Run ansible-playbook.
+if [[ $error_code -eq 0 ]]; then
+  echo "$ ansible-playbook $@"
+  ansible-playbook "$@"
+  error_code=$?
+  echo -e "\n"
+fi
+
+exec > /dev/tty
+
+timestamp_log
+exit $error_code

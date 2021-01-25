@@ -1,0 +1,4 @@
+---
+
+- ansible.builtin.import_tasks: workspaces_base.yml
+- ansible.builtin.import_tasks: tools_base.yml
