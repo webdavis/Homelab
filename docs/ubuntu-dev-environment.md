@@ -4,6 +4,13 @@ To get started on this project, a few tools must be installed on your developmen
 This document assumes you are using an Ubuntu 20.04+ machine; though, it should be easy
 enough to adapt the installation instructions for a different OS.
 
+Conveniently, the [`devenv.yml`](../devenv.yml) Playbook is provided to automate the setup of
+this projects development environment on an Ubuntu 20.04+ machine. However, it must be run from
+within a Python virtual environment.
+
+> **Note:** If you are not running Ubuntu 20.04+, then you will need to adapt the steps
+> provided here (and in the Playbook) for your system.
+
 ## pyenv
 
 It's recommended to use [pyenv](https://github.com/pyenv/pyenv) to manage Python versions.
@@ -161,7 +168,7 @@ Ping the managing node (probably your `localhost`) to verify the connection:
 $ poetry run ansible localhost -m ping
 ```
 
-> **Note:** see [`ansible.cfg`](./ansible.cfg) for other nodes.
+> **Note:** see [`ansible.cfg`](../ansible.cfg) for other nodes.
 
 ### Run the devenv Playbook
 
@@ -169,23 +176,29 @@ This Playbook will provision your Host machine with Packer and the `packer-build
 required to bootstrap a Raspberry Pi OS (`armv7l`) image.
 
 It's required that the user account that runs this playbook has `sudo` access. If your user
-account must enter a password to acquire `sudo` access then run the following
-`ansible-playbook` command with the `--ask-become-pass` command flag, like so:
+account must enter a password to acquire `sudo` access then, from the root of this project, run
+the following `ansible-playbook` command with the `--ask-become-pass` command flag, like so:
 
 ```bash
 $ poetry run ./ansible-playbook-wrapper devenv.yml --ask-become-pass --limit=localhost
+```
+
+If your user can run `sudo` without providing a password, then run the following command:
+
+```bash
+$ poetry run ./ansible-playbook-wrapper devenv.yml --limit=localhost
 ```
 
 ## Bootstrap a Raspberry Pi Image with Packer
 
 Packer is used to bootstrap the official Raspberry Pi OS image with the software and
 configuration required to host this project. All of the tool versions are hardcoded in
-[`group_vars/all/main.yml`](./group_vars/all/main.yml) to prevent version incompatibility
+[`group_vars/all/main.yml`](../group_vars/all/main.yml) to prevent version incompatibility
 issues and other breakage.
 
 ### Example command
 
-This repo provides the [`packer-wrapper`](./packer-wrapper) script for executing Packer builds.
+This repo provides the [`packer-wrapper`](../packer-wrapper) script for executing Packer builds.
 This script makes life easier for the developer in a few ways. It:
 
 - Turns on the Packer logger
@@ -196,7 +209,8 @@ The Packer build expects that the Ansible Vault Password is set as the `ANSIBLE_
 environment variable. If you changed terminals or you are starting fresh, then make sure you
 follow the steps mentioned earlier for setting it.
 
-Then kickoff the Packer build by running the wrapper script, like so:
+Then kickoff the Packer build by running the wrapper script from the root of this project, like
+so:
 
 ```bash
 $ ./packer-wrapper -var "tag=$(git rev-parse --short HEAD)" build_charity.pkr.hcl
@@ -210,8 +224,8 @@ This Packer build will spit out a `charity-<tag>.img` file in to the project roo
 ## Flashing the Image
 
 Plug a MicroSD card (or some other form of secondary memory) into your host machine. You can
-locate the block device using `lsblk`. Then run the following command to flash the newly
-modified image to your MicroSD card:
+locate the block device using `lsblk`. Then, from the root of this project, run the following
+command to flash the newly modified image to your MicroSD card:
 
 ```bash
 $ pv charity-<tag>.img | sudo dd bs=19M iflag=fullblock conv=fsync of=/dev/sdb
