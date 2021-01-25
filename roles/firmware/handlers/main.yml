@@ -4,3 +4,4 @@
   ansible.builtin.service:
     name: hciuart
     enabled: no
+  become: yes

@@ -3,12 +3,11 @@
 #
 # Note: at this time only Linux is supported, on the following architectures:
 # - 64-bit (x64)
-# - 32-bit Arm
 #
 # Usage: this playbook can be run, as follows:
 #
 #    $ eval "$(pyenv init -)"
-#    $ poetry run ansible-playbook devenv.yml
+#    $ poetry run ansible-playbook devenv.yml --limit=localhost
 
 - hosts: all
   environment:

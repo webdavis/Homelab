@@ -1,6 +1,6 @@
 ---
 #
-# The variables in this file are applicable to all hosts groups.
+# The variables in this file are applicable to all hosts.
 #
 
 uart:
@@ -21,6 +21,3 @@ packer:
   plugin:
     packer_builder_arm:
       hash: 2b57acc593c9b3fe294b7f39192ed0ccd3f0ae35
-
-qemu:
-  version: 5.2.0

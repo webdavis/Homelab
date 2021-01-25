@@ -1,10 +1,10 @@
 ---
-# This playbook modifies the Pi OS image.
+# This playbook is intended to be run by Packer, from within a VM provisioned by Packer.
 #
 # Usage: this playbook can be run, as follows:
 #
 #    $ eval "$(pyenv init -)"
-#    $ poetry run ansible-playbook bootstrap.yml
+#    $ poetry run ansible-playbook build_charity.yml
 
 - hosts: all
   name: Bootstrap Debian-based OS with Python 3

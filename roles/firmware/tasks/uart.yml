@@ -5,6 +5,7 @@
     path: /boot/config.txt
     line: enable_uart=1
   when: uart.type == 'mini'
+  become: yes
 
 # This switches the PL011 UART from the bluetooth controller to GPIO pins 14 (Tx) and 15
 # (Rx), which disables bluetooth on the board.
@@ -14,3 +15,4 @@
     line: btoverlay=disable-bt
   notify: Disable Bluetooth Modems
   when: uart.type == 'PL011'
+  become: yes
