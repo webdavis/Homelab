@@ -1,0 +1,9 @@
+---
+
+- name: Install Shared Development Tools
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - git
+  become: yes

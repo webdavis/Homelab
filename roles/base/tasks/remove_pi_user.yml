@@ -1,0 +1,8 @@
+---
+
+- name: Remove the default Raspberry Pi OS User Account (pi)
+  ansible.builtin.user:
+    name: pi
+    state: absent
+    remove: yes
+  become: yes

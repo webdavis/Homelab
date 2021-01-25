@@ -1,0 +1,59 @@
+---
+
+- name:  Set root Account Password
+  ansible.builtin.user:
+    name: "{{ account.root.username }}"
+    password: "{{ account.root.password | password_hash('sha512') }}"
+    comment: "{{ account.root.description }}"
+  become: yes
+
+- name: "Ensure {{ account.localadmin.username }} Group Exists"
+  ansible.builtin.group:
+    name: "{{ account.localadmin.username }}"
+    gid: "{{ account.localadmin.uid_and_gid_number }}"
+    state: present
+  become: yes
+
+- name: "Create User {{ account.localadmin.username }} with Default Groups"
+  ansible.builtin.user:
+    name: "{{ account.localadmin.username }}"
+    password: "{{ account.localadmin.password | password_hash('sha512') }}"
+    comment: "{{ account.localadmin.description }}"
+    uid: "{{ account.localadmin.uid_and_gid_number }}"
+    group: "{{ account.localadmin.username }}"
+    # TODO: these groups need to be reviewed for security (i.e. there are vulnerabilities with the input group).
+    groups: "adm,dialout,cdrom,plugdev,users,input,netdev,gpio,i2c,spi"
+    append: yes
+    create_home: yes
+    shell: /bin/bash
+    state: present
+  become: yes
+
+- name: "Authorize {{ account.localadmin.username }} for NOPASSWD sudo Usage"
+  ansible.builtin.copy:
+    dest: "/etc/sudoers.d/{{ account.localadmin.username }}"
+    content: |
+      # Allow the `user` account sudo access without requiring a password.
+      {{ account.localadmin.username }} ALL=(ALL) NOPASSWD:ALL
+    owner: root
+    group: root
+    mode: u=w,g=r,o=
+    validate: '/usr/sbin/visudo --check --file=%s'
+  become: yes
+
+- name: "Add {{ account.localadmin.username }} to sudo Group"
+  # This seems redundant with the above sudoers.d entry, but is needed by polkit.
+  ansible.builtin.user:
+    name: "{{ account.localadmin.username }}"
+    groups: sudo
+    append: yes
+  become: yes
+
+# Slightly future proofing this (shrug).
+- name: Check if Raspberry Pi-Based OS
+  ansible.builtin.stat:
+    path: /boot/config.txt
+  register: rpi
+
+- ansible.builtin.import_tasks: remove_pi_user.yml
+  when: rpi.stat.exists

@@ -1,0 +1,54 @@
+---
+
+- name: Create User .ssh Directory
+  ansible.builtin.file:
+    state: directory
+    dest: "/home/{{ account.localadmin.username }}/.ssh"
+    mode: u=rwx,g=,o= 
+    owner: "{{ account.localadmin.username }}"
+    group: "{{ account.localadmin.username }}"
+  become: yes
+
+- name: Authorize SSH Key
+  ansible.posix.authorized_key:
+    user: "{{ account.localadmin.username }}"
+    key: "{{ account.localadmin.ssh_key.public }}"
+  become: yes
+
+- name: Copy SSH Public Key
+  ansible.builtin.copy: 
+    content: "{{ account.localadmin.ssh_key.public }}" 
+    dest: "/home/{{ account.localadmin.username }}/.ssh/id_rsa.pub"
+    owner: "{{ account.localadmin.username }}"
+    group: "{{ account.localadmin.username }}"
+    mode: u=rw,g=r,o=r
+  become: yes
+
+- name: Create SSH Deamon Config File
+  ansible.builtin.copy:
+    src: sshd_config
+    dest: /etc/ssh/sshd_config
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+  become: yes
+
+- name: Ensure sshusers Group Exists
+  ansible.builtin.group:
+    name: sshusers
+    state: present
+  become: yes
+
+- name: "Add {{ account.localadmin.username }} to sshusers Group"
+  # This seems redundant with the above sudoers.d entry, but is needed by polkit.
+  ansible.builtin.user:
+    name: "{{ account.localadmin.username }}"
+    groups: sshusers
+    append: yes
+  become: yes
+
+- name: Ensure SSH Daemon Starts at Boot
+  ansible.builtin.service:
+    name: ssh
+    enabled: yes
+  become: yes

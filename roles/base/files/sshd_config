@@ -1,0 +1,58 @@
+#
+# sshd_config: see https://infosec.mozilla.org/guidelines/openssh for latest security measures
+#
+
+# Supported HostKey algorithms, ordered by preference.
+HostKey /etc/ssh/ssh_host_ed25519_key
+HostKey /etc/ssh/ssh_host_rsa_key
+HostKey /etc/ssh/ssh_host_ecdsa_key
+
+KexAlgorithms curve25519-sha256@libssh.org,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group-exchange-sha256
+Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
+MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com
+
+# Logs the user's key fingerprint on login. This is needed in order to have a clear audit track.
+LogLevel VERBOSE
+
+# Log SFTP level file access (read/write/etc) that would not be easily logged otherwise.
+Subsystem sftp /usr/lib/ssh/sftp-server -f AUTHPRIV -l INFO
+
+# Root login is not allowed for both security and auditing reasons (more so auditing).
+# It's difficult to track which process belongs to which root user!
+#
+# On Linux, user sessions are tracked using a kernel-side Session ID, however, this
+# Session ID is not recorded by OpenSSH. Additionally, only tools such as systemd and
+# auditd record the processes Session ID. On other systems, the user Session ID is not
+# necessarily recorded at all, kernel-side. Using regular users in combination with
+# /bin/su or /usr/bin/sudo ensures a clear audit track.
+PermitRootLogin no
+
+# Use kernel sandbox mechanisms where possible in unprivileged processes.
+#UsePrivilegeSeparation sandbox
+
+# Only allow users that have been added to the group sshusers.
+AllowGroups sshusers
+
+# Ingore the user's ~/.rhosts and ~/.shosts files.
+IgnoreRhosts yes
+
+# The default is to check both .ssh/authorized_keys and .ssh/authorized_keys2, overriding
+# this forces the sshd server to only check .ssh/authorized_keys.
+AuthorizedKeysFile .ssh/authorized_keys
+
+Port 6040
+Protocol 2
+AuthenticationMethods publickey
+KbdInteractiveAuthentication yes
+PubkeyAuthentication yes
+PermitEmptyPasswords no
+PasswordAuthentication no
+ChallengeResponseAuthentication no
+UsePAM yes
+PermitTunnel no
+LoginGraceTime 1m
+MaxAuthTries 3
+MaxSessions 10
+StrictModes yes
+PrintLastLog yes
+PrintMotd yes

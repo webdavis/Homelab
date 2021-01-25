@@ -1,0 +1,23 @@
+---
+#
+# The variables in this file are applicable to all hosts.
+#
+
+uart:
+  enabled: true
+  type: mini
+
+go:
+  version: 1.15.6
+  checksum:
+    amd64: sha256:3918e6cc85e7eaaa6f859f1bdbaac772e7a825b0eb423c63d3ae68b21f84b844
+    armv6l: sha256:40ba9a57764e374195018ef37c38a5fbac9bbce908eab436370631a84bfc5788
+
+packer:
+  version: 1.6.6
+  checksum:
+    amd64: sha256:721d119fd70e38d6f2b4ccd8a39daf6b4d36bf5f7640036acafcaaa967b00c3b
+    arm: sha256:1cfef94b25d1e9ace52c46073718890009374c970085624c4b5d86abe1b4a8b5
+  plugin:
+    packer_builder_arm:
+      hash: 2b57acc593c9b3fe294b7f39192ed0ccd3f0ae35
