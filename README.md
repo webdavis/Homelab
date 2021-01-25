@@ -10,15 +10,10 @@ following:
 
 ## Setup
 
-Conveniently, the [`devenv.yml`](./devenv.yml) Playbook is provided to automate the setup of
-this projects development environment on an Ubuntu 20.04+ machine. However, it must be run from
-within a Python virtual environment.
-
-> **Note:** If you are not running Ubuntu 20.04+, then you will need to adapt the steps
-> provided here (and in the Playbook) for your system.
-
 If this is your first time setting up the development environment for this project, then follow
-the instructions in [ubuntu-dev-environment.md](./docs/ubuntu-dev-environment.md), instead.
+the instructions in [ubuntu-dev-environment.md](./docs/ubuntu-dev-environment.md), instead. The
+following instructions will assume that you've already done this and that you are returning to
+work on this project after already having worked on it before.
 
 ### pyevn
 
