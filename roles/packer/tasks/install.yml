@@ -8,7 +8,7 @@
   ansible.builtin.get_url:
     checksum: "{{ vars['packer']['checksum'][packer_architecture] }}"
     url: "https://releases.hashicorp.com/packer/{{ packer.version }}/packer_{{ packer.version }}_linux_{{ packer_architecture }}.zip"
-    dest: "/home/{{ account.localadmin.username }}/workspaces/netdavis/tools"
+    dest: "/home/{{ account.localuser.username }}/workspaces/netdavis/tools"
   register: packer_zipped
 
 - debug:

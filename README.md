@@ -93,13 +93,10 @@ follow the steps mentioned earlier for setting it.
 Then kickoff the Packer build by running the wrapper script, like so:
 
 ```bash
-$ ./packer-wrapper -var "tag=$(git rev-parse --short HEAD)" build_charity.pkr.hcl
+$ ./packer-wrapper -var "tag=$(git rev-parse --short HEAD)" build_server.pkr.hcl
 ```
 
-This Packer build will spit out a `charity-<tag>.img` file in to the project root.
-
-> **Note:** charity is the nickname I have given the Raspberry Pi that hosts the services in
-> this project.
+This Packer build will spit out a `server-<tag>.img` file in to the project root.
 
 ## Flashing the Image
 
@@ -108,7 +105,7 @@ locate the block device using `lsblk`. Then run the following command to flash t
 modified image to your MicroSD card:
 
 ```bash
-$ pv charity-<tag>.img | sudo dd bs=19M iflag=fullblock conv=fsync of=/dev/sdb
+$ pv server-<tag>.img | sudo dd bs=19M iflag=fullblock conv=fsync of=/dev/sdb
 ```
 
 > **Attention!** Adjust the `bs` operand to the max write speed of your MicroSD card, USB 3.0

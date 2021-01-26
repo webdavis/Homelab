@@ -7,8 +7,8 @@
   become: yes
 
 - ansible.builtin.set_fact:
-    packer_builder_arm_folder: "/home/{{ account.localadmin.username }}/workspaces/netdavis/installers/packer-builder-arm"
-    packer_builder_arm_binary: "/home/{{ account.localadmin.username }}/workspaces/netdavis/installers/packer-builder-arm/packer-builder-arm"
+    packer_builder_arm_folder: "/home/{{ account.localuser.username }}/workspaces/netdavis/installers/packer-builder-arm"
+    packer_builder_arm_binary: "/home/{{ account.localuser.username }}/workspaces/netdavis/installers/packer-builder-arm/packer-builder-arm"
 
 - name: Clone packer-builder-arm Plugin
   ansible.builtin.git:

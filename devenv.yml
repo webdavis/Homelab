@@ -7,7 +7,7 @@
 # Usage: this playbook can be run, as follows:
 #
 #    $ eval "$(pyenv init -)"
-#    $ poetry run ansible-playbook devenv.yml --limit=localhost
+#    $ poetry run ansible-playbook devenv.yml --limit=devenv
 
 - hosts: all
   environment:

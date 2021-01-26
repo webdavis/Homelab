@@ -129,35 +129,86 @@ If you don't set the `ANSIBLE_VAULT_PASSWORD` environment variable then Ansible 
 
 > **Note:** you will have to source this file each time you open a new terminal.
 
-### Create your own Ansible Vault file for this project
+### Create your own Ansible Vault files for this project
+
+You will need to create a `vault.yml` file for each managed node in this project.
+
+#### 1st Device: The Development Computer
+
+In the `host_vars/subdomain.domain.tld/main.yml` file, change the value of the
+`account.localuser.username` variable to your current username. For example:
+
+```yaml
+---
+
+account:
+  localuser:
+    username: stephen
+```
+
+Then copy and paste the following file contents into the
+`host_vars/subdomain.domain.tld/vault.yml` (e.g. `host_vars/ebenezar.netdavis.io/vault.yml`)
+file:
+
+```yaml
+---
+
+vault_account:
+  root:
+    password: <create a strong root account password and put it here>
+  localuser:
+    password: <create a strong user account password and put it here>
+    ssh_key:
+      public: <put your SSH Public Key here>
+      private: |
+        <put your SSH Private Key here>
+```
+
+Then use Ansible Vault to encrypt the file, like so:
+
+```bash
+$ poetry run ansible-vault encrypt host_vars/subdomain.domain.tld/vault.yml
+```
+
+Finally, add your development computer to the `[devenv]` group in the `hosts.ini` file, like
+so:
+
+```ini
+[devenv]
+
+ebenezar.netdavis.io ansible_user=stephen private_ip=10.0.0.202 private_ip_interface=enp0s31f6 ansible_port=6040
+```
+
+#### 2nd Device: The Target Server
 
 Copy and paste the following file contents into the `group_vars/all/vault.yml`:
 
 ```yaml
 ---
-#
-# This file contains secret variables... shhhh.
-#
 
 vault_account:
-  charity:
-    localadmin:
-      password: <create a strong user account password and put it here>
-      ssh_key:
-        public: <put your SSH Public Key here>
-        private: |
-          <put your SSH Public Key here>
-
-devices:
-  charity:
-    mac_address: <put the MAC Address of your Raspberry Pi here>
-    capacity: "<the capacity of your Raspberry Pi (e.g. 2GB, 4GB, etc)>"
+  root:
+    password: <create a strong root account password and put it here>
+  localuser:
+    password: <create a strong user account password and put it here>
+    ssh_key:
+      public: <put your SSH Public Key here>
+      private: |
+        <put your SSH Private Key here>
 ```
 
 Then use Ansible Vault to encrypt the file, like so:
 
 ```bash
 $ poetry run ansible-vault encrypt group_vars/all/vault.yml
+```
+
+Now add your manaaged node to the `[server]` group in the `hosts.ini` file, like so:
+
+```ini
+[server]
+
+charity.netdavis.io ansible_user=localadmin ansible_ssh_host=10.0.0.4 ansible_port=6040
 ```
 
 ### Test the connection via an Ansible ad-hoc command
@@ -180,13 +231,13 @@ account must enter a password to acquire `sudo` access then, from the root of th
 the following `ansible-playbook` command with the `--ask-become-pass` command flag, like so:
 
 ```bash
-$ poetry run ./ansible-playbook-wrapper devenv.yml --ask-become-pass --limit=localhost
+$ poetry run ./ansible-playbook-wrapper devenv.yml --ask-become-pass --limit=devenv
 ```
 
 If your user can run `sudo` without providing a password, then run the following command:
 
 ```bash
-$ poetry run ./ansible-playbook-wrapper devenv.yml --limit=localhost
+$ poetry run ./ansible-playbook-wrapper devenv.yml --limit=devenv
 ```
 
 ## Bootstrap a Raspberry Pi Image with Packer
@@ -213,13 +264,10 @@ Then kickoff the Packer build by running the wrapper script from the root of thi
 so:
 
 ```bash
-$ ./packer-wrapper -var "tag=$(git rev-parse --short HEAD)" build_charity.pkr.hcl
+$ ./packer-wrapper -var "tag=$(git rev-parse --short HEAD)" build_server.pkr.hcl
 ```
 
-This Packer build will spit out a `charity-<tag>.img` file in to the project root.
-
-> **Note:** charity is the nickname I have given the Raspberry Pi that hosts the services in
-> this project.
+This Packer build will spit out a `server-<tag>.img` file in to the project root.
 
 ## Flashing the Image
 
@@ -228,7 +276,7 @@ locate the block device using `lsblk`. Then, from the root of this project, run 
 command to flash the newly modified image to your MicroSD card:
 
 ```bash
-$ pv charity-<tag>.img | sudo dd bs=19M iflag=fullblock conv=fsync of=/dev/sdb
+$ pv server-<tag>.img | sudo dd bs=19M iflag=fullblock conv=fsync of=/dev/sdb
 ```
 
 > **Attention!** Adjust the `bs` operand to the max write speed of your MicroSD card, USB 3.0
