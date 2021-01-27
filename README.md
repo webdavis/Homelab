@@ -6,7 +6,7 @@ following:
 
 - A [Packer](https://www.packer.io/) template that modifies the official Raspberry Pi (32-bit) OS.
 - [Ansible](https://www.ansible.com/) Plays that manage the setup of services on the device.
-- Wrapper scripts that easy the usage of the `packer` and `ansible-playbook` commands.
+- Wrapper scripts that ease the usage of the `packer` and `ansible-playbook` commands.
 
 ## Setup
 
@@ -77,32 +77,32 @@ Ping the managing node (probably your `localhost`) to verify the connection:
 $ poetry run ansible localhost -m ping
 ```
 
-> **Note:** see [`ansible.cfg`](./ansible.cfg) for other nodes.
+> **Note:** see [`hosts.ini`](./hosts.ini) for other nodes.
 
 ## Bootstrap a Raspberry Pi Image with Packer
 
-Packer is used to bootstrap the official Raspberry Pi OS image with the software and
-configuration required to host this project.
+Packer is used to bootstrap the official Raspberry Pi OS image with software
+and configuration required to host this project.
 
 ### Example command
 
-The Packer build expects that the Ansible Vault Password is set as the `ANSIBLE_VAULT_PASSWORD`
-environment variable. If you changed terminals or you are starting fresh, then make sure you
+Packer expects that the Ansible Vault Password is set as the `ANSIBLE_VAULT_PASSWORD`
+environment variable. If you changed terminals, or you are starting fresh, then make sure you
 follow the steps mentioned earlier for setting it.
 
 Then kickoff the Packer build by running the wrapper script, like so:
 
 ```bash
-$ ./packer-wrapper -var "tag=$(git rev-parse --short HEAD)" build_server.pkr.hcl
+$ ./packer-wrapper -var "tag=$(git rev-parse --short HEAD)" packer/build_server.pkr.hcl
 ```
 
-This Packer build will spit out a `server-<tag>.img` file in to the project root.
+This Packer build will spit out a `server-<tag>.img` file to the project's root folder.
 
 ## Flashing the Image
 
 Plug a MicroSD card (or some other form of secondary memory) into your host machine. You can
-locate the block device using `lsblk`. Then run the following command to flash the newly
-modified image to your MicroSD card:
+locate the block device using `lsblk` (e.g. `/dev/sdb`). Then run the following command to
+flash the newly modified image to your MicroSD card:
 
 ```bash
 $ pv server-<tag>.img | sudo dd bs=19M iflag=fullblock conv=fsync of=/dev/sdb

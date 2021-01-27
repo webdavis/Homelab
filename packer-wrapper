@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
-# This script is a wrapper for the `packer` command, rotating the Packer log
-# files after each Packer run.
-#######################################################################################
+# This script is a wrapper for the `packer` command, rotating the Packer log files after
+# each Packer run.
+########################################################################################
 
+# Exit immediately if a command fails.
 set -e
 
 # Exit immediately if the ANSIBLE_VAULT_PASSWORD environment variable isn't set.

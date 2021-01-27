@@ -4,6 +4,7 @@
 # files after each Ansible run.
 #######################################################################################
 
+# Exit immediately if a command fails.
 set -e
 
 script_dir="$(cd ${BASH_SOURCE[0]%/*} && pwd)"
