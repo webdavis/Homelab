@@ -41,7 +41,7 @@ locals { timestamp = regex_replace(timestamp(), "[- TZ:]", "") }
 # source blocks are generated from your builders; a source can be referenced in build blocks. A
 # build block runs provisioner and post-processors on a source. Read the documentation for
 # source blocks here: https://www.packer.io/docs/from-1.5/blocks/source
-source "arm" "charity" {
+source "arm" "server" {
   file_checksum_type = "sha256"
   file_checksum_url = "${var.file_url}.sha256"
   file_target_extension = "zip"
@@ -68,7 +68,7 @@ source "arm" "charity" {
     start_sector = "532480"
     type = "83"
   }
-  image_path = "charity-${var.tag}.img"
+  image_path = "server-${var.tag}.img"
   image_size = "8G"
   image_type = "dos"
   qemu_binary_destination_path = "/usr/bin/qemu-arm-static"
@@ -78,7 +78,7 @@ source "arm" "charity" {
 # A build block invokes sources and runs provisioning steps on them. The documentation for
 # build blocks can be found here: https://www.packer.io/docs/from-1.5/blocks/build
 build {
-  sources = ["source.arm.charity"]
+  sources = ["source.arm.server"]
 
   provisioner "shell" {
     script = "./scripts/install-ansible"
@@ -90,7 +90,7 @@ build {
       "--limit=localhost"
     ]
     playbook_dir = "./"
-    playbook_file = "./build_charity.yml"
+    playbook_file = "./build_server.yml"
   }
 
   provisioner "shell" {
@@ -98,8 +98,8 @@ build {
   }
 
   post-processor "manifest" {
-    only = ["charity"]
-    output = "manifest_charity.json"
+    only = ["server"]
+    output = "manifest_server.json"
     strip_path = true
   }
 }

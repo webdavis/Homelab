@@ -21,3 +21,18 @@ packer:
   plugin:
     packer_builder_arm:
       hash: 2b57acc593c9b3fe294b7f39192ed0ccd3f0ae35
+
+account:
+  root:
+    username: root
+    password: "{{ vault_account.root.password }}"
+    description: Benevolent Dictator
+    uid_and_gid_number: 0
+  localuser:
+    username: localadmin
+    password: "{{ vault_account.localuser.password }}"
+    description: Local Admin
+    uid_and_gid_number: 1001
+    ssh_key:
+      public: "{{ vault_account.localuser.ssh_key.public }}"
+      private: "{{ vault_account.localuser.ssh_key.private }}"
