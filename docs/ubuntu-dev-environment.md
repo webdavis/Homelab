@@ -1,8 +1,7 @@
 # Ubuntu Dev Environment Installation and Setup
 
 To get started on this project, a few tools must be installed on your development machine.
-This document assumes you are using an Ubuntu 20.04+ machine; though, it should be easy
-enough to adapt the installation instructions for a different OS.
+This document assumes you are using an Ubuntu 20.04+ machine.
 
 Conveniently, the [`devenv.yml`](../devenv.yml) Playbook is provided to automate the setup of
 this projects development environment on an Ubuntu 20.04+ machine. However, it must be run from
@@ -15,8 +14,8 @@ within a Python virtual environment.
 
 It's recommended to use [pyenv](https://github.com/pyenv/pyenv) to manage Python versions.
 
-However, some build dependencies are required for pyenv to install versions of Python. On
-Ubuntu 20.04+ systems, they can be installed as follows:
+pyenv requires some build dependencies in order to install versions of Python. On Ubuntu
+20.04+, they can be installed as follows:
 
 ```bash
 $ sudo apt update
@@ -135,7 +134,8 @@ You will need to create a `vault.yml` file for each managed node in this project
 
 #### 1st Device: The Development Computer
 
-In the `host_vars/subdomain.domain.tld/main.yml` file, change the value of the
+In the `host_vars/subdomain.domain.tld/main.yml` (e.g.
+`host_vars/ebenezar.netdavis.io/main.yml`) file, change the value of the
 `account.localuser.username` variable to your current username. For example:
 
 ```yaml
@@ -170,8 +170,8 @@ Then use Ansible Vault to encrypt the file, like so:
 $ poetry run ansible-vault encrypt host_vars/subdomain.domain.tld/vault.yml
 ```
 
-Finally, add your development computer to the `[devenv]` group in the `hosts.ini` file, like
-so:
+Finally, add your development computer to the `[devenv]` group in the
+[`hosts.ini`](../hosts.ini) file, like so:
 
 ```ini
 [devenv]
@@ -203,7 +203,7 @@ Then use Ansible Vault to encrypt the file, like so:
 $ poetry run ansible-vault encrypt group_vars/all/vault.yml
 ```
 
-Now add your manaaged node to the `[server]` group in the `hosts.ini` file, like so:
+Now add your managed node to the `[server]` group in the [`hosts.ini`](../hosts.ini) file, like so:
 
 ```ini
 [server]
@@ -219,7 +219,7 @@ Ping the managing node (probably your `localhost`) to verify the connection:
 $ poetry run ansible localhost -m ping
 ```
 
-> **Note:** see [`ansible.cfg`](../ansible.cfg) for other nodes.
+> **Note:** see [`hosts.ini`](../hosts.ini) for other nodes.
 
 ### Run the devenv Playbook
 
@@ -243,9 +243,9 @@ $ poetry run ./ansible-playbook-wrapper devenv.yml --limit=devenv
 ## Bootstrap a Raspberry Pi Image with Packer
 
 Packer is used to bootstrap the official Raspberry Pi OS image with the software and
-configuration required to host this project. All of the tool versions are hardcoded in
-[`group_vars/all/main.yml`](../group_vars/all/main.yml) to prevent version incompatibility
-issues and other breakage.
+configuration required to host this project. To prevent version incompatibility issues and
+other breakage, all of the tool versions are hardcoded in
+[`group_vars/all/main.yml`](../group_vars/all/main.yml) 
 
 ### Example command
 
@@ -256,24 +256,23 @@ This script makes life easier for the developer in a few ways. It:
 - Validates the Packer build template
 - Passes the Ansible Vault password to the `root` environment in which Packer runs
 
-The Packer build expects that the Ansible Vault Password is set as the `ANSIBLE_VAULT_PASSWORD`
+Packer expects that the Ansible Vault Password is set as the `ANSIBLE_VAULT_PASSWORD`
 environment variable. If you changed terminals or you are starting fresh, then make sure you
 follow the steps mentioned earlier for setting it.
 
-Then kickoff the Packer build by running the wrapper script from the root of this project, like
-so:
+Kickoff the Packer build by running the wrapper script from the project root folder, like so:
 
 ```bash
-$ ./packer-wrapper -var "tag=$(git rev-parse --short HEAD)" build_server.pkr.hcl
+$ ./packer-wrapper -var "tag=$(git rev-parse --short HEAD)" packer/build_server.pkr.hcl
 ```
 
-This Packer build will spit out a `server-<tag>.img` file in to the project root.
+This Packer build will spit out a `server-<tag>.img` file to the project root folder.
 
 ## Flashing the Image
 
 Plug a MicroSD card (or some other form of secondary memory) into your host machine. You can
-locate the block device using `lsblk`. Then, from the root of this project, run the following
-command to flash the newly modified image to your MicroSD card:
+locate the block device using `lsblk` (e.g. `/dev/sdb`). Then, from the project root folder,
+run the following command to flash the newly modified image to your MicroSD card:
 
 ```bash
 $ pv server-<tag>.img | sudo dd bs=19M iflag=fullblock conv=fsync of=/dev/sdb
