@@ -19,3 +19,6 @@ packer_cache/
 
 # Ignore the repository Wiki.
 homelab.wiki/
+
+# Ignore local Python PATH tracked by PDM.
+.pdm-python
