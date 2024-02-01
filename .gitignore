@@ -23,3 +23,8 @@ homelab.wiki/
 
 # Ignore local Python PATH tracked by PDM.
 .pdm-python
+
+# Ignore the Pyproject environment. Dependencies are tracked in the following files:
+# - pw.lock
+# - pyproject.toml
+.pyprojectx/
