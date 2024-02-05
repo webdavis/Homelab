@@ -1,0 +1,12 @@
+---
+# This playbook is intended to be run by Packer, from within a VM provisioned by Packer.
+#
+# Usage: this playbook can be run, as follows:
+#
+#    $ ./pw pdm run --venv in-project ansible-playbook servers.yml
+
+- hosts: servers
+  name: Configure security settings
+  gather_facts: yes
+  tasks:
+    - import_role: name=security
