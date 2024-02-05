@@ -34,7 +34,8 @@
   become: yes
 
 - name: "Add {{ security_localadmin_username }} to sudo group"
-  # This seems redundant with the above sudoers.d entry, but is needed by polkit.
+  # This seems redundant with the above sudoers.d entry, but is needed by polkit in case this
+  # role configures a graphical environment and aligns with standard user administration practices.
   ansible.builtin.user:
     name: "{{ security_localadmin_username }}"
     groups: sudo
