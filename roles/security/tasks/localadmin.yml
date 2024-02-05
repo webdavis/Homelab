@@ -14,9 +14,8 @@
     comment: "{{ security_localadmin_description }}"
     uid: "{{ security_localadmin_uid_and_gid }}"
     group: "{{ security_localadmin_username }}"
-    # TODO: these groups need to be reviewed for security (i.e. there are vulnerabilities with the input group).
-    groups: "adm,dialout,cdrom,plugdev,users,input,netdev,gpio,i2c,spi"
-    append: yes
+    groups: ""
+    append: no
     create_home: yes
     shell: /bin/bash
     state: present
