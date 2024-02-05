@@ -14,7 +14,7 @@
     comment: "{{ security_localadmin_description }}"
     uid: "{{ security_localadmin_uid_and_gid }}"
     group: "{{ security_localadmin_username }}"
-    groups: ""
+    groups: "{{ security_localadmin_groups }}"
     append: no
     create_home: yes
     shell: /bin/bash

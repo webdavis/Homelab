@@ -1,5 +1,6 @@
 ---
 security_localadmin_username: "localadmin"
 security_localadmin_password: "secret"
+security_localadmin_groups: ""
 security_localadmin_description: "Local administrator account"
 security_localadmin_uid_and_gid: 1001
