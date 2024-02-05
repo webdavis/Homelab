@@ -10,7 +10,7 @@
 - name: "Create user {{ security_localadmin_username }} with default groups"
   ansible.builtin.user:
     name: "{{ security_localadmin_username }}"
-    password: "{{ security_localadmin_password | password_hash('sha512') }}"
+    password: "{{ security_localadmin_password | ansible.builtin.password_hash }}"
     comment: "{{ security_localadmin_description }}"
     uid: "{{ security_localadmin_uid_and_gid }}"
     group: "{{ security_localadmin_username }}"
