@@ -73,3 +73,4 @@
   ansible.builtin.user:
     name: root
     password_lock: yes
+  become: yes
