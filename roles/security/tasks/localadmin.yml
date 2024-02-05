@@ -1,0 +1,75 @@
+---
+
+- name: "Ensure the {{ security_localadmin_username }} group exists"
+  ansible.builtin.group:
+    name: "{{ security_localadmin_username }}"
+    gid: "{{ security_localadmin_uid_and_gid }}"
+    state: present
+  become: yes
+
+- name: "Create user {{ security_localadmin_username }} with default groups"
+  ansible.builtin.user:
+    name: "{{ security_localadmin_username }}"
+    password: "{{ security_localadmin_password | password_hash('sha512') }}"
+    comment: "{{ security_localadmin_description }}"
+    uid: "{{ security_localadmin_uid_and_gid }}"
+    group: "{{ security_localadmin_username }}"
+    # TODO: these groups need to be reviewed for security (i.e. there are vulnerabilities with the input group).
+    groups: "adm,dialout,cdrom,plugdev,users,input,netdev,gpio,i2c,spi"
+    append: yes
+    create_home: yes
+    shell: /bin/bash
+    state: present
+  become: yes
+
+- name: "Authorize {{ security_localadmin_username }} for NOPASSWD sudo usage"
+  ansible.builtin.copy:
+    dest: "/etc/sudoers.d/{{ security_localadmin_username }}"
+    content: |
+      # Allow the `user` account sudo access without requiring a password.
+      {{ security_localadmin_username }} ALL=(ALL) NOPASSWD:ALL
+    owner: root
+    group: root
+    mode: u=w,g=r,o=
+    validate: '/usr/sbin/visudo --check --file=%s'
+  become: yes
+
+- name: "Add {{ security_localadmin_username }} to sudo group"
+  # This seems redundant with the above sudoers.d entry, but is needed by polkit.
+  ansible.builtin.user:
+    name: "{{ security_localadmin_username }}"
+    groups: sudo
+    append: yes
+  become: yes
+
+- name: Check if running Raspberry Pi OS or some derivative of it
+  ansible.builtin.stat:
+    path: /boot/firmware/config.txt
+  register: rpi
+
+- name: Include variables for Raspberry Pi OS
+  include_vars: Raspios.yml
+  when: rpi.stat.exists
+
+- name: Include variables for Ubuntu
+  include_vars: Ubuntu.yml
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Check for default user account
+  ansible.builtin.user:
+    name: "{{ security_localadmin_default_account }}"
+  register: user_result
+  ignore_errors: True
+
+- name: Remove default user account
+  ansible.builtin.user:
+    name: "{{ security_localadmin_default_account }}"
+    state: absent
+    remove: yes
+  become: yes
+  when: not user_result.failed
+
+- name: Lock the root account
+  ansible.builtin.user:
+    name: root
+    password_lock: yes
