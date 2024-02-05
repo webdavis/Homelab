@@ -1,12 +1,5 @@
 ---
 
-- name:  Set root Account Password
-  ansible.builtin.user:
-    name: "{{ account.root.username }}"
-    password: "{{ account.root.password | password_hash('sha512') }}"
-    comment: "{{ account.root.description }}"
-  become: yes
-
 - name: "Ensure {{ account.localuser.username }} Group Exists"
   ansible.builtin.group:
     name: "{{ account.localuser.username }}"
@@ -57,3 +50,8 @@
 
 - ansible.builtin.import_tasks: remove_pi_user.yml
   when: rpi.stat.exists
+
+- name: Lock the root account
+  ansible.builtin.user:
+    name: root
+    password_lock: yes
