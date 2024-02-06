@@ -7,19 +7,26 @@
     state: present
   become: yes
 
-- name: "Create user {{ security_localadmin_username }} with default groups"
+- name: "Create user {{ security_localadmin_username }} with default group"
   ansible.builtin.user:
     name: "{{ security_localadmin_username }}"
     password: "{{ security_localadmin_password | ansible.builtin.password_hash }}"
     comment: "{{ security_localadmin_description }}"
     uid: "{{ security_localadmin_uid_and_gid }}"
     group: "{{ security_localadmin_username }}"
-    groups: "{{ security_localadmin_groups }}"
-    append: no
     create_home: yes
     shell: /bin/bash
     state: present
   become: yes
+
+- name: "Add user {{ security_localadmin_username }} to custom groups"
+  ansible.builtin.user:
+    name: "{{ security_localadmin_username }}"
+    groups: "{{ item }}"
+    append: yes
+  with: "{{ security_localadmin_groups }}"
+  become: yes
+  when: security_localadmin_groups | length > 0
 
 - name: "Authorize {{ security_localadmin_username }} for NOPASSWD sudo usage"
   ansible.builtin.copy:
