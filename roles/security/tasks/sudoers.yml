@@ -21,3 +21,10 @@
     groups: sudo
     append: yes
   become: yes
+
+- name: Lock the root account
+  ansible.builtin.user:
+    name: root
+    password_lock: yes
+  become: yes
+  when: security_sudoers_lock_root_account | bool

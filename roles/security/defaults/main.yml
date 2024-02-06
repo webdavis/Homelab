@@ -6,5 +6,6 @@ security_localadmin_description: "Local administrator account"
 security_localadmin_uid_and_gid: 1001
 
 security_sudoers_passwordless: true
+security_sudoers_lock_root_account: true
 
 security_remove_default_account: true
