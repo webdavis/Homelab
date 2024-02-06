@@ -32,7 +32,7 @@
   ansible.builtin.copy:
     dest: "/etc/sudoers.d/{{ security_localadmin_username }}"
     content: |
-      # Allow the `user` account sudo access without requiring a password.
+      # Allow the {{ security_localadmin_username }} account sudo access without requiring a password.
       {{ security_localadmin_username }} ALL=(ALL) NOPASSWD:ALL
     owner: root
     group: root
