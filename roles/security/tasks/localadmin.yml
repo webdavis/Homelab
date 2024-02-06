@@ -28,28 +28,6 @@
   become: yes
   when: security_localadmin_groups | length > 0
 
-- name: "Authorize {{ security_localadmin_username }} for NOPASSWD sudo usage"
-  ansible.builtin.copy:
-    dest: "/etc/sudoers.d/{{ security_localadmin_username }}"
-    content: |
-      # Allow the {{ security_localadmin_username }} account sudo access without requiring a password.
-      {{ security_localadmin_username }} ALL=(ALL) NOPASSWD:ALL
-    owner: root
-    group: root
-    mode: u=w,g=r,o=
-    validate: '/usr/sbin/visudo --check --file=%s'
-  become: yes
-  when: security_sudoers_passwordless | bool
-
-- name: "Add {{ security_localadmin_username }} to sudo group"
-  # This seems redundant with the above sudoers.d entry, but is needed by polkit in case this
-  # role configures a graphical environment and aligns with standard user administration practices.
-  ansible.builtin.user:
-    name: "{{ security_localadmin_username }}"
-    groups: sudo
-    append: yes
-  become: yes
-
 - name: Check if running Raspberry Pi OS or some derivative of it
   ansible.builtin.stat:
     path: /boot/firmware/config.txt

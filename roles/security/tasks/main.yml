@@ -1,3 +1,7 @@
 ---
 
+# Local Administrator setup.
 - ansible.builtin.import_tasks: localadmin.yml
+
+# Sudoers
+- ansible.builtin.import_tasks: sudoers.yml
