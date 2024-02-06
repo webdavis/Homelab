@@ -24,7 +24,7 @@
 - name: Copy the SSH public key
   ansible.builtin.copy: 
     content: "{{ security_ssh_public_key }}" 
-    dest: "/home/{{ security_localadmin_username }}/.ssh/id_rsa.pub"
+    dest: "/home/{{ security_localadmin_username }}/.ssh/{{ security_ssh_public_key_filename }}"
     owner: "{{ security_localadmin_username }}"
     group: "{{ security_localadmin_username }}"
     mode: u=rw,g=r,o=r
