@@ -6,31 +6,31 @@
     state: "{{ security_sshd_state }}"
   become: yes
 
-- name: Create User .ssh Directory
+- name: "Create {{ security_localadmin_username }}'s SSH directory"
   ansible.builtin.file:
     state: directory
-    dest: "/home/{{ account.localuser.username }}/.ssh"
+    dest: "/home/{{ security_localadmin_username }}/.ssh"
     mode: u=rwx,g=,o= 
-    owner: "{{ account.localuser.username }}"
-    group: "{{ account.localuser.username }}"
+    owner: "{{ security_localadmin_username }}"
+    group: "{{ security_localadmin_username }}"
   become: yes
 
-- name: Authorize SSH Key
+- name: Authorize the SSH key
   ansible.posix.authorized_key:
-    user: "{{ account.localuser.username }}"
-    key: "{{ account.localuser.ssh_key.public }}"
+    user: "{{ security_localadmin_username }}"
+    key: "{{ security_ssh_public_key }}"
   become: yes
 
-- name: Copy SSH Public Key
+- name: Copy the SSH public key
   ansible.builtin.copy: 
-    content: "{{ account.localuser.ssh_key.public }}" 
-    dest: "/home/{{ account.localuser.username }}/.ssh/id_rsa.pub"
-    owner: "{{ account.localuser.username }}"
-    group: "{{ account.localuser.username }}"
+    content: "{{ security_ssh_public_key }}" 
+    dest: "/home/{{ security_localadmin_username }}/.ssh/id_rsa.pub"
+    owner: "{{ security_localadmin_username }}"
+    group: "{{ security_localadmin_username }}"
     mode: u=rw,g=r,o=r
   become: yes
 
-- name: Create SSH Deamon Config File
+- name: Create the SSH deamon config file
   ansible.builtin.copy:
     src: sshd_config
     dest: /etc/ssh/sshd_config
@@ -39,21 +39,21 @@
     mode: u=rw,g=r,o=r
   become: yes
 
-- name: Ensure sshusers Group Exists
+- name: Ensure the sshusers group exists
   ansible.builtin.group:
     name: sshusers
     state: present
   become: yes
 
-- name: "Add {{ account.localuser.username }} to sshusers Group"
+- name: "Add {{ security_localadmin_username }} to the sshusers group"
   # This seems redundant with the above sudoers.d entry, but is needed by polkit.
   ansible.builtin.user:
-    name: "{{ account.localuser.username }}"
+    name: "{{ security_localadmin_username }}"
     groups: sshusers
     append: yes
   become: yes
 
-- name: Ensure SSH Daemon Starts at Boot
+- name: Ensure the SSH daemon starts at boot
   ansible.builtin.service:
     name: ssh
     enabled: yes
