@@ -9,3 +9,6 @@ security_sudoers_passwordless: true
 security_sudoers_lock_root_account: true
 
 security_remove_default_account: true
+
+security_sshd_state: started
+security_sshd_enabled: true
