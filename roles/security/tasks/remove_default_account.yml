@@ -1,0 +1,28 @@
+---
+
+- name: Check if running Raspberry Pi OS or some derivative of it
+  ansible.builtin.stat:
+    path: /boot/firmware/config.txt
+  register: rpi
+
+- name: Include variables for Raspberry Pi OS
+  include_vars: Raspios.yml
+  when: rpi.stat.exists
+
+- name: Include variables for Ubuntu
+  include_vars: Ubuntu.yml
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Check for default user account
+  ansible.builtin.user:
+    name: "{{ security_localadmin_default_account }}"
+  register: user_result
+  ignore_errors: True
+
+- name: Remove default user account
+  ansible.builtin.user:
+    name: "{{ security_localadmin_default_account }}"
+    state: absent
+    remove: yes
+  become: yes
+  when: not user_result.failed
