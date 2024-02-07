@@ -9,4 +9,5 @@
   name: Configure security settings
   gather_facts: yes
   tasks:
+    - import_role: name=ansible-prep
     - import_role: name=security
