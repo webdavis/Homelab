@@ -3,58 +3,86 @@
 # measures.
 #
 
-# Supported HostKey algorithms, ordered by preference.
+# === Network Configuration ===
+# Define server listening parameters and protocol verison.
+Port 22
+Protocol 2
+AddressFamily inet
+ListenAddress 0.0.0.0
+
+# === Authentication Settings ===
+# Configure how users authenticate and which users are allowed.
+PermitRootLogin no
+PubkeyAuthentication yes
+AuthorizedKeysFile .ssh/authorized_keys
+AuthorizedKeysCommand none
+AuthorizedKeysCommandUser nobody
+AuthorizedPrincipalsFile none
+PasswordAuthentication no
+ChallengeResponseAuthentication no
+AuthenticationMethods publickey
+UsePAM no
+#AllowUsers
+#AllowGroups
+
+# === Connection & Session Management ===
+# Set parameters for managing and maintaining SSH connections.
+ClientAliveInterval 300
+ClientAliveCountMax 0
+LoginGraceTime 1m
+MaxAuthTries 3
+MaxSessions 10
+MaxStartups 10:30:60
+PermitTunnel no
+AllowAgentForwarding no
+AllowTcpForwarding no
+TCPKeepAlive yes
+GatewayPorts no
+RekeyLimit default none
+
+# === Security & Access Control ===
+# Enhance server security and specify cryptographic options.
+StrictModes yes
+IgnoreRhosts yes
+HostbasedAuthentication no
+PermitEmptyPasswords no
+PermitUserEnvironment no
+UseDNS no
+GSSAPIAuthentication no
+GSSAPICleanupCredentials yes
+GSSAPIStrictAcceptorCheck yes
+GSSAPIKeyExchange no
+KerberosAuthentication no
+KerberosOrLocalPasswd yes
+KerberosTicketCleanup yes
+KerberosGetAFSToken no
+KexAlgorithms curve25519-sha256@libssh.org,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group-exchange-sha256
+Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
+MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com
 HostKey /etc/ssh/ssh_host_ed25519_key
 HostKey /etc/ssh/ssh_host_rsa_key
 HostKey /etc/ssh/ssh_host_ecdsa_key
 
-KexAlgorithms curve25519-sha256@libssh.org,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group-exchange-sha256
-Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
-MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com
-
-# Logs the user's key fingerprint on login. This is needed in order to have a clear audit
-# record.
+# === Logging & Monitoring ===
+# Configure logging levels and facilities for auditing and diagnostics.
+SyslogFacility AUTH
+Subsystem sftp /usr/lib/openssh/sftp-server -f AUTHPRIV -l INFO
 LogLevel VERBOSE
+ 
+# === X11 Forwarding Settings ===
+X11Forwarding no
+X11DisplayOffset 10
+X11UseLocalhost yes
 
-# Log SFTP level file access (read/write/etc) that would not be easily logged otherwise.
-Subsystem sftp /usr/lib/ssh/sftp-server -f AUTHPRIV -l INFO
-
-# Root login is not allowed for both security and auditing reasons (more so auditing).
-# It's difficult to track which process belongs to which root user!
-#
-# On Linux, user sessions are tracked using a kernel-side Session ID, however, this
-# Session ID is not recorded by OpenSSH. Additionally, only tools such as systemd and
-# auditd record the processes Session ID. On other systems, the user Session ID is not
-# necessarily recorded at all, kernel-side. Using regular users in combination with
-# /bin/su or /usr/bin/sudo ensures a clear audit track.
-PermitRootLogin no
-
-# Use kernel sandbox mechanisms where possible in unprivileged processes.
-#UsePrivilegeSeparation sandbox
-
-# Only allow users that have been added to the group sshusers.
-AllowGroups sshusers
-
-# Ingore the user's ~/.rhosts and ~/.shosts files.
-IgnoreRhosts yes
-
-# The default is to check both .ssh/authorized_keys and .ssh/authorized_keys2, overriding
-# this forces the sshd server to only check .ssh/authorized_keys.
-AuthorizedKeysFile .ssh/authorized_keys
-
-Port 6040
-Protocol 2
-AuthenticationMethods publickey
-KbdInteractiveAuthentication yes
-PubkeyAuthentication yes
-PermitEmptyPasswords no
-PasswordAuthentication no
-ChallengeResponseAuthentication no
-UsePAM yes
-PermitTunnel no
-LoginGraceTime 1m
-MaxAuthTries 3
-MaxSessions 10
-StrictModes yes
-PrintLastLog yes
+# === Miscellaneous Settings ===
+# Additional SSHD options and features.
 PrintMotd yes
+PrintLastLog yes
+KbdInteractiveAuthentication no
+PermitTTY no
+Compression delayed
+#PidFile var/run/sshd.pid
+ChrootDirectory none
+AcceptEnv LANG LC_*
+
+# === Conditional Configuration ===
