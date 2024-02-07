@@ -6,6 +6,7 @@
 
 - ansible.builtin.import_tasks: remove_default_account.yml
   when:
-    - (ansible_os_family == 'Debian') and (security_remove_default_account | bool)
+    - ansible_os_family == 'Debian'
+    - security_remove_default_account | bool
 
 - ansible.builtin.import_tasks: ssh.yml
