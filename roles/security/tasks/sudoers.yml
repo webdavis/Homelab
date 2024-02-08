@@ -1,10 +1,16 @@
 ---
-- name: "Authorize {{ security_localadmin_username }} for NOPASSWD sudo usage"
+- name: "Authorize {{ security_localadmin_username }} for passwordless sudo usage, set rvim as visudo editor, and configure insults"
   ansible.builtin.copy:
     dest: "/etc/sudoers.d/{{ security_localadmin_username }}"
     content: |
+      # Set the default editor used by visudo, and do not allow visudo to use EDITOR/VISUAL.
+      Defaults editor=/usr/bin/rvim, !env_editor
+
       # Allow the {{ security_localadmin_username }} account sudo access without requiring a password.
-      {{ security_localadmin_username }} ALL=(ALL) NOPASSWD:ALL
+      Defaults:{{ security_localadmin_username }} !authenticate
+
+      # Replace feedback with humorous insults.
+      Defaults insults
     owner: root
     group: root
     mode: u=w,g=r,o=
