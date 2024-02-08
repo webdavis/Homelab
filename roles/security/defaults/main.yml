@@ -116,3 +116,5 @@ security_apt_listchanges_changes_type: "both"
 security_apt_listchanges_email_format: "html"
 
 security_cleanup: "yes"
+security_cleanup_purge_config_file: "no"
+security_cleanup_use_apt_get: "no"
