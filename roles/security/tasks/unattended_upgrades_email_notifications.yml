@@ -1,0 +1,26 @@
+---
+- ansible.builtin.import_tasks: msmtp.yml
+  when: (security_msmtp_imported is not defined) or (not security_msmtp_imported | bool)
+
+- name: Install mailx
+  ansible.builtin.package:
+    name: bsd-xmail
+    state: present
+
+- name: Add email configuration to unattended-upgrades
+  ansible.builtin.lineinfile:
+    dest: /etc/apt/apt.conf.d/50unattended-upgrades
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: present
+    create: true
+    mode: u=rw,g=r,o=r
+    validate: '/usr/sbin/unattended-upgrades --dry-run --config-file=%s'
+  loop:
+    - regexp: "^Unattended-Upgrade::Mail"
+      line: "Unattended-Upgrade::Mail {{ security_unattended_upgrades_email_address }}"
+    - regexp: "^Unattended-Upgrade::MailOnlyOnError"
+      line: "Unattended-Upgrade::MailOnlyOnError {{ security_unattended_upgrades_email_on_error }}"
+  when:
+    - security_unattended_upgrades_email_address is defined
+    - security_unattended_upgrades_email_address | length > 0
