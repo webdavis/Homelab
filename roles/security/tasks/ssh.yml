@@ -199,7 +199,7 @@
     marker: "# {mark} ANSIBLE MANAGED BLOCK FOR HostKey"
     insertafter: '^MACs'
     mode: u=rw,g=r,o=r
-    validate: sshd -T -f %s
+    validate: 'sshd -T -f %s'
   when: security_ssh_host_keys | length > 0
   notify: restart ssh
 
@@ -214,6 +214,6 @@
     marker: "# {mark} ANSIBLE MANAGED BLOCK FOR Match Group"
     insertafter: "^# === Conditional Configuration ===$"
     mode: u=rw,g=r,o=r
-    validate: sshd -T -f %s
+    validate: 'sshd -T -f %s'
   when: security_ssh_allowed_groups | length > 0
   notify: restart ssh

@@ -12,7 +12,7 @@
     owner: root
     group: root
     mode: u=rw,g=r,o=r
-    validate: fail2ban-client -t
+    validate: 'fail2ban-client -t'
     backup: yes
   notify: reload fail2ban
 
@@ -24,7 +24,7 @@
     owner: root
     group: root
     mode: u=rw,g=r,o=r
-    validate: fail2ban-client -t
+    validate: 'fail2ban-client -t'
     backup: yes
   notify: reload fail2ban
 

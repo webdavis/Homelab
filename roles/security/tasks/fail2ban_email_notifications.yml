@@ -1,5 +1,6 @@
 ---
 - ansible.builtin.import_tasks: msmtp.yml
+  when: (security_msmtp_imported is not defined) or (not security_msmtp_imported | bool)
 
 - name: Install sendmail packages
   ansible.builtin.package:
@@ -21,5 +22,5 @@
     marker: "# {mark} ANSIBLE MANAGED BLOCK FOR fail2ban sendmail config"
     insertafter: '^maxretry'
     mode: u=rw,g=r,o=r
-    validate: fail2ban-client -t
+    validate: 'fail2ban-client -t'
   notify: reload fail2ban
