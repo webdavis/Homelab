@@ -112,3 +112,5 @@ security_apt_listchanges_email: "username@example.com"
 security_apt_listchanges_changes_type: "both"
 # Possibilities include: html or text.
 security_apt_listchanges_email_format: "html"
+
+security_cleanup: "yes"

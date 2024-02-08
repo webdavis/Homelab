@@ -21,3 +21,7 @@
 - ansible.builtin.import_tasks: apt_listchanges.yml
   when: security_apt_listchanges_enabled | bool
   become: yes
+
+- ansible.builtin.import_tasks: cleanup.yml
+  when: security_cleanup | bool
+  become: yes
