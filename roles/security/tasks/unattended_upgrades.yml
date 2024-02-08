@@ -1,0 +1,34 @@
+---
+- name: Install unattended-upgrades
+  ansible.builtin.package:
+    name: unattended-upgrades
+    state: present
+
+- name: Copy unattended-upgrades files
+  ansible.builtin.template:
+    src: "{{ item }}.j2"
+    dest: "/etc/apt/apt.conf.d/{{ item }}"
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+  loop:
+    - 50unattended-upgrades
+    - 10periodic
+
+- name: Validate unattended-upgrades configuration
+  ansible.builtin.command:
+    cmd: unattended-upgrade --dry-run
+    warn: false  # Prevent Ansible from warning about using the command module.
+  register: unattended_upgrade_test
+  changed_when: false
+  ignore_errors: true
+
+- name: Assert unattended-upgrades dry-run success
+  assert:
+    that:
+      - not unattended_upgrade_test.failed
+    fail_msg: "Unattended-upgrades dry-run validation failed."
+    success_msg: "Unattended-upgrades dry-run validation succeeded."
+
+- ansible.builtin.import_tasks: unattended_upgrades_email_notifications.yml
+  when: security_unattended_upgrades_email_notifications_enabled | bool

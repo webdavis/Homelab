@@ -1,0 +1,16 @@
+---
+- ansible.builtin.include_tasks: msmtp.yml
+  when: (security_msmtp_is_configured is not defined) or (not security_msmtp_is_configured | bool)
+
+- name: Install apt-listchanges
+  ansible.builtin.package:
+    name: apt-listchanges
+    state: present
+
+- name: Copy apt-listchanges configuration
+  ansible.builtin.template:
+    src: listchanges.conf.j2
+    dest: /etc/apt/listchanges.conf
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r

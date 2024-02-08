@@ -28,3 +28,6 @@ homelab.wiki/
 # - pw.lock
 # - pyproject.toml
 .pyprojectx/
+
+# Ignore Mac Finder generated files.
+.DS_Store

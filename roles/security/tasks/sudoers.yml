@@ -1,0 +1,25 @@
+---
+- name: "Authorize {{ security_localadmin_username }} for passwordless sudo usage, set rvim as visudo editor, and configure insults"
+  ansible.builtin.template:
+    src: custom_sudoers.j2
+    dest: /etc/sudoers.d/custom_sudoers
+    state: present
+    owner: root
+    group: root
+    mode: u=r,g=r,o=
+    validate: 'visudo --check --file=%s'
+  when: security_sudoers_passwordless | bool
+
+# This seems redundant with the above sudoers.d entry, but is needed by polkit in case this
+# role configures a graphical environment. Also it aligns with standard user administration practices.
+- name: "Add {{ security_localadmin_username }} to sudo group"
+  ansible.builtin.user:
+    name: "{{ security_localadmin_username }}"
+    groups: sudo
+    append: yes
+
+- name: Lock the root account
+  ansible.builtin.user:
+    name: root
+    password_lock: yes
+  when: security_sudoers_lock_root_account | bool

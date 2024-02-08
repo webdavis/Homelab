@@ -1,0 +1,25 @@
+---
+- ansible.builtin.include_tasks: msmtp.yml
+  when: (security_msmtp_setup is not defined) or (not security_msmtp_setup | bool)
+
+- name: Install sendmail packages
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - sendmail
+    - msmtp-mta
+
+- name: Configure fail2ban email notifcations via sendmail
+  ansible.builtin.blockinfile:
+    dest:
+    block: |
+      destemail = {{ security_msmtp_email }}
+      sender = {{ security_fail2ban_sender_email_address }}
+      mta = sendmail
+      action = %(action_mwl)s
+    marker: "# {mark} ANSIBLE MANAGED BLOCK FOR fail2ban sendmail config"
+    insertafter: '^maxretry'
+    mode: u=rw,g=r,o=r
+    validate: 'fail2ban-client -t'
+  notify: reload fail2ban

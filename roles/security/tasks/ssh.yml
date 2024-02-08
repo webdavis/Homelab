@@ -1,0 +1,208 @@
+---
+- name: Ensure the SSH daemon is running
+  ansible.builtin.service:
+    name: ssh
+    state: "{{ security_sshd_state }}"
+    enabled: "{{ security_sshd_enabled }}"
+
+- name: "Create {{ security_localadmin_username }}'s SSH directory"
+  ansible.builtin.file:
+    state: directory
+    dest: "/home/{{ security_localadmin_username }}/.ssh"
+    owner: "{{ security_localadmin_username }}"
+    group: "{{ security_localadmin_username }}"
+    mode: u=rwx,g=,o= 
+
+- name: Authorize the SSH key if not already authorized
+  ansible.posix.authorized_key:
+    user: "{{ security_localadmin_username }}"
+    key: "{{ security_ssh_public_key }}"
+  notify: restart ssh
+
+# This task provides a sshd config with sane organization of settings.
+- name: Create the SSH deamon config file
+  ansible.builtin.copy:
+    src: sshd_config
+    dest: /etc/ssh/sshd_config
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+    backup: yes
+    validate: 'sshd -T -f %s'
+  notify: restart ssh
+
+- name: Verify if the process ID file for the SSH daemon exists
+  ansible.builtin.stat:
+    path: "{{ security_ssh_pid_file }}"
+  register: ssh_pid_result
+  when: security_ssh_pid_file | length > 0
+
+# This task, although repetitive, allows users to customize the sshd config file to their liking.
+- name: Update the SSH deamon configuration
+  ansible.builtin.lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: present
+    create: true
+    mode: u=rw,g=r,o=r
+    validate: 'sshd -T -f %s'
+  loop:
+    - regexp: "^Port"
+      line: "Port {{ security_ssh_port }}"
+    - regexp: "^AddressFamily"
+      line: "AddressFamily {{ security_ssh_address_family }}"
+    - regexp: "^ListenAddress"
+      line: "ListenAddress {{ security_ssh_listen_address }}"
+    - regexp: "^PermitRootLogin"
+      line: "PermitRootLogin {{ security_ssh_permit_root_login }}"
+    - regexp: "^PubkeyAuthentication"
+      line: "PubkeyAuthentication {{ security_ssh_pubkey_authentication }}"
+    - regexp: "^PasswordAuthentication"
+      line: "PasswordAuthentication {{ security_ssh_password_authentication }}"
+    - regexp: "^AuthorizedKeysFile"
+      line: "AuthorizedKeysFile {{ security_ssh_authorized_keys_files | join(' ') }}"
+      condition: security_ssh_authorized_keys_files | length > 0
+    - regexp: "^AuthorizedKeysCommand"
+      line: "AuthorizedKeysCommand {{ security_ssh_authorized_keys_command }}"
+    - regexp: "^AuthorizedKeysCommandUser"
+      line: "AuthorizedKeysCommandUser {{ security_ssh_authorized_keys_command_user }}"
+      condition: security_ssh_authorized_keys_command_user | length > 0
+    - regexp: "^AuthorizedPrincipalsFile"
+      line: "AuthorizedPrincipalsFile {{ security_ssh_authorized_principals_file }}"
+    - regexp: "^ChallengeResponseAuthentication"
+      line: "ChallengeResponseAuthentication {{ security_ssh_challenge_response_authentication }}"
+    - regexp: "^AuthenticationMethods"
+      line: "AuthenticationMethods {{ security_ssh_authentication_methods | join(',') }}"
+      condition: security_ssh_authentication_methods | length > 0
+    - regexp: "^UsePAM"
+      line: "UsePAM {{ security_ssh_use_pam }}"
+    - regexp: "^(#)?AllowUsers"
+      line: "AllowUsers {{ security_ssh_allowed_users | join(' ') }}"
+      condition: security_ssh_allowed_users | length > 0
+    - regexp: "^(#)?AllowGroups"
+      line: "AllowGroups {{ security_ssh_allowed_groups | join(' ') }}"
+      condition: security_ssh_allowed_groups | length > 0
+    - regexp: "^ClientAliveInterval"
+      line: "ClientAliveInterval {{ security_ssh_client_alive_interval }}"
+    - regexp: "^ClientAliveCountMax"
+      line: "ClientAliveCountMax {{ security_ssh_client_alive_count }}"
+    - regexp: "^LoginGraceTime"
+      line: "LoginGraceTime {{ security_ssh_login_grace_time }}"
+    - regexp: "^MaxAuthTries"
+      line: "MaxAuthTries {{ security_ssh_max_auth_tries }}"
+    - regexp: "^MaxSessions"
+      line: "MaxSessions {{ security_ssh_max_sessions }}"
+    - regexp: "^MaxStartups"
+      line: "MaxStartups {{ security_ssh_max_startups }}"
+    - regexp: "^PermitTunnel"
+      line: "PermitTunnel {{ security_ssh_permit_tunnel }}"
+    - regexp: "^AllowAgentForwarding"
+      line: "AllowAgentForwarding {{ security_ssh_allow_agent_forwarding }}"
+    - regexp: "^AllowTcpForwarding"
+      line: "AllowTcpForwarding {{ security_ssh_allow_tcp_forwarding }}"
+    - regexp: "^TCPKeepAlive"
+      line: "TCPKeepAlive {{ security_ssh_tcp_keep_alive }}"
+    - regexp: "^GatewayPorts"
+      line: "GatewayPorts {{ security_ssh_gateway_ports }}"
+    - regexp: "^RekeyLimit"
+      line: "RekeyLimit {{ security_ssh_rekey_limit }}"
+    - regexp: "^StrictModes"
+      line: "StrictModes {{ security_ssh_strict_modes }}"
+    - regexp: "^IgnoreRhosts"
+      line: "IgnoreRhosts {{ security_ssh_ignore_rhosts }}"
+    - regexp: "^HostbasedAuthentication"
+      line: "HostbasedAuthentication {{ security_ssh_host_based_authentication }}"
+    - regexp: "^PermitEmptyPasswords"
+      line: "PermitEmptyPasswords {{ security_ssh_permit_empty_passwords }}"
+    - regexp: "^PermitUserEnvironment"
+      line: "PermitUserEnvironment {{ security_ssh_permit_user_environment }}"
+    - regexp: "^UseDNS"
+      line: "UseDNS {{ security_ssh_use_dns }}"
+    - regexp: "^GSSAPIAuthentication"
+      line: "GSSAPIAuthentication {{ security_ssh_gss_api_authentication }}"
+    - regexp: "^GSSAPICleanupCredentials"
+      line: "GSSAPICleanupCredentials {{ security_ssh_gss_api_cleanup_credentials }}"
+    - regexp: "^GSSAPIStrictAcceptorCheck"
+      line: "GSSAPIStrictAcceptorCheck {{ security_ssh_gss_api_strict_acceptor_check }}"
+    - regexp: "^GSSAPIKeyExchange"
+      line: "GSSAPIKeyExchange {{ security_ssh_gss_api_key_exchange }}"
+    - regexp: "^KerberosAuthentication"
+      line: "KerberosAuthentication {{ security_ssh_kerberos_authentication }}"
+    - regexp: "^KerberosOrLocalPasswd"
+      line: "KerberosOrLocalPasswd {{ security_ssh_kerberos_or_local_password }}"
+    - regexp: "^KerberosTicketCleanup"
+      line: "KerberosTicketCleanup {{ security_ssh_kerberos_ticket_cleanup }}"
+    - regexp: "^KerberosGetAFSToken"
+      line: "KerberosGetAFSToken {{ security_ssh_kerberos_get_afs_token }}"
+    - regexp: "^KexAlgorithms"
+      line: "KexAlgorithms {{ security_ssh_kex_algorithms | join(',') }}"
+      condition: security_ssh_kex_algorithms | length > 0
+    - regexp: "^Ciphers"
+      line: "Ciphers {{ security_ssh_ciphers | join(',') }}"
+      condition: security_ssh_ciphers | length > 0
+    - regexp: "^MACs"
+      line: "MACs {{ security_ssh_macs | join(',') }}"
+      condition: security_ssh_macs | length > 0
+    - regexp: "^SyslogFacility"
+      line: "SyslogFacility {{ security_ssh_syslog_facility }}"
+    - regexp: "^Subsystem"
+      line: "Subsystem {{ security_ssh_subsystem }}"
+      condition: security_ssh_subsystem | length > 0
+    - regexp: "^LogLevel"
+      line: "LogLevel {{ security_ssh_log_level }}"
+    - regexp: "^X11Forwarding"
+      line: "X11Forwarding {{ security_ssh_x11_forwarding }}"
+    - regexp: "^X11DisplayOffset"
+      line: "X11DisplayOffset {{ security_ssh_x11_display_offset }}"
+    - regexp: "^X11UseLocalhost"
+      line: "X11UseLocalhost {{ security_ssh_x11_use_localhost }}"
+    - regexp: "^PrintMotd"
+      line: "PrintMotd {{ security_ssh_print_motd }}"
+    - regexp: "^PrintLastLog"
+      line: "PrintLastLog {{ security_ssh_print_last_log }}"
+    - regexp: "^KbdInteractiveAuthentication"
+      line: "KbdInteractiveAuthentication {{ security_ssh_kbd_interactive_authentication }}"
+    - regexp: "^PermitTTY"
+      line: "PermitTTY {{ security_ssh_permit_tty }}"
+    - regexp: "^Compression"
+      line: "Compression {{ security_ssh_compression }}"
+    - regexp: "^(#)?PidFile"
+      line: "PidFile {{ security_ssh_pid_file }}"
+      condition: ssh_pid_result.stat.exists
+    - regexp: "^ChrootDirectory"
+      line: "ChrootDirectory {{ security_ssh_chroot_directory }}"
+    - regexp: "^AcceptEnv"
+      line: "AcceptEnv {{ security_ssh_accept_environment_vars | join (' ') }}"
+      condition: security_ssh_accept_environment_vars | length > 0
+  when: item.condition | default(true)
+  notify: restart ssh
+
+- name: Add HostKey configuration
+  ansible.builtin.blockinfile:
+    dest: /etc/ssh/sshd_config
+    block: |
+      {% for item in security_ssh_host_keys %}
+      HostKey {{ item }}
+      {% endfor %}
+    marker: "# {mark} ANSIBLE MANAGED BLOCK FOR HostKey"
+    insertafter: '^MACs'
+    mode: u=rw,g=r,o=r
+    validate: 'sshd -T -f %s'
+  when: security_ssh_host_keys | length > 0
+  notify: restart ssh
+
+- name: Enable group specific terminal access to SSH
+  ansible.builtin.blockinfile:
+    dest: /etc/ssh/sshd_config
+    create: yes
+    block: |
+      # Apply specific settings for users belonging to allowed SSH groups.
+      Match Group {{ security_ssh_allowed_groups | join(' ') }}
+          PermitTTY yes
+    marker: "# {mark} ANSIBLE MANAGED BLOCK FOR Match Group"
+    insertafter: "^# === Conditional Configuration ===$"
+    mode: u=rw,g=r,o=r
+    validate: 'sshd -T -f %s'
+  when: security_ssh_allowed_groups | length > 0
+  notify: restart ssh

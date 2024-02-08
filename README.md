@@ -56,3 +56,21 @@ pdm run --venv in-project ansible localhost -m ping
 
 > [!TIP]
 > See [`hosts.ini`](./hosts.ini) for other managed nodes.
+
+## Ansible Role: Security
+
+In order to run this role your playbook must make use of the following:
+
+- Elevated privileges using `become: yes`
+- Collect system information using `gather_facts: yes`
+
+Here is an example:
+
+```yaml
+- hosts: servers
+  name: Configure security settings
+  become: yes
+  gather_facts: yes
+  tasks:
+    - import_role: name=security
+```

@@ -1,0 +1,9 @@
+[apt]
+frontend=pager
+which={{ security_apt_listchanges_changes_type }}
+email_address={{ security_apt_listchanges_email }}
+email_format={{ security_apt_listchanges_email_format }}
+confirm=false
+headers=true
+reverse=false
+save_seen=/var/lib/apt/listchanges.db

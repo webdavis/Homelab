@@ -1,0 +1,43 @@
+---
+- name: Initial system upgrades
+  gather_facts: yes
+  block:
+    - name: Update the apt cache
+      ansible.builtin.apt:
+        update_cache: yes
+        cache_valid_time: 3600
+        force_apt_get: yes
+      register: apt_update
+      tags: ['update']
+
+    - name: Upgrade all packages
+      ansible.builtin.apt:
+        upgrade: safe
+        force_apt_get: yes
+      when:
+        - apt_update.changed
+      tags: ['upgrade']
+  rescue:
+    - debug: 
+        msg: "An error occured during the initial system upgrade."
+
+- name: Install Ansible dependencies
+  block:
+    - name: Ensure python3 is installed
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - libc-bin
+      tags: ['libc']
+
+    - name: Ensure ACL is installed
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - acl
+      tags: ['acl']
+  rescue:
+    - debug: 
+        msg: "An error occured while installing Ansible dependencies."
