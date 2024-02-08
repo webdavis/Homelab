@@ -23,6 +23,6 @@
     name: "{{ security_localadmin_username }}"
     groups: "{{ item }}"
     append: yes
-  with: "{{ security_localadmin_additional_groups }}"
+  loop: "{{ security_localadmin_additional_groups }}"
   become: yes
   when: security_localadmin_additional_groups | length > 0
