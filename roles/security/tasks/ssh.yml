@@ -208,9 +208,9 @@
     dest: /etc/ssh/sshd_config
     create: yes
     block: |
-      "# Apply specific settings for users belonging to allowed SSH groups."
-      "Match Group {{ security_ssh_allowed_groups | join(' ') }}"
-          "PermitTTY yes"
+      # Apply specific settings for users belonging to allowed SSH groups.
+      Match Group {{ security_ssh_allowed_groups | join(' ') }}
+          PermitTTY yes
     marker: "# {mark} ANSIBLE MANAGED BLOCK FOR Match Group"
     insertafter: "^# === Conditional Configuration ===$"
     mode: u=rw,g=r,o=r
