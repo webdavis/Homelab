@@ -7,7 +7,6 @@
         update_cache: yes
         cache_valid_time: 3600
         force_apt_get: yes
-      become: yes
       register: apt_update
       tags: ['update']
 
@@ -15,7 +14,6 @@
       ansible.builtin.apt:
         upgrade: safe
         force_apt_get: yes
-      become: yes
       when:
         - apt_update.changed
       tags: ['upgrade']
