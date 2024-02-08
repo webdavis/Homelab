@@ -15,5 +15,23 @@
     - 50unattended-upgrades
     - 10periodic
 
+- name: Validate unattended-upgrades configuration
+  ansible.builtin.command:
+    cmd: unattended-upgrade --dry-run
+    warn: false  # Prevent Ansible from warning about using the command module.
+  register: unattended_upgrade_test
+  changed_when: false
+  ignore_errors: true
+
+- name: Show unattended-upgrades dry-run output
+  ansible.builtin.debug:
+    var: unattended_upgrade_test.stdout
+  when: unattended_upgrade_test.failed == false
+
+- name: Alert if unattended-upgrades dry-run failed
+  ansible.builtin.fail:
+    msg: "Unattended-upgrades dry-run validation failed."
+  when: unattended_upgrade_test.failed == true
+
 - ansible.builtin.import_tasks: unattended_upgrades_email_notifications.yml
   when: security_unattended_upgrades_email_notifications_enabled | bool
