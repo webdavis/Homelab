@@ -23,15 +23,12 @@
   changed_when: false
   ignore_errors: true
 
-- name: Show unattended-upgrades dry-run output
-  ansible.builtin.debug:
-    var: unattended_upgrade_test.stdout
-  when: unattended_upgrade_test.failed == false
-
-- name: Alert if unattended-upgrades dry-run failed
-  ansible.builtin.fail:
-    msg: "Unattended-upgrades dry-run validation failed."
-  when: unattended_upgrade_test.failed == true
+- name: Assert unattended-upgrades dry-run success
+  assert:
+    that:
+      - not unattended_upgrade_test.failed
+    fail_msg: "Unattended-upgrades dry-run validation failed."
+    success_msg: "Unattended-upgrades dry-run validation succeeded."
 
 - ansible.builtin.import_tasks: unattended_upgrades_email_notifications.yml
   when: security_unattended_upgrades_email_notifications_enabled | bool
