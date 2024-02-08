@@ -1,6 +1,6 @@
 ---
 - ansible.builtin.set_fact:
-    security_msmtp_imported: true
+    security_msmtp_is_configured: true
 
 - name: Install email clients
   ansible.builtin.package:
