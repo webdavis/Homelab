@@ -1,5 +1,4 @@
 ---
-
 - name: "Ensure the {{ security_localadmin_username }} group exists"
   ansible.builtin.group:
     name: "{{ security_localadmin_username }}"

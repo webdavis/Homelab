@@ -1,5 +1,4 @@
 ---
-
 - ansible.builtin.import_tasks: localadmin.yml
 
 - ansible.builtin.import_tasks: sudoers.yml

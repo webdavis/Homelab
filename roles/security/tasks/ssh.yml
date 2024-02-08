@@ -2,17 +2,17 @@
 - name: Ensure the SSH daemon is running
   ansible.builtin.service:
     name: ssh
-    enabled: "{{ security_sshd_enabled }}"
     state: "{{ security_sshd_state }}"
+    enabled: "{{ security_sshd_enabled }}"
   become: yes
 
 - name: "Create {{ security_localadmin_username }}'s SSH directory"
   ansible.builtin.file:
     state: directory
     dest: "/home/{{ security_localadmin_username }}/.ssh"
-    mode: u=rwx,g=,o= 
     owner: "{{ security_localadmin_username }}"
     group: "{{ security_localadmin_username }}"
+    mode: u=rwx,g=,o= 
   become: yes
 
 - name: Check if the SSH key is already authorized
@@ -35,9 +35,9 @@
     dest: /etc/ssh/sshd_config
     owner: root
     group: root
-    validate: 'sshd -T -f %s'
     mode: u=rw,g=r,o=r
     backup: yes
+    validate: 'sshd -T -f %s'
   become: yes
   notify: restart ssh
 
@@ -55,8 +55,8 @@
     line: "{{ item.line }}"
     state: present
     create: true
-    validate: 'sshd -T -f %s'
     mode: u=rw,g=r,o=r
+    validate: 'sshd -T -f %s'
   loop:
     - regexp: "^Port"
       line: "Port {{ security_ssh_port }}"

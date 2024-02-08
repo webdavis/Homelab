@@ -1,5 +1,4 @@
 ---
-
 - name: "Authorize {{ security_localadmin_username }} for NOPASSWD sudo usage"
   ansible.builtin.copy:
     dest: "/etc/sudoers.d/{{ security_localadmin_username }}"
@@ -9,7 +8,7 @@
     owner: root
     group: root
     mode: u=w,g=r,o=
-    validate: '/usr/sbin/visudo --check --file=%s'
+    validate: visudo --check --file=%s
   become: yes
   when: security_sudoers_passwordless | bool
 
