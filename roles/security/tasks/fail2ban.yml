@@ -11,7 +11,7 @@
     state: present
     owner: root
     group: root
-    mode: u=rw,g=r,o=r
+    mode: u=rw,g=r,o=
     validate: 'fail2ban-client -t'
     backup: yes
   loop:
