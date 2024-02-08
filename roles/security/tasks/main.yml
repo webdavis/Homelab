@@ -17,3 +17,7 @@
 - ansible.builtin.import_tasks: unattended_upgrades.yml
   when: security_unattended_upgrades_enabled | bool
   become: yes
+
+- ansible.builtin.import_tasks: apt_listchanges.yml
+  when: security_apt_listchanges_enabled | bool
+  become: yes

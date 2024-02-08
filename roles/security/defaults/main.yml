@@ -105,3 +105,10 @@ security_unattended_upgrades_email_address: ""
 security_unattended_upgrades_email_on_error: "true"
 security_unattended_upgrades_remove_unused_dependencies: "false"
 security_unattended_upgrades_verbose: "false"
+
+security_apt_listchanges_enabled: "false"
+security_apt_listchanges_email: "username@example.com"
+# Possibilities include: news, changelogs, or both.
+security_apt_listchanges_changes_type: "both"
+# Possibilities include: html or text.
+security_apt_listchanges_email_format: "html"
