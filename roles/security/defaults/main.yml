@@ -59,7 +59,7 @@ security_ssh_kerberos_get_afs_token: "no"
 security_ssh_kex_algorithms: []
 security_ssh_ciphers: []
 security_ssh_macs: []
-security_ssh_host_keys: []
+security_ssh_host_keys: ["/etc/ssh/ssh_host_ed25519_key", "/etc/ssh/ssh_host_rsa_key", "/etc/ssh/ssh_host_ecdsa_key"]
 security_ssh_syslog_facility: "AUTH"
 security_ssh_subsystem: ""
 security_ssh_log_level: "VERBOSE"

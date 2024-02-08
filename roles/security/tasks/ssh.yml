@@ -189,16 +189,7 @@
   when: item.condition | default(true)
   notify: restart ssh
 
-
-- name: Remove existing HostKey lines
-  ansible.builtin.replace:
-    dest: /etc/ssh/sshd_config
-    regexp: '^HostKey.*$'
-    replace: ''
-  when: security_ssh_host_keys | length > 0
-  notify: restart ssh
-
-- name: Add new HostKey configuration
+- name: Add HostKey configuration
   ansible.builtin.blockinfile:
     dest: /etc/ssh/sshd_config
     block: |
@@ -208,11 +199,7 @@
     marker: "# {mark} ANSIBLE MANAGED BLOCK FOR HostKey"
     insertafter: '^MACs'
     mode: u=rw,g=r,o=r
-  when: security_ssh_host_keys | length > 0
-
-- name: Validate the SSH config after Ansible managed block for HostKey was inserted
-  ansible.builtin.command:
-    cmd: /usr/sbin/sshd -T
+    validate: sshd -T -f %s
   when: security_ssh_host_keys | length > 0
   notify: restart ssh
 
