@@ -1,0 +1,39 @@
+---
+- name: Install fail2ban
+  ansible.builtin.package:
+    name: fail2ban
+    state: present
+  become: yes
+
+- name: Copy custom fail2ban configuration file
+  ansible.builtin.template:
+    src: jail.local.j2
+    dest: /etc/fail2ban/jail.local
+    state: present
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+    validate: fail2ban-client -t
+    backup: yes
+  become: yes
+  notify: reload fail2ban
+
+- name: Copy custom fail2ban configuration file
+  ansible.builtin.template:
+    src: fail2ban.local.j2
+    dest: /etc/fail2ban/fail2ban.local
+    state: present
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+    validate: fail2ban-client -t
+    backup: yes
+  become: yes
+  notify: reload fail2ban
+
+- name: Ensure fail2ban is running and enabled at boot
+  ansible.builtin.service:
+    name: fail2ban
+    state: started
+    enabled: true
+  become: yes

@@ -74,3 +74,11 @@ security_ssh_compression: "delayed"
 security_ssh_pid_file: ""
 security_ssh_chroot_directory: "none"
 security_ssh_accept_environment_vars: []
+
+security_fail2ban_enabled: "yes"
+security_fail2ban_allowipv6: "auto"
+security_fail2ban_logpath: "systemd-journal"
+security_fail2ban_backend: "systemd"
+security_fail2ban_bantime: "15m"
+security_fail2ban_findtime: "30m"
+security_fail2ban_maxretry: 3

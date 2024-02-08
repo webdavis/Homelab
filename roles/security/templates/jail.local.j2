@@ -1,0 +1,11 @@
+[DEFAULT]
+bantime  = {{ security_fail2ban_bantime }}
+findtime  = {{ security_fail2ban_findtime }}
+maxretry = {{ security_fail2ban_maxretry }}
+
+[sshd]
+enabled = true
+port = {{ security_ssh_port }}
+filter = sshd
+logpath = {{ security_fail2ban_logpath }}
+backend = {{ security_fail2ban_backend }}
