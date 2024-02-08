@@ -4,28 +4,19 @@
     name: fail2ban
     state: present
 
-- name: Copy custom fail2ban configuration file
+- name: Copy custom fail2ban configuration files
   ansible.builtin.template:
-    src: jail.local.j2
-    dest: /etc/fail2ban/jail.local
+    src: "{{ item }}.j2"
+    dest: "/etc/fail2ban/{{ item }}"
     state: present
     owner: root
     group: root
     mode: u=rw,g=r,o=r
     validate: 'fail2ban-client -t'
     backup: yes
-  notify: reload fail2ban
-
-- name: Copy custom fail2ban configuration file
-  ansible.builtin.template:
-    src: fail2ban.local.j2
-    dest: /etc/fail2ban/fail2ban.local
-    state: present
-    owner: root
-    group: root
-    mode: u=rw,g=r,o=r
-    validate: 'fail2ban-client -t'
-    backup: yes
+  loop:
+    - jail.local
+    - fail2ban.local
   notify: reload fail2ban
 
 - name: Ensure fail2ban is running and enabled at boot
