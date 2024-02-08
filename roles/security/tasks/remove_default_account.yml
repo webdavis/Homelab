@@ -23,5 +23,4 @@
     name: "{{ security_localadmin_default_account }}"
     state: absent
     remove: yes
-  become: yes
   when: not user_result.failed

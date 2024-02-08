@@ -4,7 +4,6 @@
     name: ssh
     state: "{{ security_sshd_state }}"
     enabled: "{{ security_sshd_enabled }}"
-  become: yes
 
 - name: "Create {{ security_localadmin_username }}'s SSH directory"
   ansible.builtin.file:
@@ -13,7 +12,6 @@
     owner: "{{ security_localadmin_username }}"
     group: "{{ security_localadmin_username }}"
     mode: u=rwx,g=,o= 
-  become: yes
 
 - name: Check if the SSH key is already authorized
   command: grep -s "{{ security_ssh_public_key }}" "/home/{{ security_localadmin_username }}/{{ security_ssh_authorized_keys_files[0] }}"
@@ -24,7 +22,6 @@
   ansible.posix.authorized_key:
     user: "{{ security_localadmin_username }}"
     key: "{{ security_ssh_public_key }}"
-  become: yes
   when: ssh_authorized_keys_result.rc != 0
   notify: restart ssh
 
@@ -38,7 +35,6 @@
     mode: u=rw,g=r,o=r
     backup: yes
     validate: 'sshd -T -f %s'
-  become: yes
   notify: restart ssh
 
 - name: Verify if the process ID file for the SSH daemon exists
@@ -185,7 +181,6 @@
     - regexp: "^AcceptEnv"
       line: "AcceptEnv {{ security_ssh_accept_environment_vars | join (' ') }}"
       condition: security_ssh_accept_environment_vars | length > 0
-  become: yes
   when: item.condition | default(true)
   notify: restart ssh
 

@@ -8,7 +8,6 @@
     group: root
     mode: u=r,g=r,o=
     validate: 'visudo --check --file=%s'
-  become: yes
   when: security_sudoers_passwordless | bool
 
 # This seems redundant with the above sudoers.d entry, but is needed by polkit in case this
@@ -18,11 +17,9 @@
     name: "{{ security_localadmin_username }}"
     groups: sudo
     append: yes
-  become: yes
 
 - name: Lock the root account
   ansible.builtin.user:
     name: root
     password_lock: yes
-  become: yes
   when: security_sudoers_lock_root_account | bool

@@ -4,7 +4,6 @@
     name: "{{ security_localadmin_default_group }}"
     gid: "{{ security_localadmin_gid }}"
     state: present
-  become: yes
 
 - name: "Create user {{ security_localadmin_username }} with default group"
   ansible.builtin.user:
@@ -16,7 +15,6 @@
     create_home: yes
     shell: /bin/bash
     state: present
-  become: yes
 
 - name: "Add user {{ security_localadmin_username }} to custom groups"
   ansible.builtin.user:
@@ -24,5 +22,4 @@
     groups: "{{ item }}"
     append: yes
   loop: "{{ security_localadmin_additional_groups }}"
-  become: yes
   when: security_localadmin_additional_groups | length > 0

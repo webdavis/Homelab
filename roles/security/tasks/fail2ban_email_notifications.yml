@@ -9,7 +9,6 @@
   loop:
     - sendmail
     - msmtp-mta
-  become: yes
 
 - name: Configure fail2ban email notifcations via sendmail
   ansible.builtin.blockinfile:
