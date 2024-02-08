@@ -13,16 +13,10 @@
     group: "{{ security_localadmin_username }}"
     mode: u=rwx,g=,o= 
 
-- name: Check if the SSH key is already authorized
-  command: grep -s "{{ security_ssh_public_key }}" "/home/{{ security_localadmin_username }}/{{ security_ssh_authorized_keys_files[0] }}"
-  changed_when: false
-  register: ssh_authorized_keys_result
-
-- name: Authorize the SSH key
+- name: Authorize the SSH key if not already authorized
   ansible.posix.authorized_key:
     user: "{{ security_localadmin_username }}"
     key: "{{ security_ssh_public_key }}"
-  when: ssh_authorized_keys_result.rc != 0
   notify: restart ssh
 
 # This task provides a sshd config with sane organization of settings.
