@@ -13,7 +13,7 @@
       Defaults insults
     owner: root
     group: root
-    mode: u=w,g=r,o=
+    mode: u=r,g=r,o=
     validate: 'visudo --check --file=%s'
   become: yes
   when: security_sudoers_passwordless | bool
