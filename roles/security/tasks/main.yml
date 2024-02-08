@@ -12,3 +12,4 @@
 
 - ansible.builtin.import_tasks: fail2ban.yml
   when: security_fail2ban_enabled | bool
+  become: yes

@@ -1,0 +1,16 @@
+defaults
+auth on
+tls on
+tls_starttls on
+tls_certcheck on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+
+account default
+host {{ security_smtp_host }}
+port {{ security_smtp_port }}
+protocol smtp
+from {{ security_smtp_from }}
+user {{ security_msmtp_user }}
+passwordeval gpg --quiet --for-your-eyes-only --no-tty --decrypt {{ security_msmtp_encrypted_password_file }}
+
+logfile {{ security_msmtp_logfile_path }}

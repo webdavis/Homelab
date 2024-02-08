@@ -3,7 +3,6 @@
   ansible.builtin.package:
     name: fail2ban
     state: present
-  become: yes
 
 - name: Copy custom fail2ban configuration file
   ansible.builtin.template:
@@ -15,7 +14,6 @@
     mode: u=rw,g=r,o=r
     validate: fail2ban-client -t
     backup: yes
-  become: yes
   notify: reload fail2ban
 
 - name: Copy custom fail2ban configuration file
@@ -28,7 +26,6 @@
     mode: u=rw,g=r,o=r
     validate: fail2ban-client -t
     backup: yes
-  become: yes
   notify: reload fail2ban
 
 - name: Ensure fail2ban is running and enabled at boot
@@ -36,4 +33,6 @@
     name: fail2ban
     state: started
     enabled: true
-  become: yes
+
+- ansible.builtin.import_tasks: fail2ban_email_notifications.yml
+  when: security_fail2ban_email_notifications_enabled | bool
