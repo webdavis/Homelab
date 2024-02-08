@@ -1,9 +1,11 @@
 ---
 security_localadmin_username: "localadmin"
+security_localadmin_default_group: "localadmin"
 security_localadmin_password: "secret"
-security_localadmin_groups: []
+security_localadmin_additional_groups: []
 security_localadmin_description: "Local administrator account"
-security_localadmin_uid_and_gid: 1001
+security_localadmin_uid: 1001
+security_localadmin_gid: 1001
 
 security_sudoers_passwordless: true
 security_sudoers_lock_root_account: true

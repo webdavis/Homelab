@@ -1,8 +1,8 @@
 ---
-- name: "Ensure the {{ security_localadmin_username }} group exists"
+- name: "Ensure the {{ security_localadmin_default_group }} group exists"
   ansible.builtin.group:
-    name: "{{ security_localadmin_username }}"
-    gid: "{{ security_localadmin_uid_and_gid }}"
+    name: "{{ security_localadmin_default_group }}"
+    gid: "{{ security_localadmin_gid }}"
     state: present
   become: yes
 
@@ -11,8 +11,8 @@
     name: "{{ security_localadmin_username }}"
     password: "{{ security_localadmin_password | ansible.builtin.password_hash }}"
     comment: "{{ security_localadmin_description }}"
-    uid: "{{ security_localadmin_uid_and_gid }}"
-    group: "{{ security_localadmin_username }}"
+    uid: "{{ security_localadmin_uid }}"
+    group: "{{ security_localadmin_default_group }}"
     create_home: yes
     shell: /bin/bash
     state: present
@@ -23,6 +23,6 @@
     name: "{{ security_localadmin_username }}"
     groups: "{{ item }}"
     append: yes
-  with: "{{ security_localadmin_groups }}"
+  with: "{{ security_localadmin_additional_groups }}"
   become: yes
-  when: security_localadmin_groups | length > 0
+  when: security_localadmin_additional_groups | length > 0
