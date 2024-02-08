@@ -4,7 +4,7 @@
 
 - name: Install mailx
   ansible.builtin.package:
-    name: bsd-xmail
+    name: bsd-mailx
     state: present
 
 - name: Add email configuration to unattended-upgrades
