@@ -1,16 +1,9 @@
 ---
 - name: "Authorize {{ security_localadmin_username }} for passwordless sudo usage, set rvim as visudo editor, and configure insults"
-  ansible.builtin.copy:
-    dest: "/etc/sudoers.d/{{ security_localadmin_username }}"
-    content: |
-      # Set the default editor used by visudo, and do not allow visudo to use EDITOR/VISUAL.
-      Defaults editor=/usr/bin/rvim, !env_editor
-
-      # Allow the {{ security_localadmin_username }} account sudo access without requiring a password.
-      Defaults:{{ security_localadmin_username }} !authenticate
-
-      # Replace feedback with humorous insults.
-      Defaults insults
+  ansible.builtin.template:
+    src: custom_sudoers.j2
+    dest: /etc/sudoers.d/custom_sudoers
+    state: present
     owner: root
     group: root
     mode: u=r,g=r,o=

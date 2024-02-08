@@ -1,0 +1,8 @@
+# Set the default editor used by visudo, and do not allow visudo to use EDITOR/VISUAL.
+Defaults editor=/usr/bin/rvim, !env_editor
+
+# Allow account sudo access without requiring a password.
+Defaults:{{ security_localadmin_username }} !authenticate
+
+# Replace feedback with humorous insults.
+Defaults insults
