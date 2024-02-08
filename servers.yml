@@ -7,6 +7,7 @@
 
 - hosts: servers
   name: Configure security settings
+  become: yes
   gather_facts: yes
   tasks:
     - import_role: name=ansible-prep

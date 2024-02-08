@@ -1,31 +1,23 @@
 ---
 - ansible.builtin.import_tasks: localadmin.yml
-  become: yes
 
 - ansible.builtin.import_tasks: sudoers.yml
-  become: yes
 
 - ansible.builtin.import_tasks: remove_default_account.yml
-  become: yes
   when:
     - ansible_os_family == 'Debian'
     - security_remove_default_account | bool
 
 - ansible.builtin.import_tasks: ssh.yml
-  become: yes
 
 - ansible.builtin.import_tasks: fail2ban.yml
-  become: yes
   when: security_fail2ban_enabled | bool
 
 - ansible.builtin.import_tasks: unattended_upgrades.yml
-  become: yes
   when: security_unattended_upgrades_enabled | bool
 
 - ansible.builtin.import_tasks: apt_listchanges.yml
-  become: yes
   when: security_apt_listchanges_enabled | bool
 
 - ansible.builtin.import_tasks: cleanup.yml
-  become: yes
   when: security_cleanup | bool
