@@ -3,7 +3,6 @@
   ansible.builtin.template:
     src: custom_sudoers.j2
     dest: /etc/sudoers.d/custom_sudoers
-    state: present
     owner: root
     group: root
     mode: u=r,g=r,o=
