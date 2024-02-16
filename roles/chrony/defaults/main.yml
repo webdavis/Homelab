@@ -1,4 +1,7 @@
 ---
+chrony_timezone: "Etc/UTC"
+chrony_cron_handler_enabled: "yes"
+
 chrony_servers: []
 
 chrony_nts_enabled: "no"

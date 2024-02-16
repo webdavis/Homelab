@@ -11,6 +11,11 @@
     name: chrony
     state: present
 
+- name: Set timezone.
+  community.general.timezone:
+    name: "{{ chrony_timezone }}"
+  notify: Restart cron
+
 - name: Create a system user for Chrony
   ansible.builtin.user:
     name: "{{ chrony_user }}"

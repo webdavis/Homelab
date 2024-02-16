@@ -4,3 +4,9 @@
     name: chrony
     state: restarted
     enabled: true
+
+- name: Restart cron
+  ansible.builtin.service:
+    name: cron
+    state: restarted
+  when: chrony_cron_handler_enabled | bool
