@@ -34,7 +34,7 @@ eval "$(pyenv init -)"
 Install Ansible and its dependencies with [PDM](https://github.com/pdm-project/pdm):
 
 ```bash
-pdm sync
+./pw pdm sync
 ```
 
 ## Running the Ansible Plays
@@ -51,7 +51,7 @@ ssh-add ~/.ssh/id_rsa
 Ping the managing node (probably your `localhost`) to verify the connection:
 
 ```bash
-pdm run --venv in-project ansible localhost -m ping
+./pw pdm run --venv in-project ansible localhost -m ping
 ```
 
 > [!TIP]
