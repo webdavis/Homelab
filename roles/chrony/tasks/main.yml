@@ -35,19 +35,57 @@
 
 - name: Check for existing TLS certificate
   ansible.builtin.stat:
-    path: "/etc/ssl/certs/nts_server.crt"
-  register: nts_cert
+    path: /etc/ssl/certs/nts_server.crt
+  register: chrony_nts_cert
   when: chrony_nts_enabled | bool
 
-- name: Generate self-signed TLS certificate for NTS
-  ansible.builtin.command: |
-    openssl req -x509 -newkey rsa:4096 -nodes \
-      -keyout /etc/ssl/private/nts_server.key \
-      -out /etc/ssl/certs/nts_server.crt -days 365 -subj "/CN={{ ansible_fqdn }}"
-  changed_when: false
+- name: Setup NTS authentication and encryption on local network
   when:
-    - not nts_cert.stat.exists
+    - not chrony_nts_cert.stat.exists
     - chrony_nts_enabled | bool
+  block:
+    - name: Generate private key for NTS
+      community.crypto.openssl_privatekey:
+        path: /etc/ssl/private/nts_server.key
+        passphrase: "{{ chrony_ca_passphrase }}"
+        cipher: aes256
+
+    - name: Create certificate signing request (CSR) for CA certificate
+      community.crypto.openssl_csr_pipe:
+        privatekey_path: /etc/ssl/private/nts_server.key
+        privatekey_passphrase: "{{ chrony_ca_passphrase }}"
+        common_name: "{{ ansible_fqdn }}"
+        use_common_name_for_san: false
+        basic_constraints:
+          - 'CA:TRUE'
+        basic_constraints_critical: true
+        key_usage:
+          - keyCertSign
+        key_usage_critical: true
+      register: chrony_ca_csr
+
+    - name: Generate self-signed TLS certificate for NTS
+      community.crypto.x509_certificate:
+        path: /etc/ssl/certs/nts_server.crt
+        csr_content: "{{ chrony_ca_csr.csr }}"
+        privatekey_path: /etc/ssl/private/nts_server.key
+        privatekey_passphrase: "{{ chrony_ca_passphrase }}"
+        provider: selfsigned
+        selfsigned_not_after: "+365d"
+
+    - name: Set permissions on the private key
+      ansible.builtin.file:
+        path: /etc/ssl/private/nts_server.key
+        owner: "{{ chrony_user }}"
+        group: "{{ chrony_group }}"
+        mode: u=r,g=,o=
+
+    - name: Set permissions on the certificate
+      ansible.builtin.file:
+        path: /etc/ssl/certs/nts_server.crt
+        owner: "{{ chrony_user }}"
+        group: "{{ chrony_group }}"
+        mode: u=w,g=r,o=r
 
 - name: Copy the Chrony keyfile to the server
   ansible.builtin.template:
@@ -71,7 +109,7 @@
     - chrony_host_role == 'client'
     - chrony_server | length > 0
 
-- name: "Create the Chrony config for"
+- name: "Create the Chrony config"
   ansible.builtin.template:
     src: chrony.conf.j2
     dest: /etc/chrony/chrony.conf
