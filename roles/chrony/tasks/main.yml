@@ -79,7 +79,10 @@
     group: "{{ chrony_group }}"
     mode: u=w,g=r,o=
   notify: Restart chrony
-- name: "Chrony host role: {{ chrony_host_role }}"
+
+- name: Display Chrony host role
+  ansible.builtin.debug:
+    msg: "Chrony host role: {{ chrony_host_role }}"
 
 - name: Check for hardware timestamping support
   ansible.builtin.command: "ethtool -T {{ chrony_network_interface }}"
