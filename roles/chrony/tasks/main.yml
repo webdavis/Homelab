@@ -98,9 +98,8 @@
 - name: Ensure hardware timestamping is enabled globally in Chrony
   ansible.builtin.lineinfile:
     path: /etc/chrony/chrony.conf
-    regexp: '^(#)?(hwtimestamp \*)$'
-    line: '\1'
-    backrefs: true
+    regexp: '^(#)?hwtimestamp \*$'
+    line: 'hwtimestamp *'
   notify:
     - Restart chrony
   when: chrony_hardware_timestamping_supported
