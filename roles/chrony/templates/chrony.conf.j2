@@ -48,4 +48,7 @@ allow{% if chrony_server_allow_subnet|length > 0 %} {{ chrony_server_allow_subne
 
 {% endif %}
 # Enable logging for troubleshooting.
-logdir "{{ chrony_logdir }}"
+logdir {{ chrony_logdir }}
+
+# Select which information is logged.
+log {{ chrony_log_options }}

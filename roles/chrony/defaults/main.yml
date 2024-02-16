@@ -19,6 +19,7 @@ chrony_group: "root"
 chrony_cmdport_enabled: "yes"
 chrony_driftfile: "/var/lib/chrony/drift"
 chrony_logdir: "/var/log/chrony"
+chrony_log_options: ["measurements", "statistics", "tracking"]
 
 chrony_keyfile_enabled: "no"
 chrony_keyfile_server: ""
