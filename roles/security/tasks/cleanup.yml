@@ -2,6 +2,6 @@
 - name: Remove dependencies that are no longer required
   ansible.builtin.apt:
     autoremove: yes
-    purge: {{ security_cleanup_purge_config_file }}
-    force_apt_get: {{ security_cleanup_use_apt_get }}
+    purge: "{{ security_cleanup_purge_config_file }}"
+    force_apt_get: "{{ security_cleanup_use_apt_get }}"
   when: ansible_os_family == 'Debian'

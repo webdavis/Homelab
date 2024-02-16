@@ -12,7 +12,7 @@
     group: root
     mode: u=rw,g=r,o=
     validate: 'fail2ban-client -t'
-    backup: yes
+    backup: true
   loop:
     - jail.local
     - fail2ban.local
@@ -25,11 +25,13 @@
     enabled: true
 
 # fail2ban and auth logs are owned by the adm group.
-- name: "Add user {{ security_localadmin_username }} to adm group"
+- name: "Add user to adm group"
   ansible.builtin.user:
     name: "{{ security_localadmin_username }}"
     groups: adm
-    append: yes
+    append: true
+- name: "Username: {{ security_localadmin_username }}"
 
-- ansible.builtin.import_tasks: fail2ban_email_notifications.yml
+- name: Import Fail2Ban email notification configuration
+  ansible.builtin.import_tasks: fail2ban_email_notifications.yml
   when: security_fail2ban_email_notifications_enabled | bool

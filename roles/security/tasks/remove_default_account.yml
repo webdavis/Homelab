@@ -22,5 +22,5 @@
   ansible.builtin.user:
     name: "{{ security_localadmin_default_account }}"
     state: absent
-    remove: yes
+    remove: true
   when: not user_result.failed
