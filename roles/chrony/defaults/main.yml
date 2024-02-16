@@ -1,4 +1,10 @@
 ---
+# Can be either of the following: 'server' or 'client'.
+chrony_host_role: "client"
+chrony_server: "ntp.example.com"
+chrony_server_allow_enabled: "no"
+chrony_server_allow_subnet: ""
+
 chrony_timezone: "Etc/UTC"
 chrony_cron_handler_enabled: "yes"
 
@@ -6,9 +12,6 @@ chrony_servers: []
 
 chrony_nts_enabled: "no"
 chrony_nts_dumpdir: "/var/lib/chrony"
-
-chrony_server_allow_enabled: "no"
-chrony_server_allow_subnet: ""
 
 chrony_makestep_threshold: 1.0
 chrony_makestep_limit: 3
@@ -22,7 +25,6 @@ chrony_logdir: "/var/log/chrony"
 chrony_log_options: ["measurements", "statistics", "tracking"]
 
 chrony_keyfile_enabled: "no"
-chrony_keyfile_server: ""
 chrony_key_id: 10
 # Replace this with your actual secret key.
 chrony_secret_key: "YOUR_SECRET_KEY"
