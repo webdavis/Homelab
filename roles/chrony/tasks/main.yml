@@ -33,6 +33,22 @@
     create_home: true
   when: chrony_user != 'root'
 
+- name: Check for existing TLS certificate
+  ansible.builtin.stat:
+    path: "/etc/ssl/certs/nts_server.crt"
+  register: nts_cert
+  when: chrony_nts_enabled | bool
+
+- name: Generate self-signed TLS certificate for NTS
+  ansible.builtin.command: |
+    openssl req -x509 -newkey rsa:4096 -nodes \
+      -keyout /etc/ssl/private/nts_server.key \
+      -out /etc/ssl/certs/nts_server.crt -days 365 -subj "/CN={{ ansible_fqdn }}"
+  changed_when: false
+  when:
+    - not nts_cert.stat.exists
+    - chrony_nts_enabled | bool
+
 - name: Copy the Chrony keyfile to the server
   ansible.builtin.template:
     src: chrony.keys.j2

@@ -1,6 +1,6 @@
 # Declare server(s) for synchronization.
 {% for server in chrony_servers %}
-server {{ server }} iburst{% if chrony_nts_enabled|bool %} nts{% endif %}{% if chrony_keyfile_enabled|bool and chrony_host_role == 'client' %}key {{ chrony_key_id }}{% endif %}
+server {{ server }} iburst{% if chrony_nts_enabled | bool %} nts{% endif %}{% if chrony_keyfile_enabled | bool and chrony_host_role == 'client' %}key {{ chrony_key_id }}{% endif %}
 {% endfor %}
 
 {% if chrony_nts_enabled | bool %}
@@ -34,6 +34,13 @@ cmdport 0
 # Run chronyd as an unprivileged user. This will default to root.
 user {{ chrony_user }}
 
+
+{% if chrony_nts_enabled | bool %}
+ntsport 4460
+ntsserverkey /etc/ssl/private/nts_server.key
+ntsservercert /etc/ssl/certs/nts_server.crt
+{% endif %}
+
 {% endif %}
 {% if chrony_key_file_enabled | bool %}
 keyfile /etc/chrony.keys
@@ -43,8 +50,8 @@ commandkey {{ chrony_key_id }}
 
 {% endif %}
 {% if chrony_server_allow_enabled | bool %}
-# Allow NTP client connections from {% if chrony_server_allow_subnet|length > 0 %}the {{ chrony_server_allow_subnet }} subnet{% else %}any client{% endif %} on the network.
-allow{% if chrony_server_allow_subnet|length > 0 %} {{ chrony_server_allow_subnet }}{% endif %}
+# Allow NTP client connections from {% if chrony_server_allow_subnet | length > 0 %}the {{ chrony_server_allow_subnet }} subnet{% else %}any client{% endif %} on the network.
+allow{% if chrony_server_allow_subnet | length > 0 %} {{ chrony_server_allow_subnet }}{% endif %}
 
 {% endif %}
 # Enable logging for troubleshooting.
