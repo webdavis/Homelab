@@ -1,5 +1,56 @@
 ---
+- name: Stop and disable systemd-timesyncd so that it doesn't conflict with Chrony daemon
+  ansible.builtin.service:
+    name: systemd-timesyncd
+    state: stopped
+    enabled: false
+  when: ansible_os_family == 'Debian'
+
 - name: Install chrony
   ansible.builtin.package:
     name: chrony
     state: present
+
+- name: Create a system user for Chrony
+  ansible.builtin.user:
+    name: "{{ chrony_user }}"
+    system: true
+    home: "/var/lib/chrony"
+    shell: /usr/sbin/nologin
+    create_home: true
+  when: chrony_user != 'root'
+
+- name: Copy Chrony key file from server
+  ansible.posix.synchronize:
+    src: /etc/chrony.keys
+    dest: /etc/chrony.keys
+    mode: pull
+  delegate_to: "{{ chrony_server }}"
+  when:
+    - chrony_keyfile_server is not defined and chrony_server | length == 0
+    - chrony_keyfile_enabled | bool
+
+- name: "Create the Chrony config for"
+  ansible.builtin.template:
+    src: chrony.conf.j2
+    dest: /etc/chrony/chrony.conf
+    owner: "{{ chrony_user }}"
+    group: "{{ chrony_group }}"
+    mode: u=w,g=r,o=
+  notify: Restart chrony
+  vars:
+    chrony_type: "{{ 'server' if chrony_server_enabled | bool else 'client' }}"
+
+- name: Start and enable the Chrony daemon
+  ansible.builtin.service:
+    name: chronyd
+    state: started
+    enabled: true
+
+- name: Validate Chrony synchronization status
+  ansible.builtin.command: chronyc tracking
+  register: chrony_status
+  changed_when: false
+  failed_when: "'Reference ID' not in chrony_status.stdout"
+  when: ansible_os_family == 'Debian'
+  become: true

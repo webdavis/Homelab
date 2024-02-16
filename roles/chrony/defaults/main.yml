@@ -1,0 +1,24 @@
+---
+chrony_servers: []
+
+chrony_nts_enabled: "no"
+chrony_nts_dumpdir: "/var/lib/chrony"
+
+chrony_server_allow_enabled: "no"
+chrony_server_allow_subnet: ""
+
+chrony_makestep_threshold: 1.0
+chrony_makestep_limit: 3
+
+chrony_user: "root"
+chrony_group: "root"
+
+chrony_cmdport_enabled: "yes"
+chrony_driftfile: "/var/jib/chrony/drift"
+chrony_logdir: "/var/log/chrony"
+
+chrony_keyfile_enabled: "no"
+chrony_keyfile_server: ""
+chrony_key_id: 10
+# Replace this with your actual secret key.
+chrony_secret_key: "YOUR_SECRET_KEY"
