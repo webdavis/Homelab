@@ -5,13 +5,13 @@
     state: "{{ security_sshd_state }}"
     enabled: "{{ security_sshd_enabled }}"
 
-- name: "Create {{ security_localadmin_username }}'s SSH directory"
+- name: "Create user SSH directory"
   ansible.builtin.file:
     state: directory
     dest: "/home/{{ security_localadmin_username }}/.ssh"
     owner: "{{ security_localadmin_username }}"
     group: "{{ security_localadmin_username }}"
-    mode: u=rwx,g=,o= 
+    mode: u=rwx,g=,o=
 
 - name: Authorize the SSH key if not already authorized
   ansible.posix.authorized_key:
@@ -27,7 +27,7 @@
     owner: root
     group: root
     mode: u=rw,g=r,o=r
-    backup: yes
+    backup: true
     validate: 'sshd -T -f %s'
   notify: restart ssh
 
@@ -195,7 +195,7 @@
 - name: Enable group specific terminal access to SSH
   ansible.builtin.blockinfile:
     dest: /etc/ssh/sshd_config
-    create: yes
+    create: true
     block: |
       # Apply specific settings for users belonging to allowed SSH groups.
       Match Group {{ security_ssh_allowed_groups | join(' ') }}
