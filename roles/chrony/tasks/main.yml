@@ -8,7 +8,6 @@
     - '"systemd-timesyncd.service" in services'
     - services["systemd-timesyncd.service"]["status"] != "not-found"
 
-
 - name: Install chrony
   ansible.builtin.package:
     name: chrony
@@ -54,6 +53,30 @@
   notify: Restart chrony
   vars:
     chrony_type: "{{ 'server' if chrony_server_enabled | bool else 'client' }}"
+
+- name: Check for hardware timestamping support
+  ansible.builtin.command: "ethtool -T {{ chrony_network_interface }}"
+  register: chrony_ethtool_output
+  ignore_errors: true
+  changed_when: false
+
+- name: Set hardware timestamping flag based on support
+  ansible.builtin.set_fact:
+    chrony_hardware_timestamping_supported: "{{ 'Hardware Transmit Timestamp Modes' in chrony_ethtool_output.stdout }}"
+
+- name: Debug hardware timestamping support
+  ansible.builtin.debug:
+    msg: "Hardware timestamping supported: {{ chrony_hardware_timestamping_supported }}"
+
+- name: Ensure hardware timestamping is enabled globally in Chrony
+  ansible.builtin.lineinfile:
+    path: /etc/chrony/chrony.conf
+    regexp: '^(#)?(hwtimestamp \*)$'
+    line: '\1'
+    backrefs: true
+  notify:
+    - Restart chrony
+  when: chrony_hardware_timestamping_supported
 
 - name: Start and enable the Chrony daemon
   ansible.builtin.service:

@@ -22,6 +22,9 @@ rtcsync
 # Specify the local clock as a last resort reference.
 local stratum 10
 
+# Enable hardware timestamping on all interfaces that support it.
+#hwtimestamp *
+
 {% if chrony_cmdport | bool %}
 # Disable the IPv4 and IPv6 command sockets to enhance security.
 cmdport 0
