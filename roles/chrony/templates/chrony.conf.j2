@@ -1,19 +1,19 @@
 # Declare server(s) for synchronization.
 {% for server in chrony_servers %}
-server "{{ server }}" iburst{% if chrony_nts_enabled|bool %} nts{% endif %}{% if chrony_keyfile_enabled|bool and chrony_keyfile_server|length > 0 %}key {{ chrony_key_id }}{% endif %}
+server {{ server }} iburst{% if chrony_nts_enabled|bool %} nts{% endif %}{% if chrony_keyfile_enabled|bool and chrony_keyfile_server|length > 0 %}key {{ chrony_key_id }}{% endif %}
 {% endfor %}
 
 {% if chrony_nts_enabled | bool %}
 # Specify the directory for saving cryptographic data
-ntsdumpdir "{{ chrony_nts_dumpdir }}"
+ntsdumpdir {{ chrony_nts_dumpdir }}
 
 {% endif %}
 # Record the rate at which the system clock gains/losses time
-driftfile "{{ chrony_driftfile }}"
+driftfile {{ chrony_driftfile }}
 
 # Allow significant adjustments of the system time by stepping the system clock instead of
 # slewing it.
-makestep "{{ chrony_makestep_threshold }} {{ chrony_makestep_limit }}"
+makestep {{ chrony_makestep_threshold }} {{ chrony_makestep_limit }}
 
 # Enable a mode in which the system time is periodically copied to the RTC in order to keep the
 # real-time clock (RTC) close to the true time.
