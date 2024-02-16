@@ -14,6 +14,12 @@
     name: chrony
     state: present
 
+- name: Ensure tzdata package is installed
+  ansible.builtin.package:
+    name: tzdata
+    state: present
+  when: ansible_system == "Linux"
+
 - name: Set timezone.
   community.general.timezone:
     name: "{{ chrony_timezone }}"
