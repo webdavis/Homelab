@@ -4,7 +4,10 @@
     name: systemd-timesyncd
     state: stopped
     enabled: false
-  when: ansible_os_family == 'Debian'
+  when:
+    - '"systemd-timesyncd.service" in services'
+    - services["systemd-timesyncd.service"]["status"] != "not-found"
+
 
 - name: Install chrony
   ansible.builtin.package:
