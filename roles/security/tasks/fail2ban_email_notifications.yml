@@ -13,7 +13,7 @@
 
 - name: Configure fail2ban email notifcations via sendmail
   ansible.builtin.blockinfile:
-    dest:
+    dest: /etc/fail2ban/jail.local
     block: |
       destemail = {{ security_msmtp_email }}
       sender = {{ security_fail2ban_sender_email_address }}
