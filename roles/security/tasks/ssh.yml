@@ -173,7 +173,7 @@
     - regexp: "^ChrootDirectory"
       line: "ChrootDirectory {{ security_ssh_chroot_directory }}"
     - regexp: "^AcceptEnv"
-      line: "AcceptEnv {{ security_ssh_accept_environment_vars | join (' ') }}"
+      line: "AcceptEnv {{ security_ssh_accept_environment_vars | join(' ') }}"
       condition: security_ssh_accept_environment_vars | length > 0
   when: item.condition | default(true)
   notify: restart ssh

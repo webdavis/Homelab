@@ -30,7 +30,10 @@
     name: "{{ security_localadmin_username }}"
     groups: adm
     append: true
-- name: "Username: {{ security_localadmin_username }}"
+
+- name: Display username
+  ansible.builtin.debug:
+    msg: "Username: {{ security_localadmin_username }}"
 
 - name: Import Fail2Ban email notification configuration
   ansible.builtin.import_tasks: fail2ban_email_notifications.yml

@@ -1,4 +1,5 @@
-default: ansible-ping-servers
+default:
+    @just --choose
 
 alias p := ansible-ping
 alias g := ansible-gather-facts

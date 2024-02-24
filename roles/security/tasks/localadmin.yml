@@ -1,25 +1,37 @@
 ---
-- name: "Ensure the {{ security_localadmin_default_group }} group exists"
+- name: Ensure the localadmins's default group exists
   ansible.builtin.group:
     name: "{{ security_localadmin_default_group }}"
     gid: "{{ security_localadmin_gid }}"
     state: present
 
-- name: "Create user {{ security_localadmin_username }} with default group"
+- name: Display localadmin default group
+  ansible.builtin.debug:
+    msg: "Localadmin Default Group: {{ security_localadmin_default_group }}"
+
+- name: Create user with default group
   ansible.builtin.user:
     name: "{{ security_localadmin_username }}"
     password: "{{ security_localadmin_password | ansible.builtin.password_hash }}"
     comment: "{{ security_localadmin_description }}"
     uid: "{{ security_localadmin_uid }}"
     group: "{{ security_localadmin_default_group }}"
-    create_home: yes
+    create_home: true
     shell: /bin/bash
     state: present
 
-- name: "Add user {{ security_localadmin_username }} to custom groups"
+- name: Display localadmin username
+  ansible.builtin.debug:
+    msg: "Created user: {{ security_localadmin_username }}"
+
+- name: Add user to custom groups
   ansible.builtin.user:
     name: "{{ security_localadmin_username }}"
     groups: "{{ item }}"
-    append: yes
+    append: true
   loop: "{{ security_localadmin_additional_groups }}"
   when: security_localadmin_additional_groups | length > 0
+
+- name: Display localadmin custom groups
+  ansible.builtin.debug:
+    msg: "Added user {{ security_localadmin_username }} to the following groups: {{ security_localadmin_additional_groups | join(' ') }}"

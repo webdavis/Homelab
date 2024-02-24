@@ -1,6 +1,5 @@
 ---
 - name: Initial system upgrades
-  gather_facts: true
   block:
     - name: Update the apt cache
       ansible.builtin.apt:

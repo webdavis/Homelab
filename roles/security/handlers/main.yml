@@ -1,10 +1,10 @@
 ---
-- name: restart ssh
+- name: Restart ssh
   ansible.builtin.service:
     name: ssh
     state: "{{ security_ssh_restart_handler_state }}"
 
-- name: reload fail2ban
+- name: Reload fail2ban
   ansible.builtin.service:
     name: fail2ban
     state: reloaded
