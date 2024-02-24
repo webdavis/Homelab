@@ -1,2 +1,4 @@
 ---
-- ansible.builtin.import_tasks: "prep-{{ ansible_os_family }}.yml"
+- name: Import Debian tasks
+  ansible.builtin.import_tasks: prep-Debian.yml
+  when: ansible_os_family == 'Debian'

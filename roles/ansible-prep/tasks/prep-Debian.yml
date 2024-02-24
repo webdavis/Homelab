@@ -1,24 +1,17 @@
 ---
 - name: Initial system upgrades
-  gather_facts: yes
+  gather_facts: true
   block:
     - name: Update the apt cache
       ansible.builtin.apt:
-        update_cache: yes
+        update_cache: true
         cache_valid_time: 3600
-        force_apt_get: yes
-      register: apt_update
-      tags: ['update']
-
-    - name: Upgrade all packages
-      ansible.builtin.apt:
-        upgrade: safe
-        force_apt_get: yes
-      when:
-        - apt_update.changed
-      tags: ['upgrade']
+        force_apt_get: true
+      notify: Upgrade all packages
+      tags: ['update', 'upgrade']
   rescue:
-    - debug: 
+    - name: Debugging error during initial system upgrade
+      ansible.builtin.debug:
         msg: "An error occured during the initial system upgrade."
 
 - name: Install Ansible dependencies
@@ -39,5 +32,6 @@
         - acl
       tags: ['acl']
   rescue:
-    - debug: 
+    - name: Debugging error while install Ansible dependencies
+      ansible.builtin.debug:
         msg: "An error occured while installing Ansible dependencies."
