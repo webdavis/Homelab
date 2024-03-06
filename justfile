@@ -7,10 +7,10 @@ alias l := ansible-lint
 alias c := ansible-list-collections
 
 ansible-ping target='servers':
-    ./pw pdm run --venv in-project ansible {{target}} -m ping
+    ./pw pdm run --venv in-project ansible {{ target }} -m ping
 
 ansible-gather-facts target='servers':
-    ./pw pdm run --venv in-project ansible {{target}} -m setup
+    ./pw pdm run --venv in-project ansible {{ target }} -m setup
 
 ansible-lint:
     ./pw pdm run --venv in-project ansible-lint
