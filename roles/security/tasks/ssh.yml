@@ -20,7 +20,7 @@
   notify: restart ssh
 
 # This task provides a sshd config with sane organization of settings.
-- name: Create the SSH deamon config file
+- name: Create the SSH daemon config file
   ansible.builtin.copy:
     src: sshd_config
     dest: /etc/ssh/sshd_config
@@ -38,7 +38,7 @@
   when: security_ssh_pid_file | length > 0
 
 # This task, although repetitive, allows users to customize the sshd config file to their liking.
-- name: Update the SSH deamon configuration
+- name: Update the SSH daemon configuration
   ansible.builtin.lineinfile:
     dest: /etc/ssh/sshd_config
     regexp: "{{ item.regexp }}"
