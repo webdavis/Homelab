@@ -94,15 +94,12 @@
       when: chrony_host_role == 'server'
 
     - name: Copy server's NTS certificate to client
-      ansible.builtin.copy:
+      ansible.posix.synchronize:
         src: /etc/ssl/certs/nts_server.crt
         dest: /etc/ssl/certs/nts_server.crt
-        owner: "{{ chrony_user }}"
-        group: "{{ chrony_group }}"
-        mode: '0644'
+        mode: pull
       delegate_to: "{{ chrony_server }}"
       when:
-        - chrony_nts_enabled | bool
         - chrony_host_role == 'client'
 
 - name: Copy the Chrony keyfile to the server
