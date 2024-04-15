@@ -1,0 +1,175 @@
+---
+- name: Stop and disable systemd-timesyncd if Chrony is enabled (this is the default)
+  ansible.builtin.service:
+    name: systemd-timesyncd
+    state: stopped
+    enabled: false
+  when:
+    - chrony_enabled | bool
+    - '"systemd-timesyncd.service" in services'
+    - services["systemd-timesyncd.service"]["status"] != "not-found"
+
+- name: Install chrony
+  ansible.builtin.package:
+    name: chrony
+    state: present
+
+- name: Ensure tzdata package is installed
+  ansible.builtin.package:
+    name: tzdata
+    state: present
+  when: ansible_system == "Linux"
+
+- name: Set timezone.
+  community.general.timezone:
+    name: "{{ chrony_timezone }}"
+  notify: Restart cron
+
+- name: Create a system user for Chrony
+  ansible.builtin.user:
+    name: "{{ chrony_user }}"
+    system: true
+    home: "/var/lib/chrony"
+    shell: /usr/sbin/nologin
+    create_home: true
+  when: chrony_user != 'root'
+
+- name: Check for existing TLS certificate
+  ansible.builtin.stat:
+    path: /etc/ssl/certs/nts_server.crt
+  register: chrony_nts_cert
+  when: chrony_nts_enabled | bool
+
+- name: Setup NTS (Network Time Security) authentication and encryption on local network
+  when:
+    - chrony_nts_enabled | bool
+    - not chrony_nts_cert.stat.exists
+  block:
+    - name: Generate private key for NTS
+      community.crypto.openssl_privatekey:
+        path: /etc/ssl/private/nts_server.key
+        passphrase: "{{ chrony_ca_passphrase }}"
+        cipher: aes256
+      when: chrony_host_role == 'server'
+
+    - name: Create certificate signing request (CSR) for CA certificate
+      community.crypto.openssl_csr_pipe:
+        privatekey_path: /etc/ssl/private/nts_server.key
+        privatekey_passphrase: "{{ chrony_ca_passphrase }}"
+        common_name: "{{ ansible_fqdn }}"
+        use_common_name_for_san: false
+        basic_constraints:
+          - 'CA:TRUE'
+        basic_constraints_critical: true
+        key_usage:
+          - keyCertSign
+        key_usage_critical: true
+      register: chrony_ca_csr
+      when: chrony_host_role == 'server'
+
+    - name: Generate self-signed TLS certificate for NTS
+      community.crypto.x509_certificate:
+        path: /etc/ssl/certs/nts_server.crt
+        csr_content: "{{ chrony_ca_csr.csr }}"
+        privatekey_path: /etc/ssl/private/nts_server.key
+        privatekey_passphrase: "{{ chrony_ca_passphrase }}"
+        provider: selfsigned
+        selfsigned_not_after: "+365d"
+      when: chrony_host_role == 'server'
+
+    - name: Set permissions on the private key
+      ansible.builtin.file:
+        path: /etc/ssl/private/nts_server.key
+        owner: "{{ chrony_user }}"
+        group: "{{ chrony_group }}"
+        mode: u=r,g=,o=
+      when: chrony_host_role == 'server'
+
+    - name: Set permissions on the certificate
+      ansible.builtin.file:
+        path: /etc/ssl/certs/nts_server.crt
+        owner: "{{ chrony_user }}"
+        group: "{{ chrony_group }}"
+        mode: u=w,g=r,o=r
+      when: chrony_host_role == 'server'
+
+    - name: Copy server's NTS certificate to client
+      ansible.posix.synchronize:
+        src: /etc/ssl/certs/nts_server.crt
+        dest: /etc/ssl/certs/nts_server.crt
+        mode: pull
+      delegate_to: "{{ chrony_server }}"
+      when:
+        - chrony_host_role == 'client'
+
+- name: Copy the Chrony keyfile to the server
+  ansible.builtin.template:
+    src: chrony.keys.j2
+    dest: /etc/chrony.keys
+    owner: "{{ chrony_user }}"
+    group: "{{ chrony_group }}"
+    mode: u=w,g=r,o=
+  when:
+    - chrony_keyfile_enabled | bool
+    - chrony_host_role == 'server'
+
+- name: Copy Chrony key file from server to the client
+  ansible.posix.synchronize:
+    src: /etc/chrony.keys
+    dest: /etc/chrony.keys
+    mode: pull
+  delegate_to: "{{ chrony_server }}"
+  when:
+    - chrony_keyfile_enabled | bool
+    - chrony_host_role == 'client'
+    - chrony_server | length > 0
+
+- name: "Create the Chrony config"
+  ansible.builtin.template:
+    src: chrony.conf.j2
+    dest: /etc/chrony/chrony.conf
+    owner: "{{ chrony_user }}"
+    group: "{{ chrony_group }}"
+    mode: u=w,g=r,o=
+  notify: Restart chrony
+
+- name: Display Chrony host role
+  ansible.builtin.debug:
+    msg: "Chrony host role: {{ chrony_host_role }}"
+
+- name: Check for hardware timestamping support
+  ansible.builtin.command: "ethtool -T {{ chrony_network_interface }}"
+  register: chrony_ethtool_output
+  ignore_errors: true
+  changed_when: false
+
+- name: Set hardware timestamping flag based on support
+  ansible.builtin.set_fact:
+    chrony_hardware_timestamping_supported: "{{ 'Hardware Transmit Timestamp Modes' in chrony_ethtool_output.stdout }}"
+
+- name: Debug hardware timestamping support
+  ansible.builtin.debug:
+    msg: "Hardware timestamping supported: {{ chrony_hardware_timestamping_supported }}"
+
+- name: Ensure hardware timestamping is enabled globally in Chrony
+  ansible.builtin.lineinfile:
+    path: /etc/chrony/chrony.conf
+    regexp: '^(#)?hwtimestamp \*$'
+    line: 'hwtimestamp *'
+  notify:
+    - Restart chrony
+  when: chrony_hardware_timestamping_supported
+
+- name: Start and enable the Chrony daemon
+  ansible.builtin.service:
+    name: chronyd
+    state: started
+    enabled: true
+
+- name: Validate Chrony synchronization status
+  ansible.builtin.command: chronyc tracking
+  register: chrony_status
+  changed_when: false
+  failed_when: "'Reference ID' not in chrony_status.stdout"
+  when: ansible_os_family == 'Debian'
+  become: true

@@ -5,10 +5,15 @@
 #
 #    $ ./pw pdm run --venv in-project ansible-playbook servers.yml
 
-- hosts: servers
-  name: Configure security settings
-  become: yes
-  gather_facts: yes
+- name: Configure security settings
+  hosts: servers
+  become: true
+  gather_facts: true
   tasks:
-    - import_role: name=ansible-prep
-    - import_role: name=security
+    - name: Import ansible-prep role
+      ansible.builtin.import_role:
+        name: ansible_prep
+
+    - name: Import security role
+      ansible.builtin.import_role:
+        name: security

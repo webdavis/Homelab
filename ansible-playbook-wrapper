@@ -7,14 +7,14 @@
 # Exit immediately if a command fails.
 set -e
 
-script_dir="$(cd ${BASH_SOURCE[0]%/*} && pwd)"
+script_dir="$(cd "${BASH_SOURCE[0]%/*}" && pwd)"
 
 original_log="${script_dir}/ansible.log"
 
 # Grab a timestamp now.
 timestamp="$(date '+%FT%H:%M:%S%z')"
 
-timestamp_log() {
+function timestamp_log() {
   logs_dir="${script_dir}/logs/ansible"
   if [[ ! -d "$logs_dir" ]]; then
     install --directory --mode=0700 "$logs_dir"
@@ -25,8 +25,8 @@ timestamp_log() {
   echo "Log written to: logs/ansible/ansible-${timestamp}.log"
 }
 
-interrupt() {
-  echo "INTERRUPT: $(basename ${BASH_SOURCE[0]##*/}): received interrupt signal" >&2
+function interrupt() {
+  echo "INTERRUPT: $(basename "${BASH_SOURCE[0]##*/}"): received interrupt signal" >&2
   timestamp_log
   exit 130
 }
@@ -44,7 +44,7 @@ exec > >(tee -a "$original_log") 2>&1
 
 # Run ansible-playbook.
 if [[ $error_code -eq 0 ]]; then
-  echo "$ ansible-playbook $@"
+  echo '$ ansible-playbook' "$@"
   ansible-playbook "$@"
   error_code=$?
   echo -e "\n"

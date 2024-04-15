@@ -7,7 +7,7 @@ This document assumes that you are using a Apple Computer running at least Mac O
 
 > [!WARNING]
 > This probably works on earlier Mac OS versions? I have only tested it on the version listed
-> above :man-shrugging:.
+> above 🤷🏼‍.
 
 ## pyenv
 
@@ -32,28 +32,21 @@ Now switch to that version, like so:
 eval "$(pyenv init -)"
 ```
 
-## PDM
+## Install this projects Dependencies using Pyprojectx and PDM
 
-Install PDM using Homebrew, like so:
+I have chosen to use PDM as this projects Python dependency manager, but there's no need to
+install it. Everything is handled by [Pyprojectx](https://pyprojectx.github.io/), an
+all-inclusive bootstrapping tool, which provides the `pw` command-line script.
 
-```bash
-brew install pdm
-```
-
-Install the Bash completions:
-
-```bash
-pdm completion bash > /etc/bash_completion.d/pdm.bash-completion
-```
-
-### Install this projects Dependencies
-
-PDM makes use of the [pyproject.toml](./pyproject.toml) to manage dependencies. Install them by
-running this command:
+Simply run the following command to ensure everything is in working order (`pyprojectx` will do
+the heavy lifting for you):
 
 ```bash
-pdm sync
+./pw pdm sync
 ```
+
+> [!NOTE]
+> PDM makes use of the [pyproject.toml](./pyproject.toml) file to manage dependencies.
 
 ## Running the Ansible Plays
 
@@ -70,7 +63,7 @@ ssh-add ~/.ssh/id_rsa
 Ping the control node (probably your `localhost`) to verify the connection:
 
 ```bash
-pdm run --venv in-project ansible localhost -m ping
+./pw pdm run --venv in-project ansible localhost -m ping
 ```
 
 > [!NOTE]
@@ -102,4 +95,4 @@ diskutil eject /dev/disk6
 Then unplug your MicroSD card from you host machine and insert it into the Raspberry Pi's
 MicroSD card slot.
 
-Connect your Raspberry Pi to power and it should boot!
+Connect your Raspberry Pi to a power source and it should boot!

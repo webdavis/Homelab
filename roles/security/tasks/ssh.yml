@@ -5,13 +5,13 @@
     state: "{{ security_sshd_state }}"
     enabled: "{{ security_sshd_enabled }}"
 
-- name: "Create {{ security_localadmin_username }}'s SSH directory"
+- name: "Create user SSH directory"
   ansible.builtin.file:
     state: directory
     dest: "/home/{{ security_localadmin_username }}/.ssh"
     owner: "{{ security_localadmin_username }}"
     group: "{{ security_localadmin_username }}"
-    mode: u=rwx,g=,o= 
+    mode: u=rwx,g=,o=
 
 - name: Authorize the SSH key if not already authorized
   ansible.posix.authorized_key:
@@ -20,14 +20,14 @@
   notify: restart ssh
 
 # This task provides a sshd config with sane organization of settings.
-- name: Create the SSH deamon config file
+- name: Create the SSH daemon config file
   ansible.builtin.copy:
     src: sshd_config
     dest: /etc/ssh/sshd_config
     owner: root
     group: root
     mode: u=rw,g=r,o=r
-    backup: yes
+    backup: true
     validate: 'sshd -T -f %s'
   notify: restart ssh
 
@@ -38,7 +38,7 @@
   when: security_ssh_pid_file | length > 0
 
 # This task, although repetitive, allows users to customize the sshd config file to their liking.
-- name: Update the SSH deamon configuration
+- name: Update the SSH daemon configuration
   ansible.builtin.lineinfile:
     dest: /etc/ssh/sshd_config
     regexp: "{{ item.regexp }}"
@@ -173,7 +173,7 @@
     - regexp: "^ChrootDirectory"
       line: "ChrootDirectory {{ security_ssh_chroot_directory }}"
     - regexp: "^AcceptEnv"
-      line: "AcceptEnv {{ security_ssh_accept_environment_vars | join (' ') }}"
+      line: "AcceptEnv {{ security_ssh_accept_environment_vars | join(' ') }}"
       condition: security_ssh_accept_environment_vars | length > 0
   when: item.condition | default(true)
   notify: restart ssh
@@ -195,7 +195,7 @@
 - name: Enable group specific terminal access to SSH
   ansible.builtin.blockinfile:
     dest: /etc/ssh/sshd_config
-    create: yes
+    create: true
     block: |
       # Apply specific settings for users belonging to allowed SSH groups.
       Match Group {{ security_ssh_allowed_groups | join(' ') }}

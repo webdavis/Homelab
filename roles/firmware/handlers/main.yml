@@ -1,7 +1,0 @@
----
-
-- name: Disable Bluetooth Modems
-  ansible.builtin.service:
-    name: hciuart
-    enabled: no
-  become: yes

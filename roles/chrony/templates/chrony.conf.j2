@@ -1,0 +1,60 @@
+# Declare server(s) for synchronization.
+{% for server in chrony_servers %}
+server {{ server }} iburst{% if chrony_nts_enabled | bool %} nts{% endif %}{% if chrony_keyfile_enabled | bool and chrony_host_role == 'client' %}key {{ chrony_key_id }}{% endif %}
+{% endfor %}
+
+{% if chrony_nts_enabled | bool %}
+# Specify the directory for saving cryptographic data
+ntsdumpdir {{ chrony_nts_dumpdir }}
+
+{% endif %}
+# Record the rate at which the system clock gains/losses time
+driftfile {{ chrony_driftfile }}
+
+# Allow significant adjustments of the system time by stepping the system clock instead of
+# slewing it.
+makestep {{ chrony_makestep_threshold }} {{ chrony_makestep_limit }}
+
+# Enable a mode in which the system time is periodically copied to the RTC in order to keep the
+# real-time clock (RTC) close to the true time.
+rtcsync
+
+# Specify the local clock as a last resort reference.
+local stratum 10
+
+# Enable hardware timestamping on all interfaces that support it.
+#hwtimestamp *
+{% if chrony_cmdport | bool %}
+
+# Disable the IPv4 and IPv6 command sockets to enhance security.
+cmdport 0
+{% endif %}
+{% if chrony_user != 'root' %}
+
+# Run chronyd as an unprivileged user. This will default to root.
+user {{ chrony_user }}
+{% endif %}
+{% if chrony_nts_enabled | bool and chrony_host_role == 'server' %}
+
+ntsport 4460
+ntsserverkey /etc/ssl/private/nts_server.key
+ntsservercert /etc/ssl/certs/nts_server.crt
+{% endif %}
+{% if chrony_key_file_enabled | bool %}
+
+keyfile /etc/chrony.keys
+{% endif %}
+{% if chrony_host_role == 'server' %}
+
+commandkey {{ chrony_key_id }}
+{% endif %}
+{% if chrony_server_allow_enabled | bool %}
+# Allow NTP client connections from {% if chrony_server_allow_subnet | length > 0 %}the {{ chrony_server_allow_subnet }} subnet{% else %}any client{% endif %} on the network.
+allow{% if chrony_server_allow_subnet | length > 0 %} {{ chrony_server_allow_subnet }}{% endif %}
+{% endif %}
+
+# Enable logging for troubleshooting.
+logdir {{ chrony_logdir }}
+
+# Select which information is logged.
+log {{ chrony_log_options }}

@@ -1,5 +1,6 @@
 ---
-- ansible.builtin.set_fact:
+- name: Set fact security_msmtp_is_configured to true
+  ansible.builtin.set_fact:
     security_msmtp_is_configured: true
 
 - name: Install email clients
@@ -19,41 +20,46 @@
     mode: u=rw,g=,o=
   when: not security_msmtp_encrypt_password_on_the_fly | bool
 
-- block:
-  - name: Check if GPG key exists
-    ansible.builtin.shell: gpg --list-keys {{ gpg_recipient }}
-    register: gpg_check
-    failed_when: gpg_check.stderr != '' and 'no public key' in gpg_check.stderr
-    changed_when: false
-
-  - name: Generate GPG key pair
-    ansible.builtin.shell: |
-      gpg --batch --gen-key <<EOF
-      Key-Type: default
-      Subkey-Type: default
-      Name-Real: Root User
-      Name-Email: {{ gpg_recipient }}
-      Expire-Date: 0
-      %no-protection
-      %commit
-      EOF
-    when: gpg_check.rc != 0
-
-  - name: Encrypt msmtp password on the fly
-    ansible.builtin.shell:
-      cmd: |
-        "echo '{{ security_msmtp_password }}' | gpg --encrypt --recipient '{{ gpg_recipient_email }}' > {{ security_msmtp_encrypted_password_file_destination }}"
-    args:
-      creates: "{{ security_msmtp_encrypted_password_file_destination }}"
-    no_log: true
-
-  - name: Set permissions for the encrypted password file
-    ansible.builtin.file:
-      path: "{{ security_msmtp_encrypted_password_file_destination }}"
-      owner: root
-      group: root
-      mode: u=rw,g=,o=
+- name: Setup MSMTP password encryption
   when: security_msmtp_encrypt_password_on_the_fly | bool
+  block:
+    - name: Check if GPG key exists
+      ansible.builtin.command: gpg --list-keys {{ gpg_recipient }}
+      register: gpg_check
+      failed_when: gpg_check.stderr != '' and 'no public key' in gpg_check.stderr
+      changed_when: false
+
+    - name: Generate GPG key pair
+      ansible.builtin.shell: |
+        gpg --batch --gen-key <<EOF
+        Key-Type: default
+        Subkey-Type: default
+        Name-Real: Root User
+        Name-Email: {{ gpg_recipient }}
+        Expire-Date: 0
+        %no-protection
+        %commit
+        EOF
+      when: gpg_check.rc != 0
+      changed_when: false
+
+    - name: Encrypt msmtp password on the fly
+      ansible.builtin.shell:
+        cmd: |
+          set -o pipefail &&
+          "echo '{{ security_msmtp_password }}' \
+            | gpg --encrypt --recipient '{{ gpg_recipient_email }}' \
+            > {{ security_msmtp_encrypted_password_file_destination }}"
+      args:
+        creates: "{{ security_msmtp_encrypted_password_file_destination }}"
+      no_log: true
+
+    - name: Set permissions for the encrypted password file
+      ansible.builtin.file:
+        path: "{{ security_msmtp_encrypted_password_file_destination }}"
+        owner: root
+        group: root
+        mode: u=rw,g=,o=
 
 - name: Deploy msmtp configuration
   ansible.builtin.template:
@@ -62,7 +68,7 @@
     owner: root
     group: root
     mode: u=rw,g=,o=
-    backup: yes
+    backup: true
 
 - name: Ensure msmtp log file exists and has correct permissions
   ansible.builtin.file:
