@@ -1,4 +1,6 @@
 ---
+chrony_enabled: true
+
 # Can be either of the following: 'server' or 'client'.
 chrony_host_role: "client"
 chrony_server: "ntp.example.com"
