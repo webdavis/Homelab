@@ -40,16 +40,17 @@
   register: chrony_nts_cert
   when: chrony_nts_enabled | bool
 
-- name: Setup NTS authentication and encryption on local network
+- name: Setup NTS (Network Time Security) authentication and encryption on local network
   when:
-    - not chrony_nts_cert.stat.exists
     - chrony_nts_enabled | bool
+    - not chrony_nts_cert.stat.exists
   block:
     - name: Generate private key for NTS
       community.crypto.openssl_privatekey:
         path: /etc/ssl/private/nts_server.key
         passphrase: "{{ chrony_ca_passphrase }}"
         cipher: aes256
+      when: chrony_host_role == 'server'
 
     - name: Create certificate signing request (CSR) for CA certificate
       community.crypto.openssl_csr_pipe:
@@ -64,6 +65,7 @@
           - keyCertSign
         key_usage_critical: true
       register: chrony_ca_csr
+      when: chrony_host_role == 'server'
 
     - name: Generate self-signed TLS certificate for NTS
       community.crypto.x509_certificate:
@@ -73,6 +75,7 @@
         privatekey_passphrase: "{{ chrony_ca_passphrase }}"
         provider: selfsigned
         selfsigned_not_after: "+365d"
+      when: chrony_host_role == 'server'
 
     - name: Set permissions on the private key
       ansible.builtin.file:
@@ -80,6 +83,7 @@
         owner: "{{ chrony_user }}"
         group: "{{ chrony_group }}"
         mode: u=r,g=,o=
+      when: chrony_host_role == 'server'
 
     - name: Set permissions on the certificate
       ansible.builtin.file:
@@ -87,6 +91,19 @@
         owner: "{{ chrony_user }}"
         group: "{{ chrony_group }}"
         mode: u=w,g=r,o=r
+      when: chrony_host_role == 'server'
+
+    - name: Copy server's NTS certificate to client
+      ansible.builtin.copy:
+        src: /etc/ssl/certs/nts_server.crt
+        dest: /etc/ssl/certs/nts_server.crt
+        owner: "{{ chrony_user }}"
+        group: "{{ chrony_group }}"
+        mode: '0644'
+      delegate_to: "{{ chrony_server }}"
+      when:
+        - chrony_nts_enabled | bool
+        - chrony_host_role == 'client'
 
 - name: Copy the Chrony keyfile to the server
   ansible.builtin.template:
