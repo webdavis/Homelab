@@ -17,3 +17,7 @@
     - name: Import security role
       ansible.builtin.import_role:
         name: security
+
+    - name: Import chrony role
+      ansible.builtin.import_role:
+        name: chrony
