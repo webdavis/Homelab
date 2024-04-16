@@ -16,3 +16,7 @@
         name: rpi_hardware
       vars:
         rpi_hardware_uart_enabled: "full"
+
+    - name: Import security role
+      ansible.builtin.import_role:
+        name: security
