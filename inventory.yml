@@ -32,7 +32,7 @@ devboards:
     mister:
       ansible_user: localadmin
       ansible_ssh_host: 192.168.1.172
-      ansible_port: 22
+      ansible_port: 6040
 
 new_servers:
   hosts:
@@ -48,4 +48,9 @@ servers:
     bob:
       ansible_user: localadmin
       ansible_ssh_host: 192.168.1.171
-      ansible_port: 22
+      ansible_port: 6040
+
+configured_nodes:
+  children:
+    devboards:
+    servers:

@@ -6,10 +6,10 @@ alias g := ansible-gather-facts
 alias l := ansible-lint
 alias c := ansible-list-collections
 
-ansible-ping target='servers':
+ansible-ping target='new_bob':
     ./pw pdm run --venv in-project ansible {{ target }} -m ping
 
-ansible-gather-facts target='servers':
+ansible-gather-facts target='new_bob':
     ./pw pdm run --venv in-project ansible {{ target }} -m setup
 
 ansible-lint:
