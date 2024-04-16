@@ -11,10 +11,6 @@
   become: true
   gather_facts: true
   tasks:
-    - name: Import ansible_prep role
-      ansible.builtin.import_role:
-        name: ansible_prep
-
     - name: Import rpi_hardware role
       ansible.builtin.import_role:
         name: rpi_hardware

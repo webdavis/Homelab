@@ -16,3 +16,12 @@
     test_command: uptime
   listen:
     - Reboot system
+
+- name: Apply EEPROM update
+  ansible.builtin.command: >
+    bash -c "rpi-eeprom-update -a && echo 'Update applied'"
+  register: update_result
+  changed_when: "'Update applied' in update_result.stdout"
+  listen:
+    - Apply EEPROM update
+  notify: Reboot system

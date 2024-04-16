@@ -1,0 +1,11 @@
+---
+- name: Install Raspberry Pi EEPROM updater
+  ansible.builtin.apt:
+    name: rpi-eeprom
+    state: present
+
+- name: Check for EEPROM updates
+  ansible.builtin.command: rpi-eeprom-update
+  register: eeprom_update_check
+  changed_when: "'updates available' in eeprom_update_check.stdout"
+  notify: Apply EEPROM update
