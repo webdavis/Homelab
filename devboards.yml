@@ -1,0 +1,22 @@
+---
+# This playbook should be executed from a managing node (most likely your localhost) to setup
+# a Raspberry Pi as a development board for experimentation.
+#
+# Usage: this playbook can be run, as follows:
+#
+#    $ ./pw pdm run --venv in-project ansible-playbook devboards.yml
+
+- name: Configure development boards for experimentation
+  hosts: devboards
+  become: true
+  gather_facts: true
+  tasks:
+    - name: Import ansible_prep role
+      ansible.builtin.import_role:
+        name: ansible_prep
+
+    - name: Import rpi_hardware role
+      ansible.builtin.import_role:
+        name: rpi_hardware
+      vars:
+        rpi_hardware_uart_enabled: "full"

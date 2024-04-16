@@ -1,0 +1,18 @@
+---
+- name: Disable bluetooth modems
+  ansible.builtin.service:
+    name: hciuart
+    enabled: false
+  listen:
+    - Disable bluetooth modems
+
+- name: Reboot system
+  ansible.builtin.reboot:
+    msg: Rebooting for UART changes to take effect
+    connect_timeout: 5
+    reboot_timeout: 300
+    pre_reboot_delay: 0
+    post_reboot_delay: 60
+    test_command: uptime
+  listen:
+    - Reboot system

@@ -1,0 +1,11 @@
+---
+
+# Slightly future proofing this (shrug).
+- name: Check if Raspberry Pi-Based OS
+  ansible.builtin.stat:
+    path: /boot/config.txt
+  register: rpi
+
+- name: Import UART configuration
+  ansible.builtin.import_tasks: uart.yml
+  when: rpi.stat.exists and rpi_hardware_uart_enabled | bool
