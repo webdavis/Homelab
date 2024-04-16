@@ -5,8 +5,8 @@
 #
 #    $ ./pw pdm run --venv in-project ansible-playbook servers.yml
 
-- name: Configure security settings
-  hosts: servers
+- name: Configure basic server security
+  hosts: new_servers
   become: true
   gather_facts: true
   tasks:
@@ -18,6 +18,11 @@
       ansible.builtin.import_role:
         name: security
 
+- name: Configure bob as time synchronization server
+  hosts: bob
+  become: true
+  gather_facts: true
+  tasks:
     - name: Import chrony role
       ansible.builtin.import_role:
         name: chrony

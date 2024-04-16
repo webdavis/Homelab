@@ -18,10 +18,18 @@ devenv:
       private_ip_interface: en0
       ansible_port: 22
 
-servers:
+new_servers:
   hosts:
-    # Stephen's RPi 4B (4GB).
+    # RPi 4B (4GB).
     bob:
       ansible_user: pi
+      ansible_ssh_host: 192.168.1.171
+      ansible_port: 22
+
+servers:
+  hosts:
+    # RPi 4B (4GB).
+    bob:
+      ansible_user: localadmin
       ansible_ssh_host: 192.168.1.171
       ansible_port: 22
