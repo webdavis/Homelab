@@ -1,0 +1,4 @@
+---
+ansible_prep_upgrade_type: "full"
+rpi_hardware_upgrade_firmware: true
+rpi_hardware_pl011_enabled: true
