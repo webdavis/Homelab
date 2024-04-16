@@ -6,7 +6,7 @@
 #    $ ./pw pdm run --venv in-project ansible-playbook servers.yml
 
 - name: Configure basic server security
-  hosts: new_servers
+  hosts: new_bob
   become: true
   gather_facts: true
   tasks:

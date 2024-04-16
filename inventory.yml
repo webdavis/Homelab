@@ -18,18 +18,26 @@ devenv:
       private_ip_interface: en0
       ansible_port: 22
 
+new_devboards:
+  hosts:
+    # RPi 4B (4GB).
+    new_mister:
+      ansible_user: pi
+      ansible_ssh_host: 192.168.1.172
+      ansible_port: 22
+
 devboards:
   hosts:
     # RPi 4B (4GB).
     mister:
-      ansible_user: pi
+      ansible_user: localadmin
       ansible_ssh_host: 192.168.1.172
       ansible_port: 22
 
 new_servers:
   hosts:
     # RPi 4B (4GB).
-    bob:
+    new_bob:
       ansible_user: pi
       ansible_ssh_host: 192.168.1.171
       ansible_port: 22
