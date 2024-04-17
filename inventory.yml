@@ -23,7 +23,7 @@ new_devboards:
     # RPi 4B (4GB).
     new_mister:
       ansible_user: pi
-      ansible_ssh_host: 192.168.1.172
+      ansible_ssh_host: 192.168.1.70
       ansible_port: 22
 
 devboards:
@@ -31,7 +31,7 @@ devboards:
     # RPi 4B (4GB).
     mister:
       ansible_user: localadmin
-      ansible_ssh_host: 192.168.1.172
+      ansible_ssh_host: 192.168.1.70
       ansible_port: 6040
 
 new_servers:
