@@ -15,7 +15,6 @@ security_remove_default_account: true
 security_sshd_state: "started"
 security_sshd_enabled: true
 security_ssh_public_key: ""
-security_ssh_public_key_filename: ""
 
 security_ssh_port: 22
 security_ssh_address_family: "inet"
