@@ -192,17 +192,32 @@
   when: security_ssh_host_keys | length > 0
   notify: restart ssh
 
-- name: Enable group specific terminal access to SSH
-  ansible.builtin.blockinfile:
-    dest: /etc/ssh/sshd_config
-    create: true
-    block: |
-      # Apply specific settings for users belonging to allowed SSH groups.
-      Match Group {{ security_ssh_allowed_groups | join(' ') }}
-          PermitTTY yes
-    marker: "# {mark} ANSIBLE MANAGED BLOCK FOR Match Group"
-    insertafter: "^# === Conditional Configuration ===$"
-    mode: u=rw,g=r,o=r
-    validate: 'sshd -T -f %s'
+- name: Ensure SSH group access configured
   when: security_ssh_allowed_groups | length > 0
   notify: restart ssh
+  block:
+    - name: Ensure specified SSH groups exist
+      ansible.builtin.group:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ security_ssh_allowed_groups }}"
+
+    - name: Ensure local admin user is added to SSH allowed groups
+      ansible.builtin.user:
+        name: "{{ security_localadmin_username }}"
+        groups: "{{ item }}"
+        append: true
+      loop: "{{ security_ssh_allowed_groups }}"
+
+    - name: Enable group specific terminal access to SSH
+      ansible.builtin.blockinfile:
+        dest: /etc/ssh/sshd_config
+        create: true
+        block: |
+          # Apply specific settings for users belonging to allowed SSH groups.
+          Match Group {{ security_ssh_allowed_groups | join(' ') }}
+              PermitTTY yes
+        marker: "# {mark} ANSIBLE MANAGED BLOCK FOR Match Group"
+        insertafter: "^# === Conditional Configuration ===$"
+        mode: u=rw,g=r,o=r
+        validate: 'sshd -T -f %s'
