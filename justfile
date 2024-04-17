@@ -6,7 +6,7 @@ alias g := ansible-gather-facts
 alias l := ansible-lint
 alias c := ansible-list-collections
 
-ansible-ping target='new_bob':
+ansible-ping target='unconfigured_nodes':
     ./pw pdm run --venv in-project ansible {{ target }} -m ping
 
 ansible-gather-facts target='new_bob':
