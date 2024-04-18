@@ -7,6 +7,7 @@ rpi_hardware_upgrade_firmware: true
 rpi_hardware_pl011_enabled: true
 
 # MARK: Security: SSH configuration.
+security_ssh_port: 6040
 security_localadmin_additional_groups: ["sshusers"]
 security_ssh_allowed_groups: ["sshusers"]
 
