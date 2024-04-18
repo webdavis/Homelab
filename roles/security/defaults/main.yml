@@ -96,8 +96,6 @@ security_msmtp_encrypted_password_file_destination: "/etc/msmtp-password.gpg"
 security_msmtp_encrypted_password_file_source: ""
 security_msmtp_logfile_path: "/var/log/msmtp.log"
 
-security_gpg_recipient_email: "user@example.com"
-
 security_unattended_upgrades_enabled: "yes"
 security_unattended_upgrades_auto_reboot: "false"
 security_unattended_upgrades_auto_reboot_time: "03:00"
