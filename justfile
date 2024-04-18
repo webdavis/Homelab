@@ -9,6 +9,9 @@ alias c := ansible-list-collections
 ansible-ping target='unconfigured_nodes':
     ./pw pdm run --venv in-project ansible {{ target }} -m ping
 
+ansible-vault-encrypt target:
+    ./pw pdm run --venv in-project ansible-vault encrypt {{ target }}
+
 ansible-gather-facts target='new_bob':
     ./pw pdm run --venv in-project ansible {{ target }} -m setup
 
