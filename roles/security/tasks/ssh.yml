@@ -192,7 +192,7 @@
   when: security_ssh_host_keys | length > 0
   notify: restart ssh
 
-- name: Ensure SSH group access configured
+- name: Ensure SSH group access is configured
   when: security_ssh_allowed_groups | length > 0
   notify: restart ssh
   block:

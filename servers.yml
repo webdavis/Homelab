@@ -1,5 +1,6 @@
 ---
-# This playbook is intended to be run by Packer, from within a VM provisioned by Packer.
+# This playbook should be executed from a managing node (most likely your localhost) to setup
+# a Raspberry Pi as a development board for experimentation.
 #
 # Usage: this playbook can be run, as follows:
 #
