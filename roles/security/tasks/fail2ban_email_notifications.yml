@@ -11,7 +11,7 @@
     - sendmail
     - msmtp-mta
 
-- name: Configure fail2ban email notifcations via sendmail
+- name: Configure fail2ban email notifications via sendmail
   ansible.builtin.blockinfile:
     dest: /etc/fail2ban/jail.local
     block: |
