@@ -7,7 +7,7 @@
 #    $ ./pw pdm run --venv in-project ansible-playbook devboards.yml
 
 - name: Setup development boards for experimentation
-  hosts: new_mister
+  hosts: unprovisioned_mister
   become: true
   gather_facts: true
   tasks:
