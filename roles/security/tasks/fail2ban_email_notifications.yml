@@ -23,4 +23,4 @@
     insertafter: '^maxretry'
     mode: u=rw,g=r,o=r
     validate: 'fail2ban-client -t'
-  notify: reload fail2ban
+  notify: Reload fail2ban

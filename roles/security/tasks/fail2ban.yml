@@ -16,7 +16,7 @@
   loop:
     - jail.local
     - fail2ban.local
-  notify: reload fail2ban
+  notify: Reload fail2ban
 
 - name: Ensure fail2ban is running and enabled at boot
   ansible.builtin.service:

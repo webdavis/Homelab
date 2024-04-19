@@ -17,7 +17,7 @@
   ansible.posix.authorized_key:
     user: "{{ security_localadmin_username }}"
     key: "{{ security_ssh_public_key }}"
-  notify: restart ssh
+  notify: Restart ssh
 
 # This task provides a sshd config with sane organization of settings.
 - name: Create the SSH daemon config file
@@ -29,7 +29,7 @@
     mode: u=rw,g=r,o=r
     backup: true
     validate: 'sshd -T -f %s'
-  notify: restart ssh
+  notify: Restart ssh
 
 - name: Verify if the process ID file for the SSH daemon exists
   ansible.builtin.stat:
@@ -176,7 +176,7 @@
       line: "AcceptEnv {{ security_ssh_accept_environment_vars | join(' ') }}"
       condition: security_ssh_accept_environment_vars | length > 0
   when: item.condition | default(true)
-  notify: restart ssh
+  notify: Restart ssh
 
 - name: Add HostKey configuration
   ansible.builtin.blockinfile:
@@ -190,11 +190,11 @@
     mode: u=rw,g=r,o=r
     validate: 'sshd -T -f %s'
   when: security_ssh_host_keys | length > 0
-  notify: restart ssh
+  notify: Restart ssh
 
 - name: Ensure SSH group access is configured
   when: security_ssh_allowed_groups | length > 0
-  notify: restart ssh
+  notify: Restart ssh
   block:
     - name: Ensure specified SSH groups exist
       ansible.builtin.group:
