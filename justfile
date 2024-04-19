@@ -5,6 +5,7 @@ alias p := ansible-ping
 alias g := ansible-gather-facts
 alias l := ansible-lint
 alias c := ansible-list-collections
+alias d := ansible-playbook-devboards
 
 ansible-ping target='unconfigured_nodes':
     ./pw pdm run --venv in-project ansible {{ target }} -m ping
@@ -20,3 +21,6 @@ ansible-lint:
 
 ansible-list-collections:
     ./pw pdm run --venv in-project ansible-galaxy collection list
+
+ansible-playbook-devboards:
+    ./pw pdm run --venv in-project ansible-playbook devboards.yml
