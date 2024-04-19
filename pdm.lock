@@ -5,7 +5,7 @@
 groups = ["default", "lint"]
 strategy = ["cross_platform", "inherit_metadata"]
 lock_version = "4.4.1"
-content_hash = "sha256:b4027acd7d0abe1f4fa7e18f04444debea27246c90b5ae79a18d4d959fc24731"
+content_hash = "sha256:272b2eeea0b9b2acb9daa27b5ebd14e6e17fdd153fd57627e9119039a1baa618"
 
 [[package]]
 name = "ansible"
@@ -343,6 +343,16 @@ groups = ["default", "lint"]
 files = [
     {file = "packaging-23.2-py3-none-any.whl", hash = "sha256:8c491190033a9af7e1d931d0b5dacc2ef47509b34dd0de67ed209b5203fc88c7"},
     {file = "packaging-23.2.tar.gz", hash = "sha256:048fb0e9405036518eaaf48a55953c750c11e1a1b68e0dd1a9d62ed0c092cfc5"},
+]
+
+[[package]]
+name = "passlib"
+version = "1.7.4"
+summary = "comprehensive password hashing framework supporting over 30 schemes"
+groups = ["default"]
+files = [
+    {file = "passlib-1.7.4-py2.py3-none-any.whl", hash = "sha256:aa6bca462b8d8bda89c70b382f0c298a20b5560af6cbfa2dce410c0a2fb669f1"},
+    {file = "passlib-1.7.4.tar.gz", hash = "sha256:defd50f72b65c5402ab2c573830a6978e5f202ad0d984793c8dde2c4152ebe04"},
 ]
 
 [[package]]
