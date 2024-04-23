@@ -26,7 +26,7 @@
   when: security_msmtp_encrypt_password_on_the_fly | bool
   block:
     - name: Check if GPG key exists
-      ansible.builtin.command: gpg --list-keys {{ gpg_recipient }}
+      ansible.builtin.command: gpg --list-keys {{ security_msmtp_email }}
       register: gpg_check
       failed_when: gpg_check.stderr != '' and 'no public key' in gpg_check.stderr
       changed_when: false
@@ -37,7 +37,7 @@
         Key-Type: default
         Subkey-Type: default
         Name-Real: Root User
-        Name-Email: {{ gpg_recipient }}
+        Name-Email: {{ security_msmtp_email }}
         Expire-Date: 0
         %no-protection
         %commit
@@ -49,9 +49,10 @@
       ansible.builtin.shell:
         cmd: |
           set -o pipefail &&
-          "echo '{{ security_msmtp_password }}' \
-            | gpg --encrypt --recipient '{{ gpg_recipient_email }}' \
-            > {{ security_msmtp_encrypted_password_file_destination }}"
+          echo '{{ security_msmtp_password }}' \
+            | gpg --encrypt --recipient '{{ security_msmtp_email }}' \
+            > {{ security_msmtp_encrypted_password_file_destination }}
+        executable: /bin/bash
       args:
         creates: "{{ security_msmtp_encrypted_password_file_destination }}"
       no_log: true
