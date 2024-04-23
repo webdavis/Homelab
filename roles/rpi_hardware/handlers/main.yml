@@ -17,7 +17,7 @@
   listen:
     - Reboot system
 
-- name: Apply EEPROM update
+- name: Apply Raspberry Pi EEPROM update
   ansible.builtin.command: >
     bash -c "rpi-eeprom-update -a && echo 'Update applied'"
   register: update_result
