@@ -94,3 +94,4 @@
         insertafter: "^# === Conditional Configuration ===$"
         mode: u=rw,g=r,o=r
         validate: 'sshd -T -f %s'
+      when: security_ssh_allowed_groups_permit_tty | bool
