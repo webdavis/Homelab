@@ -11,12 +11,11 @@
     owner: root
     group: root
     mode: u=rw,g=r,o=
-    validate: 'fail2ban-client -t'
     backup: true
   loop:
     - jail.local
     - fail2ban.local
-  notify: Reload fail2ban
+  notify: Test fail2ban configuration
 
 - name: Ensure fail2ban is running and enabled at boot
   ansible.builtin.service:
@@ -35,6 +34,6 @@
   ansible.builtin.debug:
     msg: "Username: {{ security_localadmin_username }}"
 
-- name: Import Fail2Ban email notification configuration
+- name: Import fail2ban email notification configuration
   ansible.builtin.import_tasks: fail2ban_email_notifications.yml
   when: security_fail2ban_email_notifications_enabled | bool
