@@ -1,0 +1,5 @@
+---
+devtools_upgrade_type: "safe"
+
+# Set this to "absent" to instruct this role to remove all devtools_packages.
+devtools_package_state: "present"

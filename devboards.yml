@@ -24,7 +24,7 @@
       ansible.builtin.import_role:
         name: security
 
-- name: Remove the default OS account
+- name: Configure Development Environment for mister
   hosts: mister
   become: true
   gather_facts: true
@@ -32,3 +32,7 @@
     - name: Import account removal role
       ansible.builtin.import_role:
         name: remove_account
+
+    - name: Import devtools role
+      ansible.builtin.import_role:
+        name: devtools

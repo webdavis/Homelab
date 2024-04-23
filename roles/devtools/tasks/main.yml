@@ -1,0 +1,4 @@
+---
+- name: Import Debian tasks
+  ansible.builtin.import_tasks: Debian_tools.yml
+  when: ansible_os_family == 'Debian'
