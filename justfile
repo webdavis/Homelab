@@ -1,11 +1,15 @@
 default:
     @just --choose
 
+alias t := ansible-playbook-test
 alias p := ansible-ping
 alias g := ansible-gather-facts
 alias l := ansible-lint
 alias c := ansible-list-collections
 alias d := ansible-playbook-devboards
+
+ansible-playbook-test:
+    ./pw pdm run --venv in-project ansible-playbook devboards.yml --tags "test"
 
 ansible-ping target='mister':
     ./pw pdm run --venv in-project ansible {{ target }} -m ping
