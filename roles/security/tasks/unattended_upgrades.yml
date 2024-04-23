@@ -14,20 +14,7 @@
   loop:
     - 50unattended-upgrades
     - 10periodic
-
-- name: Validate unattended-upgrades configuration
-  ansible.builtin.command:
-    cmd: unattended-upgrade --dry-run
-  register: unattended_upgrade_test
-  changed_when: false
-  ignore_errors: true
-
-- name: Assert unattended-upgrades dry-run success
-  ansible.builtin.assert:
-    that:
-      - not unattended_upgrade_test.failed
-    fail_msg: "Unattended-upgrades dry-run validation failed."
-    success_msg: "Unattended-upgrades dry-run validation succeeded."
+  notify: Validate unattended-upgrades configuration
 
 - name: Import unattended-upgrades email notifications configuration
   ansible.builtin.import_tasks: unattended_upgrades_email_notifications.yml

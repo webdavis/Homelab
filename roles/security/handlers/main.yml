@@ -22,3 +22,11 @@
     name: fail2ban
     state: reloaded
   listen: "Reload fail2ban"
+
+- name: Validate unattended-upgrades configuration
+  ansible.builtin.command:
+    cmd: unattended-upgrade --dry-run
+  register: unattended_upgrade_test
+  failed_when: unattended_upgrade_test.rc != 0
+  listen: Validate unattended-upgrades configuration
+  changed_when: false
