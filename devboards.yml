@@ -6,7 +6,7 @@
 #
 #    $ ./pw pdm run --venv in-project ansible-playbook devboards.yml
 
-- name: Setup development boards for experimentation
+- name: Configure hardware settings and (possibly) update the firmware of mister
   hosts: unprovisioned_mister
   become: true
   gather_facts: true
@@ -15,6 +15,11 @@
       ansible.builtin.import_role:
         name: rpi_hardware
 
+- name: Configure basic security for mister
+  hosts: unprovisioned_mister
+  become: true
+  gather_facts: true
+  tasks:
     - name: Import security role
       ansible.builtin.import_role:
         name: security
