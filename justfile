@@ -7,7 +7,7 @@ alias l := ansible-lint
 alias c := ansible-list-collections
 alias d := ansible-playbook-devboards
 
-ansible-ping target='unconfigured_nodes':
+ansible-ping target='mister':
     ./pw pdm run --venv in-project ansible {{ target }} -m ping
 
 ansible-vault-encrypt target:
