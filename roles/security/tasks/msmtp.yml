@@ -18,7 +18,9 @@
     owner: root
     group: root
     mode: u=rw,g=,o=
-  when: not security_msmtp_encrypt_password_on_the_fly | bool
+  when:
+    - not security_msmtp_encrypt_password_on_the_fly | bool
+    - security_msmtp_encrypted_password_file_source | length > 0
 
 - name: Setup MSMTP password encryption
   when: security_msmtp_encrypt_password_on_the_fly | bool
