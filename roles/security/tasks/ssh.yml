@@ -31,12 +31,25 @@
     validate: 'sshd -T -f %s'
   notify: Restart ssh
 
-- name: Verify if the process ID file for the SSH daemon exists
-  ansible.builtin.stat:
-    path: "{{ security_ssh_pid_file }}"
-  register: ssh_pid_result
+- name: Configure process ID file for SSH daemon
   when: security_ssh_pid_file | length > 0
   notify: Restart ssh
+  block:
+    - name: Verify if the process ID file for the SSH daemon exists
+      ansible.builtin.stat:
+        path: "{{ security_ssh_pid_file }}"
+      register: ssh_pid_result
+
+    - name: Set the process ID file for the SSH daemon
+      ansible.builtin.lineinfile:
+        dest: /etc/ssh/sshd_config
+        regexp: "^(#)?PidFile"
+        line: "PidFile {{ security_ssh_pid_file }}"
+        state: present
+        create: true
+        mode: u=rw,g=r,o=r
+        validate: 'sshd -T -f %s'
+      when: ssh_pid_result.stat.exists
 
 - name: Add HostKey configuration
   ansible.builtin.blockinfile:
