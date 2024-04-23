@@ -18,3 +18,12 @@
     - name: Import security role
       ansible.builtin.import_role:
         name: security
+
+- name: Remove the default OS account
+  hosts: mister
+  become: true
+  gather_facts: true
+  tasks:
+    - name: Import account removal role
+      ansible.builtin.import_role:
+        name: remove_account
