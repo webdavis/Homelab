@@ -22,5 +22,4 @@
     marker: "# {mark} ANSIBLE MANAGED BLOCK FOR fail2ban sendmail config"
     insertafter: '^maxretry'
     mode: u=rw,g=r,o=r
-    validate: 'fail2ban-client -t'
-  notify: Reload fail2ban
+  notify: Test fail2ban configuration
