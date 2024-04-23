@@ -2,8 +2,8 @@
 - name: Ensure the SSH daemon is running
   ansible.builtin.service:
     name: ssh
-    state: "{{ security_sshd_state }}"
-    enabled: "{{ security_sshd_enabled }}"
+    state: "{{ security_ssh_state }}"
+    enabled: "{{ security_ssh_enabled }}"
 
 - name: "Create user SSH directory"
   ansible.builtin.file:
