@@ -1,0 +1,38 @@
+---
+# MARK: Ansible Prep configuration.
+ansible_prep_upgrade_type: "full"
+
+# MARK: RPi Hardware configuration.
+rpi_hardware_upgrade_firmware: true
+rpi_hardware_pl011_enabled: true
+
+# MARK: Security: SSH configuration.
+security_ssh_port: 6040
+security_ssh_allowed_groups: ["sshusers"]
+security_ssh_permit_tty: "no"
+
+# Only accept devices within this specific subnet on the ethernet interface.
+security_ssh_listen_address: "192.168.1.70"
+
+security_ssh_permit_tunnel: "yes"
+security_ssh_allow_agent_forwarding: "yes"
+security_ssh_allow_tcp_forwarding: "yes"
+
+# In the case that I want to share a prototype web application with a buddy or two.
+security_ssh_gateway_ports: "yes"
+
+# MARK: Security: Fail2Ban configuration.
+security_fail2ban_email_notifications_enabled: "yes"
+security_fail2ban_sender_email_address: "fail2ban@mister.com"
+security_msmtp_encrypt_password_on_the_fly: "yes"
+
+# MARK: Security: Unattended-upgrades configuration.
+security_unattended_upgrades_email_notifications_enabled: "yes"
+security_unattended_upgrades_remove_unused_dependencies: "yes"
+
+# MARK: Security: apt-listchanges configuration.
+security_apt_listchanges_enabled: "yes"
+
+# MARK: Security: MSMTP
+security_msmtp_from: "{{ security_msmtp_email }}"
+security_msmtp_user: "{{ security_msmtp_email }}"

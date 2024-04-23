@@ -1,0 +1,19 @@
+---
+
+# Slightly future proofing this (shrug).
+- name: Check if Raspberry Pi-Based OS
+  ansible.builtin.stat:
+    path: /boot/config.txt
+  register: rpi
+
+- name: Import firmware upgrade tasks
+  ansible.builtin.import_tasks: firmware_upgrade.yml
+  when:
+    - rpi.stat.exists
+    - rpi_hardware_upgrade_firmware | bool
+
+- name: Import UART configuration
+  ansible.builtin.import_tasks: uart.yml
+  when:
+    - rpi.stat.exists
+    - rpi_hardware_uart_enabled | bool

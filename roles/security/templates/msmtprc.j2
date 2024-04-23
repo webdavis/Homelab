@@ -6,11 +6,11 @@ tls_certcheck on
 tls_trust_file /etc/ssl/certs/ca-certificates.crt
 
 account default
-host {{ security_smtp_host }}
-port {{ security_smtp_port }}
+host {{ security_msmtp_smtp_host }}
+port {{ security_msmtp_smtp_port }}
 protocol smtp
-from {{ security_smtp_from }}
+from {{ security_msmtp_from }}
 user {{ security_msmtp_user }}
-passwordeval gpg --quiet --for-your-eyes-only --no-tty --decrypt {{ security_msmtp_encrypted_password_file }}
+passwordeval gpg --quiet --for-your-eyes-only --no-tty --decrypt {{ security_msmtp_encrypted_password_file_destination }}
 
 logfile {{ security_msmtp_logfile_path }}

@@ -1,8 +1,0 @@
----
-- name: Upgrade all packages
-  ansible.builtin.apt:
-    upgrade: "{{ ansible_prep_upgrade_type }}"
-    force_apt_get: true
-  listen:
-    - Upgrade all packages
-  tags: ['upgrade']

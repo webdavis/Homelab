@@ -3,6 +3,7 @@ security_localadmin_username: "localadmin"
 security_localadmin_default_group: "localadmin"
 security_localadmin_password: "secret"
 security_localadmin_additional_groups: []
+security_ssh_allowed_groups_permit_tty: "yes"
 security_localadmin_description: "Local administrator account"
 security_localadmin_uid: 1001
 security_localadmin_gid: 1001
@@ -12,10 +13,10 @@ security_sudoers_lock_root_account: true
 
 security_remove_default_account: true
 
-security_sshd_state: "started"
-security_sshd_enabled: true
+security_ssh_state: "started"
+security_ssh_enabled: true
+security_ssh_handler_state: "restarted"
 security_ssh_public_key: ""
-security_ssh_public_key_filename: ""
 
 security_ssh_port: 22
 security_ssh_address_family: "inet"
@@ -24,16 +25,16 @@ security_ssh_permit_root_login: "no"
 security_ssh_pubkey_authentication: "yes"
 security_ssh_authorized_keys_files: [".ssh/authorized_keys"]
 security_ssh_authorized_keys_command: "none"
-security_ssh_authorized_keys_command_user: "nobody"
+security_ssh_authorized_keys_command_user: []
 security_ssh_authorized_principals_file: "none"
 security_ssh_password_authentication: "no"
 security_ssh_challenge_response_authentication: "no"
-security_ssh_authentication_methods: "publickey"
+security_ssh_authentication_methods: ["publickey"]
 security_ssh_use_pam: "no"
 security_ssh_allowed_users: []
 security_ssh_allowed_groups: []
 security_ssh_client_alive_interval: 300
-security_ssh_client_alive_count: 0
+security_ssh_client_alive_count_max: 0
 security_ssh_login_grace_time: "1m"
 security_ssh_max_auth_tries: 3
 security_ssh_max_sessions: 10
@@ -43,7 +44,7 @@ security_ssh_allow_agent_forwarding: "no"
 security_ssh_allow_tcp_forwarding: "no"
 security_ssh_tcp_keep_alive: "yes"
 security_ssh_gateway_ports: "no"
-security_ssh_rekey_limit: "default none"
+security_ssh_rekey_limit: "4G 2h"
 security_ssh_strict_modes: "yes"
 security_ssh_ignore_rhosts: "yes"
 security_ssh_host_based_authentication: "no"
@@ -58,20 +59,20 @@ security_ssh_kerberos_authentication: "no"
 security_ssh_kerberos_or_local_password: "yes"
 security_ssh_kerberos_ticket_cleanup: "yes"
 security_ssh_kerberos_get_afs_token: "no"
-security_ssh_kex_algorithms: []
-security_ssh_ciphers: []
-security_ssh_macs: []
+security_ssh_kex_algorithms: ["curve25519-sha256@libssh.org", "ecdh-sha2-nistp521", "ecdh-sha2-nistp384", "ecdh-sha2-nistp256", "diffie-hellman-group-exchange-sha256"]
+security_ssh_ciphers: ["chacha20-poly1305@openssh.com", "aes256-gcm@openssh.com", "aes128-gcm@openssh.com", "aes256-ctr", "aes192-ctr", "aes128-ctr"]
+security_ssh_macs: ["hmac-sha2-512-etm@openssh.com", "hmac-sha2-256-etm@openssh.com", "umac-128-etm@openssh.com", "hmac-sha2-512", "hmac-sha2-256", "umac-128@openssh.com"]
 security_ssh_host_keys: ["/etc/ssh/ssh_host_ed25519_key", "/etc/ssh/ssh_host_rsa_key", "/etc/ssh/ssh_host_ecdsa_key"]
 security_ssh_syslog_facility: "AUTH"
-security_ssh_subsystem: ""
+security_ssh_subsystem: "sftp /usr/lib/openssh/sftp-server -f AUTHPRIV -l INFO"
 security_ssh_log_level: "VERBOSE"
 security_ssh_x11_forwarding: "no"
 security_ssh_x11_display_offset: 10
 security_ssh_x11_use_localhost: "yes"
-security_ssh_print_motd: "yes"
+security_ssh_print_motd: "no"
 security_ssh_print_last_log: "yes"
 security_ssh_kbd_interactive_authentication: "no"
-security_ssh_permit_tty: "no"
+security_ssh_permit_tty: "yes"
 security_ssh_compression: "delayed"
 security_ssh_pid_file: ""
 security_ssh_chroot_directory: "none"
@@ -90,21 +91,24 @@ security_fail2ban_sender_email_address: "fail2ban@hostname.com"
 security_msmtp_email: "username@example.com"
 security_msmtp_smtp_host: "smtp.gmail.com"
 security_msmtp_smtp_port: 587
-security_msmtp_user: "username"
+security_msmtp_from: "username@example.com"
+security_msmtp_user: "username@example.com"
 security_msmtp_password: ""
 security_msmtp_encrypt_password_on_the_fly: "no"
 security_msmtp_encrypted_password_file_destination: "/etc/msmtp-password.gpg"
 security_msmtp_encrypted_password_file_source: ""
 security_msmtp_logfile_path: "/var/log/msmtp.log"
 
-security_gpg_recipient_email: "user@example.com"
-
 security_unattended_upgrades_enabled: "yes"
 security_unattended_upgrades_auto_reboot: "false"
 security_unattended_upgrades_auto_reboot_time: "03:00"
 security_unattended_upgrades_package_blacklist: []
+security_unattended_upgrades_email_notifications_enabled: "no"
 security_unattended_upgrades_email_address: ""
 security_unattended_upgrades_email_on_error: "true"
+
+# WARNING: For the configuration options below, use 'true' or 'false' only.
+# Using 'yes' or 'no' will cause issues with unattended_upgrades.
 security_unattended_upgrades_remove_unused_dependencies: "false"
 security_unattended_upgrades_verbose: "false"
 

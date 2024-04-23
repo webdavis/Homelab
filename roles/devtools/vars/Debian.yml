@@ -1,0 +1,8 @@
+---
+devtools_packages:
+  - bat
+  - exa
+  - git
+  - httpie
+  - jq
+  - neovim

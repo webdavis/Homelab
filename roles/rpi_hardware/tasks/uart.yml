@@ -1,0 +1,19 @@
+---
+
+- name: Enable Mini UART on GPIO pins 14 (Tx) and 15 (Rx)
+  ansible.builtin.lineinfile:
+    path: /boot/config.txt
+    line: enable_uart=1
+  notify:
+    - Reboot system
+
+# This switches the PL011 UART from the bluetooth controller to GPIO pins 14 (Tx) and 15
+# (Rx), which disables bluetooth on the board.
+- name: Disable Bluetooth and subsequently free up GPIO pins 14 (Tx) and 15 (Rx) for PL011 UART
+  ansible.builtin.lineinfile:
+    path: /boot/config.txt
+    line: btoverlay=disable-bt
+  notify:
+    - Disable bluetooth modems
+    - Reboot system
+  when: rpi_hardware_pl011_enabled | bool

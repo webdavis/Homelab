@@ -1,0 +1,97 @@
+#
+# See https://infosec.mozilla.org/guidelines/openssh for latest security
+# measures.
+#
+
+# === Network Configuration ===
+# Define server listening parameters and protocol version.
+Port {{ security_ssh_port }}
+Protocol 2
+AddressFamily {{ security_ssh_address_family }}
+ListenAddress {{ security_ssh_listen_address }}
+
+# === Authentication Settings ===
+# Configure how users authenticate and which users are allowed.
+PermitRootLogin {{ security_ssh_permit_root_login }}
+PubkeyAuthentication {{ security_ssh_pubkey_authentication }}
+AuthorizedKeysFile {{ security_ssh_authorized_keys_files | join(' ') }}
+AuthorizedKeysCommand {{ security_ssh_authorized_keys_command }}
+{% for user in security_ssh_authorized_keys_command_user %}
+AuthorizedKeysCommandUser {{ user }}
+{% endfor %}
+AuthorizedPrincipalsFile {{ security_ssh_authorized_principals_file }}
+PasswordAuthentication {{ security_ssh_password_authentication }}
+ChallengeResponseAuthentication {{ security_ssh_challenge_response_authentication }}
+AuthenticationMethods {{ security_ssh_authentication_methods | join(',') }}
+UsePAM {{ security_ssh_use_pam }}
+{% if security_ssh_allowed_users | length > 0 %}
+AllowUsers {{ security_ssh_allowed_users | join(' ') }}
+{% endif %}
+{% if security_ssh_allowed_groups | length > 0 %}
+AllowGroups {{ security_ssh_allowed_groups | join(' ') }}
+{% endif %}
+
+# === Connection & Session Management ===
+# Set parameters for managing and maintaining SSH connections.
+ClientAliveInterval {{ security_ssh_client_alive_interval }}
+ClientAliveCountMax {{ security_ssh_client_alive_count_max }}
+LoginGraceTime {{ security_ssh_login_grace_time }}
+MaxAuthTries {{ security_ssh_max_auth_tries }}
+MaxSessions {{ security_ssh_max_sessions }}
+MaxStartups {{ security_ssh_max_startups }}
+PermitTunnel {{ security_ssh_permit_tunnel }}
+AllowAgentForwarding {{ security_ssh_allow_agent_forwarding }}
+AllowTcpForwarding {{ security_ssh_allow_tcp_forwarding }}
+TCPKeepAlive {{ security_ssh_tcp_keep_alive }}
+GatewayPorts {{ security_ssh_gateway_ports }}
+RekeyLimit {{ security_ssh_rekey_limit }}
+
+# === Security & Access Control ===
+# Enhance server security and specify cryptographic options.
+StrictModes {{ security_ssh_strict_modes }}
+IgnoreRhosts {{ security_ssh_ignore_rhosts }}
+HostbasedAuthentication {{ security_ssh_host_based_authentication }}
+PermitEmptyPasswords {{ security_ssh_permit_empty_passwords }}
+PermitUserEnvironment {{ security_ssh_permit_user_environment }}
+UseDNS {{ security_ssh_use_dns }}
+GSSAPIAuthentication {{ security_ssh_gss_api_authentication }}
+GSSAPICleanupCredentials {{ security_ssh_gss_api_cleanup_credentials }}
+GSSAPIStrictAcceptorCheck {{ security_ssh_gss_api_strict_acceptor_check }}
+GSSAPIKeyExchange {{ security_ssh_gss_api_key_exchange }}
+KerberosAuthentication {{ security_ssh_kerberos_authentication }}
+KerberosOrLocalPasswd {{ security_ssh_kerberos_or_local_password }}
+KerberosTicketCleanup {{ security_ssh_kerberos_ticket_cleanup }}
+KerberosGetAFSToken {{ security_ssh_kerberos_get_afs_token }}
+{% if security_ssh_kex_algorithms | length > 0 %}
+KexAlgorithms {{ security_ssh_kex_algorithms | join(',') }}
+{% endif %}
+{% if security_ssh_ciphers | length > 0 %}
+Ciphers {{ security_ssh_ciphers | join(',') }}
+{% endif %}
+{% if security_ssh_macs | length > 0 %}
+MACs {{ security_ssh_macs | join(',') }}
+{% endif %}
+
+# === Logging & Monitoring ===
+# Configure logging levels and facilities for auditing and diagnostics.
+SyslogFacility {{ security_ssh_syslog_facility }}
+Subsystem {{ security_ssh_subsystem }}
+LogLevel {{ security_ssh_log_level }}
+
+# === X11 Forwarding Settings ===
+X11Forwarding {{ security_ssh_x11_forwarding }}
+X11DisplayOffset {{ security_ssh_x11_display_offset }}
+X11UseLocalhost {{ security_ssh_x11_use_localhost }}
+
+# === Miscellaneous Settings ===
+# Additional SSHD options and features.
+PrintMotd {{ security_ssh_print_motd }}
+PrintLastLog {{ security_ssh_print_last_log }}
+KbdInteractiveAuthentication {{ security_ssh_kbd_interactive_authentication }}
+PermitTTY {{ security_ssh_permit_tty }}
+Compression {{ security_ssh_compression }}
+#PidFile var/run/sshd.pid
+ChrootDirectory {{ security_ssh_chroot_directory }}
+AcceptEnv LANG LC_* {{ security_ssh_accept_environment_vars | join(' ') }}
+
+# === Conditional Configuration ===

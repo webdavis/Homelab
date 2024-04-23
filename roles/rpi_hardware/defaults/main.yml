@@ -1,0 +1,4 @@
+---
+rpi_hardware_upgrade_firmware: false
+rpi_hardware_uart_enabled: true
+rpi_hardware_pl011_enabled: false

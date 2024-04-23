@@ -1,0 +1,27 @@
+---
+- name: Disable bluetooth modems
+  ansible.builtin.service:
+    name: hciuart
+    enabled: false
+  listen:
+    - Disable bluetooth modems
+
+- name: Reboot system
+  ansible.builtin.reboot:
+    msg: Rebooting for UART changes to take effect
+    connect_timeout: 5
+    reboot_timeout: 300
+    pre_reboot_delay: 0
+    post_reboot_delay: 60
+    test_command: uptime
+  listen:
+    - Reboot system
+
+- name: Apply Raspberry Pi EEPROM update
+  ansible.builtin.command: >
+    bash -c "rpi-eeprom-update -a && echo 'Update applied'"
+  register: update_result
+  changed_when: "'Update applied' in update_result.stdout"
+  listen:
+    - Apply EEPROM update
+  notify: Reboot system

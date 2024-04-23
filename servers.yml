@@ -1,12 +1,13 @@
 ---
-# This playbook is intended to be run by Packer, from within a VM provisioned by Packer.
+# This playbook should be executed from a managing node (most likely your localhost) to setup
+# a Raspberry Pi as a development board for experimentation.
 #
 # Usage: this playbook can be run, as follows:
 #
 #    $ ./pw pdm run --venv in-project ansible-playbook servers.yml
 
-- name: Configure security settings
-  hosts: servers
+- name: Configure basic server security
+  hosts: new_bob
   become: true
   gather_facts: true
   tasks:
@@ -18,6 +19,11 @@
       ansible.builtin.import_role:
         name: security
 
+- name: Configure bob as time synchronization server
+  hosts: bob
+  become: true
+  gather_facts: true
+  tasks:
     - name: Import chrony role
       ansible.builtin.import_role:
         name: chrony

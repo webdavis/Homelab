@@ -2,9 +2,31 @@
 - name: Restart ssh
   ansible.builtin.service:
     name: ssh
-    state: "{{ security_ssh_restart_handler_state }}"
+    state: "{{ security_ssh_handler_state }}"
 
 - name: Reload fail2ban
   ansible.builtin.service:
     name: fail2ban
     state: reloaded
+
+- name: Test fail2ban configuration
+  ansible.builtin.command: fail2ban-client -t
+  register: fail2ban_test
+  failed_when: "'ERROR' in fail2ban_test.stderr"
+  changed_when: false
+  notify: Reload fail2ban
+  listen: "Test fail2ban configuration"
+
+- name: Reload fail2ban
+  ansible.builtin.service:
+    name: fail2ban
+    state: reloaded
+  listen: "Reload fail2ban"
+
+- name: Validate unattended-upgrades configuration
+  ansible.builtin.command:
+    cmd: unattended-upgrade --dry-run
+  register: unattended_upgrade_test
+  failed_when: unattended_upgrade_test.rc != 0
+  listen: Validate unattended-upgrades configuration
+  changed_when: false

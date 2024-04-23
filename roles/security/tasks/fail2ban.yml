@@ -11,12 +11,11 @@
     owner: root
     group: root
     mode: u=rw,g=r,o=
-    validate: 'fail2ban-client -t'
     backup: true
   loop:
     - jail.local
     - fail2ban.local
-  notify: reload fail2ban
+  notify: Test fail2ban configuration
 
 - name: Ensure fail2ban is running and enabled at boot
   ansible.builtin.service:
@@ -25,16 +24,16 @@
     enabled: true
 
 # fail2ban and auth logs are owned by the adm group.
-- name: "Add user to adm group"
+- name: Add user to adm group
   ansible.builtin.user:
     name: "{{ security_localadmin_username }}"
     groups: adm
     append: true
 
-- name: Display username
+- name: Display username that was added to adm group
   ansible.builtin.debug:
     msg: "Username: {{ security_localadmin_username }}"
 
-- name: Import Fail2Ban email notification configuration
+- name: Import fail2ban email notification configuration
   ansible.builtin.import_tasks: fail2ban_email_notifications.yml
   when: security_fail2ban_email_notifications_enabled | bool

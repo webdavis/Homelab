@@ -1,0 +1,27 @@
+---
+- name: Attempt to remove the default admin account
+  when: remove_account_attempt_to_remove_default_account | bool
+  block:
+    - name: Check if running Raspberry Pi OS or some derivative of it
+      ansible.builtin.stat:
+        path: /boot/firmware/config.txt
+      register: rpi
+
+    - name: Include variables for Raspberry Pi OS
+      ansible.builtin.include_vars: Raspios.yml
+      when: rpi.stat.exists
+
+    - name: Include variables for Ubuntu
+      ansible.builtin.include_vars: Ubuntu.yml
+      when: ansible_distribution == 'Ubuntu'
+
+    - name: Append default account to list of account names for removal
+      ansible.builtin.set_fact:
+        remove_account_usernames: "{{ remove_account_usernames + [remove_account_default_account] }}"
+
+- name: Include tasks for each user
+  ansible.builtin.include_tasks: remove_user_account.yml
+  loop: "{{ remove_account_usernames }}"
+  loop_control:
+    loop_var: username
+    extended: true

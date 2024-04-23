@@ -1,0 +1,29 @@
+---
+- name: Include Debian-specific variables
+  ansible.builtin.include_vars: "{{ ansible_distribution | title }}.yml"
+  when: ansible_os_family == 'Debian'
+
+- name: Update package cache and upgrade existing packages
+  block:
+    - name: Update the apt cache
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: 3600
+        force_apt_get: true
+      tags: ['update']
+
+    - name: Upgrade all packages
+      ansible.builtin.apt:
+        upgrade: "{{ devtools_upgrade_type }}"
+        force_apt_get: true
+      tags: ['upgrade']
+  rescue:
+    - name: Debugging error during package upgrades
+      ansible.builtin.debug:
+        msg: "An error occurred during package upgrades."
+
+- name: Install Development Tools
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: "{{ devtools_package_state }}"
+  loop: "{{ devtools_packages }}"

@@ -5,12 +5,6 @@
 - name: Import localadmin tasks
   ansible.builtin.import_tasks: sudoers.yml
 
-- name: Import remove_default_account tasks
-  ansible.builtin.import_tasks: remove_default_account.yml
-  when:
-    - ansible_os_family == 'Debian'
-    - security_remove_default_account | bool
-
 - name: Import SSH tasks
   ansible.builtin.import_tasks: ssh.yml
 

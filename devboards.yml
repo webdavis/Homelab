@@ -1,0 +1,38 @@
+---
+# This playbook should be executed from a managing node (most likely your localhost) to setup
+# a Raspberry Pi as a development board for experimentation.
+#
+# Usage: this playbook can be run, as follows:
+#
+#    $ ./pw pdm run --venv in-project ansible-playbook devboards.yml
+
+- name: Configure hardware settings and (possibly) update the firmware of mister
+  hosts: unprovisioned_mister
+  become: true
+  gather_facts: true
+  tasks:
+    - name: Import rpi_hardware role
+      ansible.builtin.import_role:
+        name: rpi_hardware
+
+- name: Configure basic security for mister
+  hosts: unprovisioned_mister
+  become: true
+  gather_facts: true
+  tasks:
+    - name: Import security role
+      ansible.builtin.import_role:
+        name: security
+
+- name: Configure Development Environment for mister
+  hosts: mister
+  become: true
+  gather_facts: true
+  tasks:
+    - name: Import account removal role
+      ansible.builtin.import_role:
+        name: remove_account
+
+    - name: Import devtools role
+      ansible.builtin.import_role:
+        name: devtools

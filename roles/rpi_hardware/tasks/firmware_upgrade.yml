@@ -1,0 +1,15 @@
+---
+- name: Install Raspberry Pi EEPROM updater
+  ansible.builtin.apt:
+    name: rpi-eeprom
+    state: present
+
+# When an update is available, rpi-eeprom-update exits with code 1. By using
+# failed_when: false, we prevent task failure based on this exit code.
+- name: Check for Raspberry Pi EEPROM updates
+  ansible.builtin.command: rpi-eeprom-update
+  ignore_errors: true
+  register: eeprom_update_check
+  failed_when: false
+  changed_when: "'UPDATE AVAILABLE' in eeprom_update_check.stdout"
+  notify: Apply EEPROM update

@@ -6,12 +6,17 @@
         update_cache: true
         cache_valid_time: 3600
         force_apt_get: true
-      notify: Upgrade all packages
-      tags: ['update', 'upgrade']
+      tags: ['update']
+
+    - name: Upgrade all packages
+      ansible.builtin.apt:
+        upgrade: "{{ ansible_prep_upgrade_type }}"
+        force_apt_get: true
+      tags: ['upgrade']
   rescue:
     - name: Debugging error during initial system upgrade
       ansible.builtin.debug:
-        msg: "An error occured during the initial system upgrade."
+        msg: "An error occurred during the initial system upgrade."
 
 - name: Install Ansible dependencies
   block:
@@ -33,4 +38,4 @@
   rescue:
     - name: Debugging error while install Ansible dependencies
       ansible.builtin.debug:
-        msg: "An error occured while installing Ansible dependencies."
+        msg: "An error occurred while installing Ansible dependencies."
