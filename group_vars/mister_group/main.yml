@@ -36,3 +36,6 @@ security_apt_listchanges_enabled: "yes"
 # MARK: Security: MSMTP
 security_msmtp_from: "{{ security_msmtp_email }}"
 security_msmtp_user: "{{ security_msmtp_email }}"
+
+# MARK: Remove Account configuration.
+remove_account_usernames: ["stephen"]
