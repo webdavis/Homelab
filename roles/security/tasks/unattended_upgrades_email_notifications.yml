@@ -14,7 +14,7 @@
     prepend_newline: true
     block: |
       Unattended-Upgrade::Mail "{{ security_unattended_upgrades_email_address }}";
-      Unattended-Upgrade::MailOnlyOnError "{{ security_unattended_upgrades_email_on_error }}";
+      Unattended-Upgrade::MailReport "{{ security_unattended_upgrades_mail_report }}";
     marker: "// {mark} ANSIBLE MANAGED BLOCK for Mail and MailOnlyOnError"
     mode: u=rw,g=r,o=r
   when: security_unattended_upgrades_email_address | length > 0

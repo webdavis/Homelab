@@ -105,7 +105,9 @@ security_unattended_upgrades_auto_reboot_time: "03:00"
 security_unattended_upgrades_package_blacklist: []
 security_unattended_upgrades_email_notifications_enabled: "no"
 security_unattended_upgrades_email_address: ""
-security_unattended_upgrades_email_on_error: "true"
+
+# Possible values: "only-on-error" or "on-change".
+security_unattended_upgrades_email_on_error: "on-change"
 
 # WARNING: For the configuration options below, use 'true' or 'false' only.
 # Using 'yes' or 'no' will cause issues with unattended_upgrades.
