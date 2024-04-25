@@ -17,7 +17,7 @@ ansible-ping target='mister':
 ansible-vault-encrypt target:
     ./pw pdm run --venv in-project ansible-vault encrypt {{ target }}
 
-ansible-gather-facts target='new_bob':
+ansible-gather-facts target='unprovisioned_bob':
     ./pw pdm run --venv in-project ansible {{ target }} -m setup
 
 ansible-lint:
