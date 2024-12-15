@@ -1,9 +1,14 @@
-# netdavis IOT
+<p align="center">
+    <img src="./gallery/homelab-icon-1.png" alt="Homelab Icon" width="300" height="300">
+</p>
+
+# Homelab
 
 This repo contains automation that bootstraps Raspberry Pis with services bound for my home
-network, dubbed `netdavis.net`. The automation in this project includes the following:
+network. The automation in this project includes the following:
 
-- [Ansible](https://www.ansible.com/) plays that manage the setup of services on the device.
+- [Ansible](https://www.ansible.com/) plays that manage the configuration of services on the device.
+- [Docker](https://docs.docker.com/get-started/) containers that host and run services.
 - Wrapper scripts that ease the usage of the Ansible commands.
 
 ## Setup
@@ -25,7 +30,7 @@ Run the following command to instruct pyenv to switch to the version of Python t
 eval "$(pyenv init -)"
 ```
 
-> [!TIP]
+> \[!TIP\]
 > This can be run from any folder in this project. **Additionally,** this command will need to
 > be run every time you open a new terminal to work on this project.
 
@@ -54,7 +59,7 @@ Ping the managing node (probably your `localhost`) to verify the connection:
 ./pw pdm run --venv in-project ansible localhost -m ping
 ```
 
-> [!TIP]
+> \[!TIP\]
 > See [`hosts.ini`](./hosts.ini) for other managed nodes.
 
 ## Ansible Role: Security
