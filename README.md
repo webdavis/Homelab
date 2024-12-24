@@ -11,7 +11,7 @@ network. The automation in this project includes the following:
 - [Docker](https://docs.docker.com/get-started/) containers that host and run services.
 - Wrapper scripts that ease the usage of the Ansible commands.
 
-## Setup
+## Getting Started
 
 If this is your first time setting up the development environment for this project, please
 refer to the instructions in [ubuntu-dev-environment.md](./docs/ubuntu-dev-environment.md)
@@ -21,10 +21,12 @@ The following instructions will assume that you've already done this.
 
 ### pyevn
 
-This project uses [pyenv](https://github.com/pyenv/pyenv) to manage its Python version.
+This project uses [pyenv](https://github.com/pyenv/pyenv) to manage and track its Python
+version.
 
-Run the following command to instruct pyenv to switch to the version of Python tracked in the
-[`.python-version`](./.python-version) file, which is located in the root of this project:
+Run the following command to instruct pyenv to switch to the Python version specified in the
+[`.python-version`](./.python-version) file located at the root of this project: Run the
+following command to instruct
 
 ```bash
 eval "$(pyenv init -)"
@@ -32,7 +34,7 @@ eval "$(pyenv init -)"
 
 > \[!TIP\]
 > This can be run from any folder in this project. **Additionally,** this command will need to
-> be run every time you open a new terminal to work on this project.
+> be run *every time* you open a new terminal to work on this project.
 
 ### PDM
 
@@ -44,14 +46,14 @@ Install Ansible and its dependencies with [PDM](https://github.com/pdm-project/p
 
 ## Running the Ansible Plays
 
-Ansible connects to managed nodes via SSH. Load your SSH private key into `ssh-agent` by
-running the following command:
+Ansible uses SSH to connect to managed nodes. To avoid repeatedly entering the private key
+passphrase, load your SSH private key into ssh-agent with the following command:
 
 ```bash
 ssh-add ~/.ssh/id_rsa
 ```
 
-### Test the connection via an Ansible ad-hoc command
+### Test the connection using an Ansible ad-hoc command
 
 Ping the managing node (probably your `localhost`) to verify the connection:
 
@@ -69,7 +71,13 @@ In order to run this role your playbook must make use of the following:
 - Elevated privileges using `become: yes`
 - Collect system information using `gather_facts: yes`
 
-Here is an example:
+To run this role, your playbook must include the following:
+
+- **Elevated privileges:** Use `become: yes` to execute tasks requiring administrative access.
+- **System information collection:** Enable `gather_facts: yes` to collect essential system
+  details before executing tasks.
+
+For example:
 
 ```yaml
 - hosts: servers
