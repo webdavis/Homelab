@@ -31,3 +31,7 @@ homelab.wiki/
 
 # Ignore Mac Finder generated files.
 .DS_Store
+
+# Ignore this folder and its contents. (This is a temporary, and by no means safe, solution to
+# git avoid tracking.)
+private/
