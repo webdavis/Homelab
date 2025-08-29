@@ -86,13 +86,12 @@ Managed Node:
 > \[!TIP\]
 > See [`inventory.yml`](./inventory.yml) for other managed nodes.
 
-- Elevated privileges using `become: yes`
-- Collect system information using `gather_facts: yes`
+## Ansible Role: Security
 
 To run this role, your playbook must include the following:
 
-- **Elevated privileges:** Use `become: yes` to execute tasks requiring administrative access.
-- **System information collection:** Enable `gather_facts: yes` to collect essential system
+- **Elevated privileges:** Set `become: yes` to execute tasks requiring administrative access.
+- **Collect system information:** Set `gather_facts: yes` to collect essential system
   details before executing tasks.
 
 For example:
