@@ -10,33 +10,37 @@ makes use of the following tools:
 - **[Ansible](https://www.ansible.com/):** Playbooks to configure services on each device.
 - **[Docker](https://docs.docker.com/get-started/):** Containers that run and manage the
   services.
-- **Wrapper scripts:** Simplify working with Ansible and other tools in this project.
+- **Wrapper Scripts:** Simplify working with Ansible and other tools in this project.
 
-## Getting Started
+## Essential Steps to Run Homelab
 
-If this is your first time setting up the development environment, follow the instructions in
-[ubuntu-dev-environment.md](./docs/ubuntu-dev-environment.md) first.
+Whenever you return to this project, follow these steps first to ensure your environment is in
+a clean working state.
 
-The instructions below assume that setup is complete.
+### 1. Install Prerequisites
 
-### pyevn
+> If this is your first time setting up the development environment, follow the instructions in
+> [ubuntu-dev-environment.md](./docs/ubuntu-dev-environment.md) first.
+>
+> The instructions below assume you've done this.
+
+### 2. Activate Python Version with Pyevn
 
 This project uses [pyenv](https://github.com/pyenv/pyenv) to manage and track its Python
-version.
+version. The current version is specified in the [`.python-version`](./.python-version) file.
 
-Run the following command to switch to the Python version specified in the
-[`.python-version`](./.python-version):
+Run this command to activate the correct Python version:
 
 ```bash
 eval "$(pyenv init -)"
 ```
 
-> \[!WARNING\]
-> You can run this command from anywhere inside the project.  
-> However, you will need to run it **every time you start a new terminal session** before
-> working on the project.
+> \[!Important\]
+> - This command must be run **every time you start a new terminal session** before working on
+>   this project.
+> - You can run this command from any folder in the project.  
 
-### Pyprojectx and PDM
+### 3. Install Dependencies with Pyprojectx & PDM
 
 This project uses [Pyprojectx](https://github.com/pyprojectx/pyprojectx) and
 [PDM](https://github.com/pdm-project/pdm) to manage Python dependencies in a consistent,
@@ -46,17 +50,22 @@ isolated environment:
   consistently without needing global installations (including PDM).
 - **PDM:** manages the Python dependencies used by this project (including Ansible).  
 
-To install the dependencies, run:
+Install the dependencies:
 
 ```bash
 ./pw pdm sync
 ```
 
-> **Tip:** run `./pw which pdm` to see the full path of the `pdm` used by this project. It
-> should look something like:
+**Tip:** check which `pdm` is used:
+
+```bash
+./pw which pdm
+```
+
+> The output should look something like:
 > `<path_to_this_project>/Homelab/.pyprojectx/venvs/main-ab061d9d4f9bea1cc2de64816d469baf-py3.13/bin/pdm`
 
-## Running the Ansible Plays
+### 4. Load the SSH Key
 
 Ansible uses SSH to connect to managed nodes.
 
@@ -67,7 +76,10 @@ ssh-agent with the following command:
 ssh-add ~/.ssh/id_rsa
 ```
 
-### Test Node Connections with Ansible Ad-Hoc Commands
+> _Other tools may provide an ssh-agent service. I personally use
+> [KeePassXC](https://keepassxc.org/)._
+
+### 5. Verify Node Connections using Ansible Ad-Hoc Commands
 
 Before you do anything else, verify that you can connect to both the managing node (your
 `localhost`) and a managed node using Ansible's `ping` module:
@@ -87,12 +99,17 @@ Before you do anything else, verify that you can connect to both the managing no
 > \[!TIP\]
 > See [`inventory.yml`](./inventory.yml) for other managed nodes.
 
+Now you should be good to go!
+
+Follow these steps every time you return to the project. Once done, you’re ready to run Ansible
+plays or work on the project safely.
+
 ## Ansible Role: Security
 
 To run this role, your playbook must include the following:
 
-- **Elevated privileges:** Set `become: yes` to execute tasks requiring administrative access.
-- **Collect system information:** Set `gather_facts: yes` to collect essential system
+- **Elevated privileges:** set `become: yes` to execute tasks requiring administrative access.
+- **Collect system information:** set `gather_facts: yes` to collect essential system
   details before executing tasks.
 
 For example:
