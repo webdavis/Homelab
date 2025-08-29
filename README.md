@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="./gallery/homelab-icon-1.png" alt="Homelab Icon" width="300" height="300">
+    <img src="./gallery/homelab-icon-1.png" alt="Homelab Icon" width="400" height="400">
 </p>
 
 # Homelab
