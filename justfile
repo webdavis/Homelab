@@ -11,7 +11,7 @@ alias d := ansible-playbook-devboards
 ansible-playbook-test:
     ./pw pdm run --venv in-project ansible-playbook devboards.yml --tags "test"
 
-ansible-ping target='mister':
+ansible-ping target='yoshimo':
     ./pw pdm run --venv in-project ansible {{ target }} -m ping
 
 ansible-vault-encrypt target:

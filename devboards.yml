@@ -6,8 +6,8 @@
 #
 #    $ ./pw pdm run --venv in-project ansible-playbook devboards.yml
 
-- name: Configure hardware settings and (possibly) update the firmware of mister
-  hosts: unprovisioned_mister
+- name: Configure hardware settings and (possibly) update the firmware of yoshimo
+  hosts: unprovisioned_yoshimo
   become: true
   gather_facts: true
   tasks:
@@ -15,8 +15,8 @@
       ansible.builtin.import_role:
         name: rpi_hardware
 
-- name: Configure basic security for mister
-  hosts: unprovisioned_mister
+- name: Configure basic security for yoshimo
+  hosts: unprovisioned_yoshimo
   become: true
   gather_facts: true
   tasks:
@@ -24,8 +24,8 @@
       ansible.builtin.import_role:
         name: security
 
-- name: Configure Development Environment for mister
-  hosts: mister
+- name: Configure Development Environment for yoshimo
+  hosts: yoshimo
   become: true
   gather_facts: true
   tasks:
