@@ -11,8 +11,8 @@ ungrouped:
 
 devenv:
   hosts:
-    # Stephen's primary (Mac) laptop.
-    maeve:
+    # Stephen's dev laptop: currently a MacBook Pro 13-inch, M1, 2020
+    dresden:
       ansible_user: stephen
       private_ip: 192.168.1.26
       private_ip_interface: en0
