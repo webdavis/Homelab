@@ -35,37 +35,56 @@ eval "$(pyenv init -)"
 > However, you will need to run it **every time you start a new terminal session** before
 > working on the project.
 
-### PDM
+### Pyprojectx and PDM
 
-Install Ansible and its dependencies with [PDM](https://github.com/pdm-project/pdm):
+This project uses [Pyprojectx](https://github.com/pyprojectx/pyprojectx) and
+[PDM](https://github.com/pdm-project/pdm) to manage Python dependencies in a consistent,
+isolated environment:
+
+- **Pyprojectx:** Provides the [`./pw`](./pw) wrapper script, ensuring all project tools run
+  consistently without needing global installations (including PDM).
+- **PDM:** manages the Python dependencies used by this project (including Ansible).  
+
+To install the dependencies, run:
 
 ```bash
 ./pw pdm sync
 ```
 
+> **Tip:** run `./pw which pdm` to see the full path of the `pdm` used by this project. It
+> should look something like:
+> `<path_to_this_project>/Homelab/.pyprojectx/venvs/main-ab061d9d4f9bea1cc2de64816d469baf-py3.13/bin/pdm`
+
 ## Running the Ansible Plays
 
-Ansible uses SSH to connect to managed nodes. To avoid repeatedly entering the private key
-passphrase, load your SSH private key into ssh-agent with the following command:
+Ansible uses SSH to connect to managed nodes.
+
+To avoid repeatedly entering the private key passphrase, load your SSH private key into
+ssh-agent with the following command:
 
 ```bash
 ssh-add ~/.ssh/id_rsa
 ```
 
-### Test the connection using an Ansible ad-hoc command
+### Test Node Connections with Ansible Ad-Hoc Commands
 
-Ping the managing node (probably your `localhost`) to verify the connection:
+You can verify connections to both the managing node (probably your `localhost`) and managed
+nodes using Ansible's `ping` module:
+
+Managing Node:
 
 ```bash
 ./pw pdm run --venv in-project ansible localhost -m ping
 ```
 
+Managed Node:
+
+```bash
+./pw pdm run --venv in-project ansible unprovisioned_yoshimo -m ping
+```
+
 > \[!TIP\]
-> See [`hosts.ini`](./hosts.ini) for other managed nodes.
-
-## Ansible Role: Security
-
-In order to run this role your playbook must make use of the following:
+> See [`inventory.yml`](./inventory.yml) for other managed nodes.
 
 - Elevated privileges using `become: yes`
 - Collect system information using `gather_facts: yes`
