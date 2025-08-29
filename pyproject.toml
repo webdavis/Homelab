@@ -1,28 +1,18 @@
+[tool.pyprojectx]
+main = ["pdm"]
+
+[tool.pdm]
+distribution = false
+
 [project]
-name = "homelab"
+name = "Homelab"
 version = "0.1.0"
 description = "Default template for PDM package"
 authors = [
     {name = "Stephen A. Davis", email = "stephen@webdavis.io"},
 ]
-dependencies = [
-    "ansible==9.1.0",
-    "passlib==1.7.4",
-]
-requires-python = "==3.12.0"
+dependencies = ["ansible>=11.7.0"]
+requires-python = "==3.13.*"
 readme = "README.md"
 license = {text = "MIT"}
 
-[tool.pdm]
-distribution = false
-
-[tool.pdm.resolution.overrides]
-will-not-work-on-windows-try-from-wsl-instead = "0.1.0"
-
-[tool.pdm.dev-dependencies]
-lint = [
-    "ansible-lint>=6.22.2",
-]
-
-[tool.pyprojectx]
-main = ["pdm==2.12.3"]
