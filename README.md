@@ -8,7 +8,8 @@ This repository automates the setup of Raspberry Pis with services for my home n
 makes use of the following tools:
 
 - **[Ansible](https://www.ansible.com/):** Playbooks to configure services on each device.
-- **[Docker](https://docs.docker.com/get-started/):** Containers that run and manage the services.
+- **[Docker](https://docs.docker.com/get-started/):** Containers that run and manage the
+  services.
 - **Wrapper scripts:** Simplify working with Ansible and other tools in this project.
 
 ## Getting Started
@@ -66,25 +67,27 @@ ssh-agent with the following command:
 ssh-add ~/.ssh/id_rsa
 ```
 
-### Test Node Connections with Ansible Ad-Hoc Commands
+### Test the Managing node connection using an Ansible ad-hoc command
 
-You can verify connections to both the managing node (probably your `localhost`) and managed
-nodes using Ansible's `ping` module:
-
-Managing Node:
+Ping the managing node (probably your `localhost`) to verify the connection:
 
 ```bash
 ./pw pdm run --venv in-project ansible localhost -m ping
 ```
 
-Managed Node:
+> \[!TIP\]
+> See [`inventory.yml`](./inventory.yml) for other managed nodes.
+
+### Test a Managed Node connection using an Ansible ad-hoc command
+
+Ping the managed node to verify the connection:
 
 ```bash
 ./pw pdm run --venv in-project ansible unprovisioned_yoshimo -m ping
 ```
 
 > \[!TIP\]
-> See [`inventory.yml`](./inventory.yml) for other managed nodes.
+> See [`inventory.yml`](./) for other managed nodes.
 
 ## Ansible Role: Security
 
