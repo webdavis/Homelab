@@ -18,27 +18,25 @@ devenv:
       private_ip_interface: en0
       ansible_port: 22
 
+# RPi 4B (4GB).
 yoshimo_group:
   hosts:
-    # RPi 4B (4GB).
     unprovisioned_yoshimo:
       ansible_user: pi
       ansible_ssh_host: 192.168.1.70
       ansible_port: 22
-    # RPi 4B (4GB).
     yoshimo:
       ansible_user: localadmin
       ansible_ssh_host: 192.168.1.70
       ansible_port: 6040
 
+# RPi 4B (4GB).
 bob_group:
   hosts:
-    # RPi 4B (4GB).
     unprovisioned_bob:
       ansible_user: pi
       ansible_ssh_host: 192.168.1.171
       ansible_port: 22
-    # RPi 4B (4GB).
     bob:
       ansible_user: localadmin
       ansible_ssh_host: 192.168.1.171
