@@ -67,27 +67,25 @@ ssh-agent with the following command:
 ssh-add ~/.ssh/id_rsa
 ```
 
-### Test the Managing node connection using an Ansible ad-hoc command
+### Test Node Connections with Ansible Ad-Hoc Commands
 
-Ping the managing node (probably your `localhost`) to verify the connection:
+Before you do anything else, verify that you can connect to both the managing node (your
+`localhost`) and a managed node using Ansible's `ping` module:
+
+**Managing Node:**
 
 ```bash
 ./pw pdm run --venv in-project ansible localhost -m ping
 ```
 
-> \[!TIP\]
-> See [`inventory.yml`](./inventory.yml) for other managed nodes.
-
-### Test a Managed Node connection using an Ansible ad-hoc command
-
-Ping the managed node to verify the connection:
+**Managed Node:**
 
 ```bash
 ./pw pdm run --venv in-project ansible unprovisioned_yoshimo -m ping
 ```
 
 > \[!TIP\]
-> See [`inventory.yml`](./) for other managed nodes.
+> See [`inventory.yml`](./inventory.yml) for other managed nodes.
 
 ## Ansible Role: Security
 
