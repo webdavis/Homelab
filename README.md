@@ -13,28 +13,27 @@ makes use of the following tools:
 
 ## Getting Started
 
-If this is your first time setting up the development environment for this project, please
-refer to the instructions in [ubuntu-dev-environment.md](./docs/ubuntu-dev-environment.md)
-first.
+If this is your first time setting up the development environment, follow the instructions in
+[ubuntu-dev-environment.md](./docs/ubuntu-dev-environment.md) first.
 
-The following instructions will assume that you've already done this.
+The instructions below assume that setup is complete.
 
 ### pyevn
 
 This project uses [pyenv](https://github.com/pyenv/pyenv) to manage and track its Python
 version.
 
-Run the following command to instruct pyenv to switch to the Python version specified in the
-[`.python-version`](./.python-version) file located at the root of this project: Run the
-following command to instruct
+Run the following command to switch to the Python version specified in the
+[`.python-version`](./.python-version):
 
 ```bash
 eval "$(pyenv init -)"
 ```
 
-> \[!TIP\]
-> This can be run from any folder in this project. **Additionally,** this command will need to
-> be run *every time* you open a new terminal to work on this project.
+> \[!WARNING\]
+> You can run this command from anywhere inside the project.  
+> However, you will need to run it **every time you start a new terminal session** before
+> working on the project.
 
 ### PDM
 
