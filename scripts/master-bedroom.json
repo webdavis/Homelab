@@ -1,0 +1,7166 @@
+{
+  "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+  "Name": "Master Bedroom",
+  "Type": "room",
+  "Parent": {
+    "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+    "Name": "HomeModel",
+    "Type": "bridge_home",
+    "Parent": null
+  },
+  "Devices": [
+    {
+      "Id": "89c8ccf9-eeb0-49b8-993d-f353e5f41fb5",
+      "Name": "Hue color lamp 1",
+      "Type": "device",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "HueData": {
+        "id": "89c8ccf9-eeb0-49b8-993d-f353e5f41fb5",
+        "id_v1": "/lights/2",
+        "metadata": {
+          "archetype": "sultan_bulb",
+          "name": "Hue color lamp 1"
+        },
+        "product_data": {
+          "certified": true,
+          "hardware_platform_type": "100b-10c",
+          "manufacturer_name": "Signify Netherlands B.V.",
+          "model_id": "LCT014",
+          "product_archetype": "sultan_bulb",
+          "product_name": "Hue color lamp",
+          "software_version": "1.116.3"
+        },
+        "services": [
+          {
+            "rid": "6514cd43-b6e1-4af3-b68d-9b9b1ac8236d",
+            "rtype": "zigbee_connectivity"
+          },
+          {
+            "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+            "rtype": "light"
+          },
+          {
+            "rid": "df4f577f-7446-478d-8310-62c2f146d17d",
+            "rtype": "entertainment"
+          },
+          {
+            "rid": "2dbfc6ec-a5e8-420c-8328-caa524be5f71",
+            "rtype": "device_software_update"
+          }
+        ],
+        "type": "device"
+      },
+      "Light": {
+        "Id": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+        "Name": "Hue color lamp 6",
+        "Type": "light",
+        "Parent": {
+          "Id": "89c8ccf9-eeb0-49b8-993d-f353e5f41fb5",
+          "Name": "Hue color lamp 1",
+          "Type": "device",
+          "Parent": {
+            "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+            "Name": "Master Bedroom",
+            "Type": "room",
+            "Parent": {
+              "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+              "Name": "HomeModel",
+              "Type": "bridge_home",
+              "Parent": null
+            }
+          }
+        },
+        "LightService": null,
+        "HueData": {
+          "alert": {
+            "action_values": [
+              "breathe"
+            ]
+          },
+          "color": {
+            "gamut": {
+              "blue": {
+                "x": 0.1532,
+                "y": 0.0475
+              },
+              "green": {
+                "x": 0.17,
+                "y": 0.7
+              },
+              "red": {
+                "x": 0.6915,
+                "y": 0.3083
+              }
+            },
+            "gamut_type": "C",
+            "xy": {
+              "x": 0.4431,
+              "y": 0.4061
+            }
+          },
+          "color_temperature": {
+            "mirek": 343,
+            "mirek_schema": {
+              "mirek_maximum": 500,
+              "mirek_minimum": 153
+            },
+            "mirek_valid": true
+          },
+          "dimming": {
+            "brightness": 75.1,
+            "min_dim_level": 1
+          },
+          "dynamics": {
+            "speed": 0,
+            "speed_valid": false,
+            "status": "none",
+            "status_values": [
+              "none",
+              "dynamic_palette"
+            ]
+          },
+          "effects": {
+            "effect_values": [
+              "no_effect",
+              "candle",
+              "fire",
+              "prism",
+              "sparkle",
+              "opal",
+              "glisten"
+            ],
+            "status": "no_effect",
+            "status_values": [
+              "no_effect",
+              "candle",
+              "fire",
+              "prism",
+              "sparkle",
+              "opal",
+              "glisten"
+            ]
+          },
+          "id": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+          "id_v1": "/lights/2",
+          "metadata": {
+            "archetype": "sultan_bulb",
+            "name": "Hue color lamp 6"
+          },
+          "mode": "normal",
+          "on": {
+            "on": true
+          },
+          "owner": {
+            "rid": "89c8ccf9-eeb0-49b8-993d-f353e5f41fb5",
+            "rtype": "device"
+          },
+          "powerup": {
+            "configured": true,
+            "dimming": {
+              "dimming": {
+                "brightness": 79.84
+              },
+              "mode": "dimming"
+            },
+            "on": {
+              "mode": "on",
+              "on": {
+                "on": true
+              }
+            },
+            "preset": "custom"
+          },
+          "signaling": {
+            "signal_values": [
+              "no_signal",
+              "on_off",
+              "on_off_color",
+              "alternating"
+            ]
+          },
+          "type": "light"
+        }
+      }
+    },
+    {
+      "Id": "9d94a707-a633-4357-a770-c4e75fa65249",
+      "Name": "Hue color lamp 2",
+      "Type": "device",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "HueData": {
+        "id": "9d94a707-a633-4357-a770-c4e75fa65249",
+        "id_v1": "/lights/8",
+        "metadata": {
+          "archetype": "sultan_bulb",
+          "name": "Hue color lamp 2"
+        },
+        "product_data": {
+          "certified": true,
+          "hardware_platform_type": "100b-10c",
+          "manufacturer_name": "Signify Netherlands B.V.",
+          "model_id": "LCT014",
+          "product_archetype": "sultan_bulb",
+          "product_name": "Hue color lamp",
+          "software_version": "1.116.3"
+        },
+        "services": [
+          {
+            "rid": "65b2329d-a138-423b-ba3f-9d0b68fabf77",
+            "rtype": "zigbee_connectivity"
+          },
+          {
+            "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+            "rtype": "light"
+          },
+          {
+            "rid": "f0ce3ade-e77d-41d5-9527-0e54e68a0ce7",
+            "rtype": "entertainment"
+          },
+          {
+            "rid": "a3c999c8-bfdc-46e3-9e27-e1d82c947f3b",
+            "rtype": "device_software_update"
+          }
+        ],
+        "type": "device"
+      },
+      "Light": {
+        "Id": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+        "Name": "Hue color lamp 1",
+        "Type": "light",
+        "Parent": {
+          "Id": "9d94a707-a633-4357-a770-c4e75fa65249",
+          "Name": "Hue color lamp 2",
+          "Type": "device",
+          "Parent": {
+            "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+            "Name": "Master Bedroom",
+            "Type": "room",
+            "Parent": {
+              "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+              "Name": "HomeModel",
+              "Type": "bridge_home",
+              "Parent": null
+            }
+          }
+        },
+        "LightService": null,
+        "HueData": {
+          "alert": {
+            "action_values": [
+              "breathe"
+            ]
+          },
+          "color": {
+            "gamut": {
+              "blue": {
+                "x": 0.1532,
+                "y": 0.0475
+              },
+              "green": {
+                "x": 0.17,
+                "y": 0.7
+              },
+              "red": {
+                "x": 0.6915,
+                "y": 0.3083
+              }
+            },
+            "gamut_type": "C",
+            "xy": {
+              "x": 0.4431,
+              "y": 0.4061
+            }
+          },
+          "color_temperature": {
+            "mirek": 343,
+            "mirek_schema": {
+              "mirek_maximum": 500,
+              "mirek_minimum": 153
+            },
+            "mirek_valid": true
+          },
+          "dimming": {
+            "brightness": 75.1,
+            "min_dim_level": 1
+          },
+          "dynamics": {
+            "speed": 0,
+            "speed_valid": false,
+            "status": "none",
+            "status_values": [
+              "none",
+              "dynamic_palette"
+            ]
+          },
+          "effects": {
+            "effect_values": [
+              "no_effect",
+              "candle",
+              "fire",
+              "prism",
+              "sparkle",
+              "opal",
+              "glisten"
+            ],
+            "status": "no_effect",
+            "status_values": [
+              "no_effect",
+              "candle",
+              "fire",
+              "prism",
+              "sparkle",
+              "opal",
+              "glisten"
+            ]
+          },
+          "id": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+          "id_v1": "/lights/8",
+          "metadata": {
+            "archetype": "sultan_bulb",
+            "name": "Hue color lamp 1"
+          },
+          "mode": "normal",
+          "on": {
+            "on": true
+          },
+          "owner": {
+            "rid": "9d94a707-a633-4357-a770-c4e75fa65249",
+            "rtype": "device"
+          },
+          "powerup": {
+            "configured": true,
+            "dimming": {
+              "dimming": {
+                "brightness": 100
+              },
+              "mode": "dimming"
+            },
+            "on": {
+              "mode": "on",
+              "on": {
+                "on": true
+              }
+            },
+            "preset": "custom"
+          },
+          "signaling": {
+            "signal_values": [
+              "no_signal",
+              "on_off",
+              "on_off_color",
+              "alternating"
+            ]
+          },
+          "type": "light"
+        }
+      }
+    },
+    {
+      "Id": "a21b7eef-da46-4a99-9d6e-b1ea85347c32",
+      "Name": "Hue color lamp 3",
+      "Type": "device",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "HueData": {
+        "id": "a21b7eef-da46-4a99-9d6e-b1ea85347c32",
+        "id_v1": "/lights/9",
+        "metadata": {
+          "archetype": "sultan_bulb",
+          "name": "Hue color lamp 3"
+        },
+        "product_data": {
+          "certified": true,
+          "hardware_platform_type": "100b-10c",
+          "manufacturer_name": "Signify Netherlands B.V.",
+          "model_id": "LCT014",
+          "product_archetype": "sultan_bulb",
+          "product_name": "Hue color lamp",
+          "software_version": "1.116.3"
+        },
+        "services": [
+          {
+            "rid": "56fb35f0-7951-4fc5-9765-223f0491079b",
+            "rtype": "zigbee_connectivity"
+          },
+          {
+            "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+            "rtype": "light"
+          },
+          {
+            "rid": "1991b430-6923-4e01-986e-2f93a90670e8",
+            "rtype": "entertainment"
+          },
+          {
+            "rid": "d6b0a479-1f75-4aa5-bd05-87cb3781d3fe",
+            "rtype": "device_software_update"
+          }
+        ],
+        "type": "device"
+      },
+      "Light": {
+        "Id": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+        "Name": "Hue color lamp 5",
+        "Type": "light",
+        "Parent": {
+          "Id": "a21b7eef-da46-4a99-9d6e-b1ea85347c32",
+          "Name": "Hue color lamp 3",
+          "Type": "device",
+          "Parent": {
+            "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+            "Name": "Master Bedroom",
+            "Type": "room",
+            "Parent": {
+              "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+              "Name": "HomeModel",
+              "Type": "bridge_home",
+              "Parent": null
+            }
+          }
+        },
+        "LightService": null,
+        "HueData": {
+          "alert": {
+            "action_values": [
+              "breathe"
+            ]
+          },
+          "color": {
+            "gamut": {
+              "blue": {
+                "x": 0.1532,
+                "y": 0.0475
+              },
+              "green": {
+                "x": 0.17,
+                "y": 0.7
+              },
+              "red": {
+                "x": 0.6915,
+                "y": 0.3083
+              }
+            },
+            "gamut_type": "C",
+            "xy": {
+              "x": 0.4431,
+              "y": 0.4061
+            }
+          },
+          "color_temperature": {
+            "mirek": 343,
+            "mirek_schema": {
+              "mirek_maximum": 500,
+              "mirek_minimum": 153
+            },
+            "mirek_valid": true
+          },
+          "dimming": {
+            "brightness": 75.1,
+            "min_dim_level": 1
+          },
+          "dynamics": {
+            "speed": 0,
+            "speed_valid": false,
+            "status": "none",
+            "status_values": [
+              "none",
+              "dynamic_palette"
+            ]
+          },
+          "effects": {
+            "effect_values": [
+              "no_effect",
+              "candle",
+              "fire",
+              "prism",
+              "sparkle",
+              "opal",
+              "glisten"
+            ],
+            "status": "no_effect",
+            "status_values": [
+              "no_effect",
+              "candle",
+              "fire",
+              "prism",
+              "sparkle",
+              "opal",
+              "glisten"
+            ]
+          },
+          "id": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+          "id_v1": "/lights/9",
+          "metadata": {
+            "archetype": "sultan_bulb",
+            "name": "Hue color lamp 5"
+          },
+          "mode": "normal",
+          "on": {
+            "on": true
+          },
+          "owner": {
+            "rid": "a21b7eef-da46-4a99-9d6e-b1ea85347c32",
+            "rtype": "device"
+          },
+          "powerup": {
+            "configured": true,
+            "dimming": {
+              "dimming": {
+                "brightness": 100
+              },
+              "mode": "dimming"
+            },
+            "on": {
+              "mode": "on",
+              "on": {
+                "on": true
+              }
+            },
+            "preset": "custom"
+          },
+          "signaling": {
+            "signal_values": [
+              "no_signal",
+              "on_off",
+              "on_off_color",
+              "alternating"
+            ]
+          },
+          "type": "light"
+        }
+      }
+    }
+  ],
+  "Scenes": [
+    {
+      "Id": "0cf93bfc-507a-4eb3-a80a-4b9c8fe5f6cc",
+      "Name": "Toil and trouble",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.5680146,
+                  "y": 0.3889976
+                }
+              },
+              "dimming": {
+                "brightness": 44.75
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.68985033,
+                  "y": 0.30750105
+                }
+              },
+              "dimming": {
+                "brightness": 44.75
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.19715604,
+                  "y": 0.06888802
+                }
+              },
+              "dimming": {
+                "brightness": 44.75
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "0cf93bfc-507a-4eb3-a80a-4b9c8fe5f6cc",
+        "id_v1": "/scenes/JSpZm-6XHfkvemEi",
+        "metadata": {
+          "image": {
+            "rid": "f2c7785d-e49e-4f9c-a8c1-b443a14bbe9a",
+            "rtype": "public_image"
+          },
+          "name": "Toil and trouble"
+        },
+        "palette": {
+          "color": [
+            {
+              "color": {
+                "xy": {
+                  "x": 0.68985033,
+                  "y": 0.30750105
+                }
+              },
+              "dimming": {
+                "brightness": 44.75
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.623637,
+                  "y": 0.35512018
+                }
+              },
+              "dimming": {
+                "brightness": 44.75
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.5680146,
+                  "y": 0.3889976
+                }
+              },
+              "dimming": {
+                "brightness": 44.75
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.24465507,
+                  "y": 0.12347095
+                }
+              },
+              "dimming": {
+                "brightness": 44.75
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.19715604,
+                  "y": 0.06888802
+                }
+              },
+              "dimming": {
+                "brightness": 44.75
+              }
+            }
+          ],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 499
+              },
+              "dimming": {
+                "brightness": 44.75
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.73015875,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "209aff11-eb84-41d4-85b5-eb2bc9aa58b6",
+      "Name": "Glowing grins",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "dimming": {
+                "brightness": 84
+              },
+              "effects": {
+                "effect": "fire"
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.59386706,
+                  "y": 0.37897408
+                }
+              },
+              "dimming": {
+                "brightness": 47
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.65706044,
+                  "y": 0.2954341
+                }
+              },
+              "dimming": {
+                "brightness": 47
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "209aff11-eb84-41d4-85b5-eb2bc9aa58b6",
+        "id_v1": "/scenes/X7Z5kDv0wGe8iQWp",
+        "metadata": {
+          "image": {
+            "rid": "b5f5a765-8f72-4aef-af99-90a116818ad4",
+            "rtype": "public_image"
+          },
+          "name": "Glowing grins"
+        },
+        "palette": {
+          "color": [
+            {
+              "color": {
+                "xy": {
+                  "x": 0.65706044,
+                  "y": 0.2954341
+                }
+              },
+              "dimming": {
+                "brightness": 47
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.63090605,
+                  "y": 0.3338721
+                }
+              },
+              "dimming": {
+                "brightness": 47
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.59386706,
+                  "y": 0.37897408
+                }
+              },
+              "dimming": {
+                "brightness": 47
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.5352489,
+                  "y": 0.40347847
+                }
+              },
+              "dimming": {
+                "brightness": 47
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.3133812,
+                  "y": 0.592306
+                }
+              },
+              "dimming": {
+                "brightness": 47
+              }
+            }
+          ],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 454
+              },
+              "dimming": {
+                "brightness": 47
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": [
+            {
+              "effect": "fire"
+            },
+            {
+              "effect": "fire"
+            }
+          ]
+        },
+        "speed": 0.73015875,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "05074803-f543-45f3-bbf1-0525855bdc31",
+      "Name": "Relax",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color_temperature": {
+                "mirek": 447
+              },
+              "dimming": {
+                "brightness": 56.13
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color_temperature": {
+                "mirek": 447
+              },
+              "dimming": {
+                "brightness": 56.13
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color_temperature": {
+                "mirek": 447
+              },
+              "dimming": {
+                "brightness": 56.13
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "05074803-f543-45f3-bbf1-0525855bdc31",
+        "id_v1": "/scenes/sKQHTTxbmYW7OJC",
+        "metadata": {
+          "appdata": "sMVvA_r01_d01",
+          "image": {
+            "rid": "a1f7da49-d181-4328-abea-68c9dc4b5416",
+            "rtype": "public_image"
+          },
+          "name": "Relax"
+        },
+        "palette": {
+          "color": [],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 447
+              },
+              "dimming": {
+                "brightness": 56.13
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.6031746,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "21f3b756-7029-4f80-9014-ac4a98644e1e",
+      "Name": "Narcissa",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.4759,
+                  "y": 0.4481
+                }
+              },
+              "dimming": {
+                "brightness": 90.12
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.485,
+                  "y": 0.4543
+                }
+              },
+              "dimming": {
+                "brightness": 90.12
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.5916,
+                  "y": 0.3833
+                }
+              },
+              "dimming": {
+                "brightness": 90.12
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "21f3b756-7029-4f80-9014-ac4a98644e1e",
+        "id_v1": "/scenes/pkfS5lXSJbF80-b",
+        "metadata": {
+          "appdata": "nbWeC_r01",
+          "image": {
+            "rid": "c550452e-efe8-4151-b57a-0cb77296b823",
+            "rtype": "public_image"
+          },
+          "name": "Narcissa"
+        },
+        "palette": {
+          "color": [
+            {
+              "color": {
+                "xy": {
+                  "x": 0.4451,
+                  "y": 0.4556
+                }
+              },
+              "dimming": {
+                "brightness": 90.12
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.477,
+                  "y": 0.4477
+                }
+              },
+              "dimming": {
+                "brightness": 100
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.485,
+                  "y": 0.4543
+                }
+              },
+              "dimming": {
+                "brightness": 90.12
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.5475,
+                  "y": 0.4151
+                }
+              },
+              "dimming": {
+                "brightness": 90.12
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.5916,
+                  "y": 0.3833
+                }
+              },
+              "dimming": {
+                "brightness": 90.12
+              }
+            }
+          ],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 416
+              },
+              "dimming": {
+                "brightness": 90.12
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.6269841,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "f8c61d07-7fce-4514-b15b-1a775b89bc9b",
+      "Name": "City of love",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.1532,
+                  "y": 0.0479
+                }
+              },
+              "dimming": {
+                "brightness": 44.66
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.1532,
+                  "y": 0.0479
+                }
+              },
+              "dimming": {
+                "brightness": 44.66
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.1543,
+                  "y": 0.0922
+                }
+              },
+              "dimming": {
+                "brightness": 44.66
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "f8c61d07-7fce-4514-b15b-1a775b89bc9b",
+        "id_v1": "/scenes/EwObxyFOANtXG6I",
+        "metadata": {
+          "appdata": "Y8cru_r01",
+          "image": {
+            "rid": "9f0913cf-c0e3-4b68-a97a-815e7cc501dc",
+            "rtype": "public_image"
+          },
+          "name": "City of love"
+        },
+        "palette": {
+          "color": [
+            {
+              "color": {
+                "xy": {
+                  "x": 0.1532,
+                  "y": 0.0479
+                }
+              },
+              "dimming": {
+                "brightness": 44.66
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.1543,
+                  "y": 0.0922
+                }
+              },
+              "dimming": {
+                "brightness": 44.66
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.1569,
+                  "y": 0.1899
+                }
+              },
+              "dimming": {
+                "brightness": 44.66
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.589,
+                  "y": 0.3719
+                }
+              },
+              "dimming": {
+                "brightness": 44.66
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.5311,
+                  "y": 0.4235
+                }
+              },
+              "dimming": {
+                "brightness": 44.66
+              }
+            }
+          ],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 455
+              },
+              "dimming": {
+                "brightness": 44.66
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.6031746,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "18c6b1da-8e24-496f-bb12-ad16939c075e",
+      "Name": "Pandemonium",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.22069384,
+                  "y": 0.08302784
+                }
+              },
+              "dimming": {
+                "brightness": 50
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.16464703,
+                  "y": 0.05314382
+                }
+              },
+              "dimming": {
+                "brightness": 50
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.18269373,
+                  "y": 0.07082952
+                }
+              },
+              "dimming": {
+                "brightness": 50
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "18c6b1da-8e24-496f-bb12-ad16939c075e",
+        "id_v1": "/scenes/CNKbkDIYwDiW-Vtr",
+        "metadata": {
+          "image": {
+            "rid": "a235fd77-25e7-450a-979a-42dbaee82a5d",
+            "rtype": "public_image"
+          },
+          "name": "Pandemonium"
+        },
+        "palette": {
+          "color": [
+            {
+              "color": {
+                "xy": {
+                  "x": 0.16464703,
+                  "y": 0.05314382
+                }
+              },
+              "dimming": {
+                "brightness": 50
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.18269373,
+                  "y": 0.07082952
+                }
+              },
+              "dimming": {
+                "brightness": 50
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.22069384,
+                  "y": 0.08302784
+                }
+              },
+              "dimming": {
+                "brightness": 50
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.2266938,
+                  "y": 0.1353669
+                }
+              },
+              "dimming": {
+                "brightness": 50
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.2773433,
+                  "y": 0.18675834
+                }
+              },
+              "dimming": {
+                "brightness": 50
+              }
+            }
+          ],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 222
+              },
+              "dimming": {
+                "brightness": 50
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.75396824,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "54f3ab94-becb-4f0c-855b-0ecdcb6f9df8",
+      "Name": "Trick or treat",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.17681076,
+                  "y": 0.08893143
+                }
+              },
+              "dimming": {
+                "brightness": 55
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.6048987,
+                  "y": 0.33962998
+                }
+              },
+              "dimming": {
+                "brightness": 55
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.22390836,
+                  "y": 0.08828267
+                }
+              },
+              "dimming": {
+                "brightness": 55
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "54f3ab94-becb-4f0c-855b-0ecdcb6f9df8",
+        "id_v1": "/scenes/Cbv4OIgIx--HWiY7",
+        "metadata": {
+          "image": {
+            "rid": "a93d1cb8-3ed3-444f-b727-e23936ab9e9d",
+            "rtype": "public_image"
+          },
+          "name": "Trick or treat"
+        },
+        "palette": {
+          "color": [
+            {
+              "color": {
+                "xy": {
+                  "x": 0.15439208,
+                  "y": 0.07251011
+                }
+              },
+              "dimming": {
+                "brightness": 55
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.17623423,
+                  "y": 0.088235
+                }
+              },
+              "dimming": {
+                "brightness": 100
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.22390836,
+                  "y": 0.08828267
+                }
+              },
+              "dimming": {
+                "brightness": 55
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.37861043,
+                  "y": 0.2082998
+                }
+              },
+              "dimming": {
+                "brightness": 55
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.6048987,
+                  "y": 0.33962998
+                }
+              },
+              "dimming": {
+                "brightness": 55
+              }
+            }
+          ],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 434
+              },
+              "dimming": {
+                "brightness": 55
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.73015875,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "5cb97393-4614-4d2e-beeb-4c28e6743a8e",
+      "Name": "Silent night",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.4777,
+                  "y": 0.3856
+                }
+              },
+              "dimming": {
+                "brightness": 37.94
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.5068,
+                  "y": 0.3702
+                }
+              },
+              "dimming": {
+                "brightness": 37.94
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.4418,
+                  "y": 0.3496
+                }
+              },
+              "dimming": {
+                "brightness": 37.94
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "5cb97393-4614-4d2e-beeb-4c28e6743a8e",
+        "id_v1": "/scenes/BPpaf6wfqD0EoJr",
+        "metadata": {
+          "appdata": "jOcgK_r01",
+          "image": {
+            "rid": "cb0f5370-c6af-414a-a0c1-e23be7136f01",
+            "rtype": "public_image"
+          },
+          "name": "Silent night"
+        },
+        "palette": {
+          "color": [
+            {
+              "color": {
+                "xy": {
+                  "x": 0.4418,
+                  "y": 0.3496
+                }
+              },
+              "dimming": {
+                "brightness": 37.94
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.4658,
+                  "y": 0.3667
+                }
+              },
+              "dimming": {
+                "brightness": 37.94
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.4777,
+                  "y": 0.3856
+                }
+              },
+              "dimming": {
+                "brightness": 37.94
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.5077,
+                  "y": 0.3696
+                }
+              },
+              "dimming": {
+                "brightness": 100
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.5334,
+                  "y": 0.3632
+                }
+              },
+              "dimming": {
+                "brightness": 100
+              }
+            }
+          ],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 455
+              },
+              "dimming": {
+                "brightness": 37.94
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.6904762,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "9952e503-9122-4ed2-90c2-fa37856664b0",
+      "Name": "Spellbound",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "dimming": {
+                "brightness": 26
+              },
+              "effects": {
+                "effect": "candle"
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.19928566,
+                  "y": 0.07028012
+                }
+              },
+              "dimming": {
+                "brightness": 49.75
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.54465604,
+                  "y": 0.41856146
+                }
+              },
+              "dimming": {
+                "brightness": 49.75
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "9952e503-9122-4ed2-90c2-fa37856664b0",
+        "id_v1": "/scenes/aYRr4wF0KMsOk5NZ",
+        "metadata": {
+          "image": {
+            "rid": "d864a3dc-3925-49e9-b9ea-4415c0836326",
+            "rtype": "public_image"
+          },
+          "name": "Spellbound"
+        },
+        "palette": {
+          "color": [
+            {
+              "color": {
+                "xy": {
+                  "x": 0.19928566,
+                  "y": 0.07028012
+                }
+              },
+              "dimming": {
+                "brightness": 49.75
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.20844851,
+                  "y": 0.12089705
+                }
+              },
+              "dimming": {
+                "brightness": 49.75
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.22201373,
+                  "y": 0.544597
+                }
+              },
+              "dimming": {
+                "brightness": 49.75
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.30604586,
+                  "y": 0.5679871
+                }
+              },
+              "dimming": {
+                "brightness": 49.75
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.54465604,
+                  "y": 0.41856146
+                }
+              },
+              "dimming": {
+                "brightness": 49.75
+              }
+            }
+          ],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 499
+              },
+              "dimming": {
+                "brightness": 49.75
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": [
+            {
+              "effect": "candle"
+            },
+            {
+              "effect": "candle"
+            }
+          ]
+        },
+        "speed": 0.73015875,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "9a2a0c6d-9aec-4b62-a8bc-8e8cce0afd8e",
+      "Name": "Dimmed",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color_temperature": {
+                "mirek": 370
+              },
+              "dimming": {
+                "brightness": 29.64
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color_temperature": {
+                "mirek": 370
+              },
+              "dimming": {
+                "brightness": 29.64
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color_temperature": {
+                "mirek": 370
+              },
+              "dimming": {
+                "brightness": 29.64
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "9a2a0c6d-9aec-4b62-a8bc-8e8cce0afd8e",
+        "id_v1": "/scenes/MKkGedHlpka8W0p",
+        "metadata": {
+          "appdata": "alXtD_r01_d06",
+          "image": {
+            "rid": "8c74b9ba-6e89-4083-a2a7-b10a1e566fed",
+            "rtype": "public_image"
+          },
+          "name": "Dimmed"
+        },
+        "palette": {
+          "color": [],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 370
+              },
+              "dimming": {
+                "brightness": 29.64
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.6031746,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "24fd2295-3ca7-4d9d-912f-a2e8625b10db",
+      "Name": "Amber bloom",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.5946,
+                  "y": 0.3811
+                }
+              },
+              "dimming": {
+                "brightness": 79.84
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.5717,
+                  "y": 0.3983
+                }
+              },
+              "dimming": {
+                "brightness": 79.84
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.4934,
+                  "y": 0.3675
+                }
+              },
+              "dimming": {
+                "brightness": 79.84
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "24fd2295-3ca7-4d9d-912f-a2e8625b10db",
+        "id_v1": "/scenes/q-RGVyM5kEbz2An",
+        "metadata": {
+          "appdata": "KHvYt_r01",
+          "image": {
+            "rid": "10306e69-57ea-47a0-bd27-0efd001d0527",
+            "rtype": "public_image"
+          },
+          "name": "Amber bloom"
+        },
+        "palette": {
+          "color": [
+            {
+              "color": {
+                "xy": {
+                  "x": 0.6178,
+                  "y": 0.3413
+                }
+              },
+              "dimming": {
+                "brightness": 79.84
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.5946,
+                  "y": 0.3811
+                }
+              },
+              "dimming": {
+                "brightness": 79.84
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.5717,
+                  "y": 0.3983
+                }
+              },
+              "dimming": {
+                "brightness": 79.84
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.5341,
+                  "y": 0.3975
+                }
+              },
+              "dimming": {
+                "brightness": 79.84
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.4934,
+                  "y": 0.3675
+                }
+              },
+              "dimming": {
+                "brightness": 79.84
+              }
+            }
+          ],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 455
+              },
+              "dimming": {
+                "brightness": 79.84
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.6031746,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "25191634-70bb-4335-a6f7-a1e4f2e8ba6d",
+      "Name": "Blue lagoon",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.3962,
+                  "y": 0.4341
+                }
+              },
+              "dimming": {
+                "brightness": 49.8
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.464,
+                  "y": 0.3618
+                }
+              },
+              "dimming": {
+                "brightness": 49.8
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.1623,
+                  "y": 0.3254
+                }
+              },
+              "dimming": {
+                "brightness": 49.8
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "25191634-70bb-4335-a6f7-a1e4f2e8ba6d",
+        "id_v1": "/scenes/Ndo2SWH0yMhPnV3",
+        "metadata": {
+          "appdata": "UWiVm_r01_d40",
+          "image": {
+            "rid": "68d526e2-6139-4855-bdb2-dd77acfdeba4",
+            "rtype": "public_image"
+          },
+          "name": "Blue lagoon"
+        },
+        "palette": {
+          "color": [
+            {
+              "color": {
+                "xy": {
+                  "x": 0.1623,
+                  "y": 0.3254
+                }
+              },
+              "dimming": {
+                "brightness": 49.8
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.24,
+                  "y": 0.3475
+                }
+              },
+              "dimming": {
+                "brightness": 49.8
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.304,
+                  "y": 0.3777
+                }
+              },
+              "dimming": {
+                "brightness": 49.8
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.3962,
+                  "y": 0.4341
+                }
+              },
+              "dimming": {
+                "brightness": 49.8
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.4655,
+                  "y": 0.3618
+                }
+              },
+              "dimming": {
+                "brightness": 100
+              }
+            }
+          ],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 374
+              },
+              "dimming": {
+                "brightness": 49.8
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.6269841,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "57d80de3-b81c-4c9b-8a8d-62ad553b213e",
+      "Name": "Witching hour",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.66150224,
+                  "y": 0.32675207
+                }
+              },
+              "dimming": {
+                "brightness": 45
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.52590686,
+                  "y": 0.34799817
+                }
+              },
+              "dimming": {
+                "brightness": 45
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.1532,
+                  "y": 0.0476
+                }
+              },
+              "dimming": {
+                "brightness": 45
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "57d80de3-b81c-4c9b-8a8d-62ad553b213e",
+        "id_v1": "/scenes/y0EzUh2MZI5XZH2u",
+        "metadata": {
+          "image": {
+            "rid": "75457600-682c-437f-a83c-c411f3ec73e3",
+            "rtype": "public_image"
+          },
+          "name": "Witching hour"
+        },
+        "palette": {
+          "color": [
+            {
+              "color": {
+                "xy": {
+                  "x": 0.66150224,
+                  "y": 0.32675207
+                }
+              },
+              "dimming": {
+                "brightness": 45
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.58925974,
+                  "y": 0.3531109
+                }
+              },
+              "dimming": {
+                "brightness": 45
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.52590686,
+                  "y": 0.34799817
+                }
+              },
+              "dimming": {
+                "brightness": 45
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.1689461,
+                  "y": 0.12812686
+                }
+              },
+              "dimming": {
+                "brightness": 45
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.1532,
+                  "y": 0.0476
+                }
+              },
+              "dimming": {
+                "brightness": 45
+              }
+            }
+          ],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 400
+              },
+              "dimming": {
+                "brightness": 45
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.73015875,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "641425e8-5770-49a7-af07-7416c21da6ce",
+      "Name": "Miami",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.4548,
+                  "y": 0.2433
+                }
+              },
+              "dimming": {
+                "brightness": 79.84
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.154,
+                  "y": 0.0799
+                }
+              },
+              "dimming": {
+                "brightness": 79.84
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.3678,
+                  "y": 0.1839
+                }
+              },
+              "dimming": {
+                "brightness": 79.84
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "641425e8-5770-49a7-af07-7416c21da6ce",
+        "id_v1": "/scenes/L1mFLkunnsjzUJv",
+        "metadata": {
+          "appdata": "Iw4Zn_r01",
+          "image": {
+            "rid": "b037f15f-f7e4-46ab-b624-45ba2886c127",
+            "rtype": "public_image"
+          },
+          "name": "Miami"
+        },
+        "palette": {
+          "color": [
+            {
+              "color": {
+                "xy": {
+                  "x": 0.5573,
+                  "y": 0.3226
+                }
+              },
+              "dimming": {
+                "brightness": 79.84
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.4548,
+                  "y": 0.2433
+                }
+              },
+              "dimming": {
+                "brightness": 79.84
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.3692,
+                  "y": 0.184
+                }
+              },
+              "dimming": {
+                "brightness": 100
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.1561,
+                  "y": 0.1606
+                }
+              },
+              "dimming": {
+                "brightness": 79.84
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.154,
+                  "y": 0.0799
+                }
+              },
+              "dimming": {
+                "brightness": 79.84
+              }
+            }
+          ],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 455
+              },
+              "dimming": {
+                "brightness": 79.84
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.6904762,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "251be0ee-1831-4369-9b73-c1b9b2b47525",
+      "Name": "Phantom",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.15972522,
+                  "y": 0.26733497
+                }
+              },
+              "dimming": {
+                "brightness": 40
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.22583278,
+                  "y": 0.32436836
+                }
+              },
+              "dimming": {
+                "brightness": 40
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.15683863,
+                  "y": 0.16806947
+                }
+              },
+              "dimming": {
+                "brightness": 40
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "251be0ee-1831-4369-9b73-c1b9b2b47525",
+        "id_v1": "/scenes/ZwcTVqh5XFOsynQ2",
+        "metadata": {
+          "image": {
+            "rid": "5debd7d7-8506-4617-9a3f-bf78f58b6572",
+            "rtype": "public_image"
+          },
+          "name": "Phantom"
+        },
+        "palette": {
+          "color": [
+            {
+              "color": {
+                "xy": {
+                  "x": 0.15683863,
+                  "y": 0.16806947
+                }
+              },
+              "dimming": {
+                "brightness": 40
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.15972522,
+                  "y": 0.26733497
+                }
+              },
+              "dimming": {
+                "brightness": 40
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.22583278,
+                  "y": 0.32436836
+                }
+              },
+              "dimming": {
+                "brightness": 40
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.42807534,
+                  "y": 0.34118894
+                }
+              },
+              "dimming": {
+                "brightness": 40
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.5216723,
+                  "y": 0.359156
+                }
+              },
+              "dimming": {
+                "brightness": 40
+              }
+            }
+          ],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 250
+              },
+              "dimming": {
+                "brightness": 40
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.73015875,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "5091b976-c0bb-41bd-89b3-8b8be28d613e",
+      "Name": "Sundown",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.4848,
+                  "y": 0.3887
+                }
+              },
+              "dimming": {
+                "brightness": 49.8
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.555,
+                  "y": 0.3606
+                }
+              },
+              "dimming": {
+                "brightness": 49.8
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.2459,
+                  "y": 0.2693
+                }
+              },
+              "dimming": {
+                "brightness": 49.8
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "5091b976-c0bb-41bd-89b3-8b8be28d613e",
+        "id_v1": "/scenes/qETkBEbrDnz2HeL",
+        "metadata": {
+          "appdata": "tdpey_r01_d37",
+          "image": {
+            "rid": "a9038608-5e3e-4fde-8b31-2c03543445e3",
+            "rtype": "public_image"
+          },
+          "name": "Sundown"
+        },
+        "palette": {
+          "color": [
+            {
+              "color": {
+                "xy": {
+                  "x": 0.5948,
+                  "y": 0.3442
+                }
+              },
+              "dimming": {
+                "brightness": 49.8
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.555,
+                  "y": 0.3606
+                }
+              },
+              "dimming": {
+                "brightness": 49.8
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.4848,
+                  "y": 0.3887
+                }
+              },
+              "dimming": {
+                "brightness": 49.8
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.245,
+                  "y": 0.2677
+                }
+              },
+              "dimming": {
+                "brightness": 100
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.192,
+                  "y": 0.1686
+                }
+              },
+              "dimming": {
+                "brightness": 49.8
+              }
+            }
+          ],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 359
+              },
+              "dimming": {
+                "brightness": 49.8
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.6269841,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "dd69ad86-c559-420c-9a3b-894d51696340",
+      "Name": "Nightlight",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.561,
+                  "y": 0.4042
+                }
+              },
+              "dimming": {
+                "brightness": 0
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.561,
+                  "y": 0.4042
+                }
+              },
+              "dimming": {
+                "brightness": 0
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.561,
+                  "y": 0.4042
+                }
+              },
+              "dimming": {
+                "brightness": 0
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "dd69ad86-c559-420c-9a3b-894d51696340",
+        "id_v1": "/scenes/Og4qXBnWG2RJBWA",
+        "metadata": {
+          "appdata": "8YuHY_r01",
+          "image": {
+            "rid": "28bbfeff-1a0c-444e-bb4b-0b74b88e0c95",
+            "rtype": "public_image"
+          },
+          "name": "Nightlight"
+        },
+        "palette": {
+          "color": [
+            {
+              "color": {
+                "xy": {
+                  "x": 0.561,
+                  "y": 0.4042
+                }
+              },
+              "dimming": {
+                "brightness": 0
+              }
+            }
+          ],
+          "color_temperature": [],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.6031746,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "aaf7d4dd-cdb2-4e46-ba2d-0da4227eb314",
+      "Name": "Read 2",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color_temperature": {
+                "mirek": 346
+              },
+              "dimming": {
+                "brightness": 100
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color_temperature": {
+                "mirek": 346
+              },
+              "dimming": {
+                "brightness": 100
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color_temperature": {
+                "mirek": 346
+              },
+              "dimming": {
+                "brightness": 100
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "aaf7d4dd-cdb2-4e46-ba2d-0da4227eb314",
+        "id_v1": "/scenes/klo2hz4aaG2GFeNR",
+        "metadata": {
+          "image": {
+            "rid": "e101a77f-9984-4f61-aac8-15741983c656",
+            "rtype": "public_image"
+          },
+          "name": "Read 2"
+        },
+        "palette": {
+          "color": [],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 346
+              },
+              "dimming": {
+                "brightness": 100
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.603,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "ab52de5e-0902-4a37-bb43-48d7a2ebfe49",
+      "Name": "Tokyo",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.1562,
+                  "y": 0.1626
+                }
+              },
+              "dimming": {
+                "brightness": 46.64
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.2676,
+                  "y": 0.103
+                }
+              },
+              "dimming": {
+                "brightness": 46.64
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.1753,
+                  "y": 0.0585
+                }
+              },
+              "dimming": {
+                "brightness": 46.64
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "ab52de5e-0902-4a37-bb43-48d7a2ebfe49",
+        "id_v1": "/scenes/BJeVGYclyiMmYNM",
+        "metadata": {
+          "appdata": "bhvss_r01",
+          "image": {
+            "rid": "60f088f5-4224-4f01-bcb1-81ef46099f63",
+            "rtype": "public_image"
+          },
+          "name": "Tokyo"
+        },
+        "palette": {
+          "color": [
+            {
+              "color": {
+                "xy": {
+                  "x": 0.1753,
+                  "y": 0.0585
+                }
+              },
+              "dimming": {
+                "brightness": 46.64
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.1562,
+                  "y": 0.1626
+                }
+              },
+              "dimming": {
+                "brightness": 46.64
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.2676,
+                  "y": 0.103
+                }
+              },
+              "dimming": {
+                "brightness": 46.64
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.5894,
+                  "y": 0.2589
+                }
+              },
+              "dimming": {
+                "brightness": 46.64
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.5614,
+                  "y": 0.406
+                }
+              },
+              "dimming": {
+                "brightness": 46.64
+              }
+            }
+          ],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 455
+              },
+              "dimming": {
+                "brightness": 46.64
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.6904762,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "e727adbd-6a0c-4782-9fed-2a5ec43f1ab3",
+      "Name": "Honolulu",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.5636,
+                  "y": 0.3912
+                }
+              },
+              "dimming": {
+                "brightness": 39.13
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.5727,
+                  "y": 0.3587
+                }
+              },
+              "dimming": {
+                "brightness": 39.13
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.5753,
+                  "y": 0.3275
+                }
+              },
+              "dimming": {
+                "brightness": 39.13
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "e727adbd-6a0c-4782-9fed-2a5ec43f1ab3",
+        "id_v1": "/scenes/1OairMoiRWBuaKM",
+        "metadata": {
+          "appdata": "sovbT_r01",
+          "image": {
+            "rid": "d271d202-6856-4633-95ae-953ba73aee64",
+            "rtype": "public_image"
+          },
+          "name": "Honolulu"
+        },
+        "palette": {
+          "color": [
+            {
+              "color": {
+                "xy": {
+                  "x": 0.6364,
+                  "y": 0.2963
+                }
+              },
+              "dimming": {
+                "brightness": 39.13
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.5753,
+                  "y": 0.3275
+                }
+              },
+              "dimming": {
+                "brightness": 39.13
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.574,
+                  "y": 0.3586
+                }
+              },
+              "dimming": {
+                "brightness": 100
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.5643,
+                  "y": 0.3911
+                }
+              },
+              "dimming": {
+                "brightness": 100
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.4759,
+                  "y": 0.4283
+                }
+              },
+              "dimming": {
+                "brightness": 39.13
+              }
+            }
+          ],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 455
+              },
+              "dimming": {
+                "brightness": 39.13
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.6031746,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "e89955f8-99b9-4198-a5c6-3688ddf80567",
+      "Name": "Promise",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.512,
+                  "y": 0.318
+                }
+              },
+              "dimming": {
+                "brightness": 49.8
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.2829,
+                  "y": 0.1872
+                }
+              },
+              "dimming": {
+                "brightness": 49.8
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.1918,
+                  "y": 0.2296
+                }
+              },
+              "dimming": {
+                "brightness": 49.8
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "e89955f8-99b9-4198-a5c6-3688ddf80567",
+        "id_v1": "/scenes/wRvTOadOm8D0jRU",
+        "metadata": {
+          "appdata": "UNJRD_r01",
+          "image": {
+            "rid": "f8db4e12-7406-4e05-ad6e-f09469ed7742",
+            "rtype": "public_image"
+          },
+          "name": "Promise"
+        },
+        "palette": {
+          "color": [
+            {
+              "color": {
+                "xy": {
+                  "x": 0.512,
+                  "y": 0.318
+                }
+              },
+              "dimming": {
+                "brightness": 49.8
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.4791,
+                  "y": 0.3551
+                }
+              },
+              "dimming": {
+                "brightness": 49.8
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.2829,
+                  "y": 0.1872
+                }
+              },
+              "dimming": {
+                "brightness": 49.8
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.1912,
+                  "y": 0.2288
+                }
+              },
+              "dimming": {
+                "brightness": 100
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.3156,
+                  "y": 0.4254
+                }
+              },
+              "dimming": {
+                "brightness": 49.8
+              }
+            }
+          ],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 370
+              },
+              "dimming": {
+                "brightness": 49.8
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.6031746,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "f076a6df-fe50-4744-82e1-1cdb1ddbaa5c",
+      "Name": "Spellbound 2",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.19928566,
+                  "y": 0.07028012
+                }
+              },
+              "dimming": {
+                "brightness": 49.75
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.20844851,
+                  "y": 0.12089705
+                }
+              },
+              "dimming": {
+                "brightness": 49.75
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.54465604,
+                  "y": 0.41856146
+                }
+              },
+              "dimming": {
+                "brightness": 49.75
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "f076a6df-fe50-4744-82e1-1cdb1ddbaa5c",
+        "id_v1": "/scenes/jY67OpfWy7JlMl0-",
+        "metadata": {
+          "image": {
+            "rid": "d864a3dc-3925-49e9-b9ea-4415c0836326",
+            "rtype": "public_image"
+          },
+          "name": "Spellbound 2"
+        },
+        "palette": {
+          "color": [
+            {
+              "color": {
+                "xy": {
+                  "x": 0.19928566,
+                  "y": 0.07028012
+                }
+              },
+              "dimming": {
+                "brightness": 49.75
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.20844851,
+                  "y": 0.12089705
+                }
+              },
+              "dimming": {
+                "brightness": 49.75
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.22201373,
+                  "y": 0.544597
+                }
+              },
+              "dimming": {
+                "brightness": 49.75
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.30604586,
+                  "y": 0.5679871
+                }
+              },
+              "dimming": {
+                "brightness": 49.75
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.54465604,
+                  "y": 0.41856146
+                }
+              },
+              "dimming": {
+                "brightness": 49.75
+              }
+            }
+          ],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 499
+              },
+              "dimming": {
+                "brightness": 49.75
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.73015875,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "ff7f1235-bac7-47ef-be64-1cd7fca1803e",
+      "Name": "Disturbia",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.5305,
+                  "y": 0.261
+                }
+              },
+              "dimming": {
+                "brightness": 62.85
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.1616,
+                  "y": 0.3754
+                }
+              },
+              "dimming": {
+                "brightness": 69.96
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.2132,
+                  "y": 0.3113
+                }
+              },
+              "dimming": {
+                "brightness": 69.96
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "ff7f1235-bac7-47ef-be64-1cd7fca1803e",
+        "id_v1": "/scenes/PZRZ9Ds3rDuzO1S",
+        "metadata": {
+          "appdata": "6vMc8_r01",
+          "image": {
+            "rid": "703662f8-cfdc-4486-bf96-dfba46f22583",
+            "rtype": "public_image"
+          },
+          "name": "Disturbia"
+        },
+        "palette": {
+          "color": [
+            {
+              "color": {
+                "xy": {
+                  "x": 0.1616,
+                  "y": 0.3754
+                }
+              },
+              "dimming": {
+                "brightness": 62.85
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.2132,
+                  "y": 0.3113
+                }
+              },
+              "dimming": {
+                "brightness": 62.85
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.3884,
+                  "y": 0.1875
+                }
+              },
+              "dimming": {
+                "brightness": 100
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.5305,
+                  "y": 0.261
+                }
+              },
+              "dimming": {
+                "brightness": 62.85
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.6587,
+                  "y": 0.2924
+                }
+              },
+              "dimming": {
+                "brightness": 62.85
+              }
+            }
+          ],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 333
+              },
+              "dimming": {
+                "brightness": 62.85
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.6269841,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "77fca562-2158-41ff-bd14-856cadd0a944",
+      "Name": "Read",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color_temperature": {
+                "mirek": 346
+              },
+              "dimming": {
+                "brightness": 100
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color_temperature": {
+                "mirek": 346
+              },
+              "dimming": {
+                "brightness": 100
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color_temperature": {
+                "mirek": 346
+              },
+              "dimming": {
+                "brightness": 100
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "77fca562-2158-41ff-bd14-856cadd0a944",
+        "id_v1": "/scenes/kGAmekkAmZwbsz8",
+        "metadata": {
+          "appdata": "routq_r01",
+          "image": {
+            "rid": "e101a77f-9984-4f61-aac8-15741983c656",
+            "rtype": "public_image"
+          },
+          "name": "Read"
+        },
+        "palette": {
+          "color": [],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 346
+              },
+              "dimming": {
+                "brightness": 100
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.6031746,
+        "status": {
+          "active": "static"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "8c0f1615-d441-4490-b312-67d4d8a12182",
+      "Name": "Winter beauty",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.5353,
+                  "y": 0.4074
+                }
+              },
+              "dimming": {
+                "brightness": 79.84
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.3281,
+                  "y": 0.4921
+                }
+              },
+              "dimming": {
+                "brightness": 79.84
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.4216,
+                  "y": 0.4437
+                }
+              },
+              "dimming": {
+                "brightness": 79.84
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "8c0f1615-d441-4490-b312-67d4d8a12182",
+        "id_v1": "/scenes/xjwacJwO00ZKNMV",
+        "metadata": {
+          "appdata": "cwlHL_r01",
+          "image": {
+            "rid": "6e9492d8-035b-4f7c-b2b9-65973e7b3328",
+            "rtype": "public_image"
+          },
+          "name": "Winter beauty"
+        },
+        "palette": {
+          "color": [
+            {
+              "color": {
+                "xy": {
+                  "x": 0.1784,
+                  "y": 0.3104
+                }
+              },
+              "dimming": {
+                "brightness": 79.84
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.2137,
+                  "y": 0.49
+                }
+              },
+              "dimming": {
+                "brightness": 79.84
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.3278,
+                  "y": 0.4934
+                }
+              },
+              "dimming": {
+                "brightness": 100
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.4216,
+                  "y": 0.4437
+                }
+              },
+              "dimming": {
+                "brightness": 79.84
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.5353,
+                  "y": 0.4074
+                }
+              },
+              "dimming": {
+                "brightness": 79.84
+              }
+            }
+          ],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 400
+              },
+              "dimming": {
+                "brightness": 79.84
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.56349206,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "954068ed-4d6c-4ca0-8e22-3e8aeb1c079a",
+      "Name": "Osaka",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.4519,
+                  "y": 0.2677
+                }
+              },
+              "dimming": {
+                "brightness": 35.57
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.5532,
+                  "y": 0.2547
+                }
+              },
+              "dimming": {
+                "brightness": 35.57
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.6222,
+                  "y": 0.3604
+                }
+              },
+              "dimming": {
+                "brightness": 35.57
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "954068ed-4d6c-4ca0-8e22-3e8aeb1c079a",
+        "id_v1": "/scenes/KSEs7CEqmlHzTTm",
+        "metadata": {
+          "appdata": "f3liL_r01_d43",
+          "image": {
+            "rid": "87cb1e51-f823-42b1-86e5-697fc0c3d2ae",
+            "rtype": "public_image"
+          },
+          "name": "Osaka"
+        },
+        "palette": {
+          "color": [
+            {
+              "color": {
+                "xy": {
+                  "x": 0.4519,
+                  "y": 0.2677
+                }
+              },
+              "dimming": {
+                "brightness": 35.57
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.555,
+                  "y": 0.2553
+                }
+              },
+              "dimming": {
+                "brightness": 100
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.5951,
+                  "y": 0.3087
+                }
+              },
+              "dimming": {
+                "brightness": 100
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.6222,
+                  "y": 0.3604
+                }
+              },
+              "dimming": {
+                "brightness": 35.57
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.513,
+                  "y": 0.4237
+                }
+              },
+              "dimming": {
+                "brightness": 35.57
+              }
+            }
+          ],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 370
+              },
+              "dimming": {
+                "brightness": 35.57
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.6904762,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "c9bec0f4-6e42-487b-bdcd-2962884a14e2",
+      "Name": "Moonlight",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.1532,
+                  "y": 0.0476
+                }
+              },
+              "dimming": {
+                "brightness": 19.76
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.1532,
+                  "y": 0.0476
+                }
+              },
+              "dimming": {
+                "brightness": 35.57
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.1547,
+                  "y": 0.1074
+                }
+              },
+              "dimming": {
+                "brightness": 35.57
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "c9bec0f4-6e42-487b-bdcd-2962884a14e2",
+        "id_v1": "/scenes/mz6OZcZJ3cJyTjN",
+        "metadata": {
+          "appdata": "CJjSz_r01_d53",
+          "image": {
+            "rid": "ce78a7c5-3507-447e-a872-e367963817f0",
+            "rtype": "public_image"
+          },
+          "name": "Moonlight"
+        },
+        "palette": {
+          "color": [
+            {
+              "color": {
+                "xy": {
+                  "x": 0.1532,
+                  "y": 0.0476
+                }
+              },
+              "dimming": {
+                "brightness": 19.76
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.1547,
+                  "y": 0.1074
+                }
+              },
+              "dimming": {
+                "brightness": 19.76
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.1722,
+                  "y": 0.1529
+                }
+              },
+              "dimming": {
+                "brightness": 100
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.2108,
+                  "y": 0.2047
+                }
+              },
+              "dimming": {
+                "brightness": 19.76
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.3557,
+                  "y": 0.3352
+                }
+              },
+              "dimming": {
+                "brightness": 19.76
+              }
+            }
+          ],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 270
+              },
+              "dimming": {
+                "brightness": 19.76
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.6031746,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "15dc814d-5fd5-40a9-9576-dde2a5f87286",
+      "Name": "Rest",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.561,
+                  "y": 0.4042
+                }
+              },
+              "dimming": {
+                "brightness": 34.78
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.561,
+                  "y": 0.4042
+                }
+              },
+              "dimming": {
+                "brightness": 34.78
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.561,
+                  "y": 0.4042
+                }
+              },
+              "dimming": {
+                "brightness": 34.78
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "15dc814d-5fd5-40a9-9576-dde2a5f87286",
+        "id_v1": "/scenes/YDeFTP3wTWuFbnR",
+        "metadata": {
+          "appdata": "y1GAz_r01",
+          "image": {
+            "rid": "11a09ad5-8d65-4e90-959b-f05981a9ab1b",
+            "rtype": "public_image"
+          },
+          "name": "Rest"
+        },
+        "palette": {
+          "color": [
+            {
+              "color": {
+                "xy": {
+                  "x": 0.561,
+                  "y": 0.4042
+                }
+              },
+              "dimming": {
+                "brightness": 34.78
+              }
+            }
+          ],
+          "color_temperature": [],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.6031746,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "29aacf13-e94b-4c1e-85ec-09f644d8a659",
+      "Name": "Ocean dawn",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.4416,
+                  "y": 0.3743
+                }
+              },
+              "dimming": {
+                "brightness": 83.79
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.3688,
+                  "y": 0.3106
+                }
+              },
+              "dimming": {
+                "brightness": 83.79
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.4143,
+                  "y": 0.3548
+                }
+              },
+              "dimming": {
+                "brightness": 83.79
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "29aacf13-e94b-4c1e-85ec-09f644d8a659",
+        "id_v1": "/scenes/pY3nzYQD7W5VIL8",
+        "metadata": {
+          "appdata": "zoRhv_r01_d31",
+          "image": {
+            "rid": "747e2db1-d458-4c82-9b5c-c15f8273b90f",
+            "rtype": "public_image"
+          },
+          "name": "Ocean dawn"
+        },
+        "palette": {
+          "color": [
+            {
+              "color": {
+                "xy": {
+                  "x": 0.431,
+                  "y": 0.3946
+                }
+              },
+              "dimming": {
+                "brightness": 100
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.4427,
+                  "y": 0.3738
+                }
+              },
+              "dimming": {
+                "brightness": 100
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.4143,
+                  "y": 0.3548
+                }
+              },
+              "dimming": {
+                "brightness": 83.79
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.3688,
+                  "y": 0.3106
+                }
+              },
+              "dimming": {
+                "brightness": 83.79
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.2847,
+                  "y": 0.2449
+                }
+              },
+              "dimming": {
+                "brightness": 83.79
+              }
+            }
+          ],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 270
+              },
+              "dimming": {
+                "brightness": 83.79
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.6269841,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "2a92a3ed-1caa-4b4a-9aa5-34d1f4f9e877",
+      "Name": "Beginnings",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.2726,
+                  "y": 0.2045
+                }
+              },
+              "dimming": {
+                "brightness": 19.76
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.3537,
+                  "y": 0.2546
+                }
+              },
+              "dimming": {
+                "brightness": 19.76
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.1587,
+                  "y": 0.1368
+                }
+              },
+              "dimming": {
+                "brightness": 19.76
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "2a92a3ed-1caa-4b4a-9aa5-34d1f4f9e877",
+        "id_v1": "/scenes/jlgNI4-MTLaHF-H",
+        "metadata": {
+          "appdata": "IfZRT_r01",
+          "image": {
+            "rid": "860350c2-f2dc-4c1c-8e1f-1ddb65001e1d",
+            "rtype": "public_image"
+          },
+          "name": "Beginnings"
+        },
+        "palette": {
+          "color": [
+            {
+              "color": {
+                "xy": {
+                  "x": 0.1586,
+                  "y": 0.136
+                }
+              },
+              "dimming": {
+                "brightness": 100
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.1649,
+                  "y": 0.1445
+                }
+              },
+              "dimming": {
+                "brightness": 100
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.1914,
+                  "y": 0.1543
+                }
+              },
+              "dimming": {
+                "brightness": 19.76
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.2726,
+                  "y": 0.2045
+                }
+              },
+              "dimming": {
+                "brightness": 19.76
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.3537,
+                  "y": 0.2546
+                }
+              },
+              "dimming": {
+                "brightness": 19.76
+              }
+            }
+          ],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 455
+              },
+              "dimming": {
+                "brightness": 19.76
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.6269841,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "53f9e9b5-c281-4348-82a2-1e97dd5eca32",
+      "Name": "Energize",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color_temperature": {
+                "mirek": 156
+              },
+              "dimming": {
+                "brightness": 100
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color_temperature": {
+                "mirek": 156
+              },
+              "dimming": {
+                "brightness": 100
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color_temperature": {
+                "mirek": 156
+              },
+              "dimming": {
+                "brightness": 100
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "53f9e9b5-c281-4348-82a2-1e97dd5eca32",
+        "id_v1": "/scenes/Hu8rfn3BTS7Ztht",
+        "metadata": {
+          "appdata": "WNmdL_r01_d04",
+          "image": {
+            "rid": "7fd2ccc5-5749-4142-b7a5-66405a676f03",
+            "rtype": "public_image"
+          },
+          "name": "Energize"
+        },
+        "palette": {
+          "color": [],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 156
+              },
+              "dimming": {
+                "brightness": 100
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.6031746,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "4b3ffe94-7c02-4ac5-aeb8-e20997cad18b",
+      "Name": "Memento",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.1671,
+                  "y": 0.0853
+                }
+              },
+              "dimming": {
+                "brightness": 39.92
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.1729,
+                  "y": 0.146
+                }
+              },
+              "dimming": {
+                "brightness": 39.92
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.1554,
+                  "y": 0.0996
+                }
+              },
+              "dimming": {
+                "brightness": 39.92
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "4b3ffe94-7c02-4ac5-aeb8-e20997cad18b",
+        "id_v1": "/scenes/cTB6PkVrRZP644B",
+        "metadata": {
+          "appdata": "RMA8g_r01",
+          "image": {
+            "rid": "9b4a6882-b2e5-4ce2-9235-75f93a3a70e2",
+            "rtype": "public_image"
+          },
+          "name": "Memento"
+        },
+        "palette": {
+          "color": [
+            {
+              "color": {
+                "xy": {
+                  "x": 0.1671,
+                  "y": 0.0853
+                }
+              },
+              "dimming": {
+                "brightness": 39.92
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.1824,
+                  "y": 0.0807
+                }
+              },
+              "dimming": {
+                "brightness": 39.92
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.1554,
+                  "y": 0.0996
+                }
+              },
+              "dimming": {
+                "brightness": 39.92
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.1729,
+                  "y": 0.146
+                }
+              },
+              "dimming": {
+                "brightness": 39.92
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.4974,
+                  "y": 0.4535
+                }
+              },
+              "dimming": {
+                "brightness": 100
+              }
+            }
+          ],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 486
+              },
+              "dimming": {
+                "brightness": 39.92
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.051587302,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "cf049c24-8a29-4be3-973f-ce105ab42c3a",
+      "Name": "Mountain breeze",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.3836,
+                  "y": 0.3413
+                }
+              },
+              "dimming": {
+                "brightness": 59.68
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.2557,
+                  "y": 0.2325
+                }
+              },
+              "dimming": {
+                "brightness": 59.68
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.2361,
+                  "y": 0.2152
+                }
+              },
+              "dimming": {
+                "brightness": 59.68
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "cf049c24-8a29-4be3-973f-ce105ab42c3a",
+        "id_v1": "/scenes/RXTTbwZ3slYk4TU",
+        "metadata": {
+          "appdata": "JkGQJ_r01_d34",
+          "image": {
+            "rid": "53742ab5-a15d-457d-84c4-0303acd25c81",
+            "rtype": "public_image"
+          },
+          "name": "Mountain breeze"
+        },
+        "palette": {
+          "color": [
+            {
+              "color": {
+                "xy": {
+                  "x": 0.2238,
+                  "y": 0.2028
+                }
+              },
+              "dimming": {
+                "brightness": 59.68
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.2361,
+                  "y": 0.2152
+                }
+              },
+              "dimming": {
+                "brightness": 59.68
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.2557,
+                  "y": 0.2325
+                }
+              },
+              "dimming": {
+                "brightness": 59.68
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.3836,
+                  "y": 0.3413
+                }
+              },
+              "dimming": {
+                "brightness": 59.68
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.4271,
+                  "y": 0.4073
+                }
+              },
+              "dimming": {
+                "brightness": 59.68
+              }
+            }
+          ],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 250
+              },
+              "dimming": {
+                "brightness": 59.68
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.6031746,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "dbc07dc1-2e04-435b-95c9-ef7da30ee499",
+      "Name": "Magneto",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.516,
+                  "y": 0.4401
+                }
+              },
+              "dimming": {
+                "brightness": 88.14
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.171,
+                  "y": 0.3389
+                }
+              },
+              "dimming": {
+                "brightness": 88.14
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.1593,
+                  "y": 0.1341
+                }
+              },
+              "dimming": {
+                "brightness": 88.14
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "dbc07dc1-2e04-435b-95c9-ef7da30ee499",
+        "id_v1": "/scenes/xn2SaMA1uvq0x1A",
+        "metadata": {
+          "appdata": "X-M0F_r01",
+          "image": {
+            "rid": "05b493ae-d0ed-4b3c-8fea-3c1003e0aeb6",
+            "rtype": "public_image"
+          },
+          "name": "Magneto"
+        },
+        "palette": {
+          "color": [
+            {
+              "color": {
+                "xy": {
+                  "x": 0.1593,
+                  "y": 0.1341
+                }
+              },
+              "dimming": {
+                "brightness": 88.14
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.1574,
+                  "y": 0.2113
+                }
+              },
+              "dimming": {
+                "brightness": 100
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.171,
+                  "y": 0.3389
+                }
+              },
+              "dimming": {
+                "brightness": 88.14
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.4215,
+                  "y": 0.4895
+                }
+              },
+              "dimming": {
+                "brightness": 88.14
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.516,
+                  "y": 0.4401
+                }
+              },
+              "dimming": {
+                "brightness": 88.14
+              }
+            }
+          ],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 370
+              },
+              "dimming": {
+                "brightness": 88.14
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.6111111,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "f1549020-5620-4395-83c1-55bc7fc80563",
+      "Name": "Ruby romance",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.5822,
+                  "y": 0.3393
+                }
+              },
+              "dimming": {
+                "brightness": 44.66
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.6488,
+                  "y": 0.2876
+                }
+              },
+              "dimming": {
+                "brightness": 44.66
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.5417,
+                  "y": 0.3551
+                }
+              },
+              "dimming": {
+                "brightness": 44.66
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "f1549020-5620-4395-83c1-55bc7fc80563",
+        "id_v1": "/scenes/UrqzcuIbKg879CB",
+        "metadata": {
+          "appdata": "JSSgG_r01",
+          "image": {
+            "rid": "301b381a-6b3f-47a7-ae98-2bfbea0e030f",
+            "rtype": "public_image"
+          },
+          "name": "Ruby romance"
+        },
+        "palette": {
+          "color": [
+            {
+              "color": {
+                "xy": {
+                  "x": 0.5079,
+                  "y": 0.3289
+                }
+              },
+              "dimming": {
+                "brightness": 44.66
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.543,
+                  "y": 0.3551
+                }
+              },
+              "dimming": {
+                "brightness": 100
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.5836,
+                  "y": 0.339
+                }
+              },
+              "dimming": {
+                "brightness": 100
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.5992,
+                  "y": 0.2903
+                }
+              },
+              "dimming": {
+                "brightness": 44.66
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.6488,
+                  "y": 0.2876
+                }
+              },
+              "dimming": {
+                "brightness": 44.66
+              }
+            }
+          ],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 435
+              },
+              "dimming": {
+                "brightness": 44.66
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.6269841,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "0e262a4b-023a-42c4-a682-170057e6daa3",
+      "Name": "Winter mountain",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.2376,
+                  "y": 0.3042
+                }
+              },
+              "dimming": {
+                "brightness": 88.14
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.2484,
+                  "y": 0.3089
+                }
+              },
+              "dimming": {
+                "brightness": 88.14
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.293,
+                  "y": 0.3236
+                }
+              },
+              "dimming": {
+                "brightness": 88.14
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "0e262a4b-023a-42c4-a682-170057e6daa3",
+        "id_v1": "/scenes/DETF7SeBcHWiU63",
+        "metadata": {
+          "appdata": "JavhN_r01_d28",
+          "image": {
+            "rid": "ecbce974-7b1f-46da-a632-c57af04056f0",
+            "rtype": "public_image"
+          },
+          "name": "Winter mountain"
+        },
+        "palette": {
+          "color": [
+            {
+              "color": {
+                "xy": {
+                  "x": 0.2455,
+                  "y": 0.3067
+                }
+              },
+              "dimming": {
+                "brightness": 100
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.273,
+                  "y": 0.3175
+                }
+              },
+              "dimming": {
+                "brightness": 88.14
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.293,
+                  "y": 0.3236
+                }
+              },
+              "dimming": {
+                "brightness": 88.14
+              }
+            }
+          ],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 167
+              },
+              "dimming": {
+                "brightness": 88.14
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.6269841,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "98bb977a-0df3-40bd-ad0d-6eead91dd8a3",
+      "Name": "Concentrate",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color_temperature": {
+                "mirek": 233
+              },
+              "dimming": {
+                "brightness": 100
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color_temperature": {
+                "mirek": 233
+              },
+              "dimming": {
+                "brightness": 100
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color_temperature": {
+                "mirek": 233
+              },
+              "dimming": {
+                "brightness": 100
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "98bb977a-0df3-40bd-ad0d-6eead91dd8a3",
+        "id_v1": "/scenes/ZrqGVkLQq1Uu-Z6",
+        "metadata": {
+          "appdata": "GYO9-_r01_d03",
+          "image": {
+            "rid": "b90c8900-a6b7-422c-a5d3-e170187dbf8c",
+            "rtype": "public_image"
+          },
+          "name": "Concentrate"
+        },
+        "palette": {
+          "color": [],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 233
+              },
+              "dimming": {
+                "brightness": 100
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.6031746,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "8c4bfa61-25d1-4ef4-a340-6da42ddf4f1f",
+      "Name": "Under the tree",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.6777,
+                  "y": 0.3085
+                }
+              },
+              "dimming": {
+                "brightness": 39.92
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.1711,
+                  "y": 0.6741
+                }
+              },
+              "dimming": {
+                "brightness": 39.92
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.189,
+                  "y": 0.5037
+                }
+              },
+              "dimming": {
+                "brightness": 39.92
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "8c4bfa61-25d1-4ef4-a340-6da42ddf4f1f",
+        "id_v1": "/scenes/dcsZPCkfNYEPB1s",
+        "metadata": {
+          "appdata": "WyaAW_r01",
+          "image": {
+            "rid": "2821554b-b5f7-4deb-8292-a95feb42280f",
+            "rtype": "public_image"
+          },
+          "name": "Under the tree"
+        },
+        "palette": {
+          "color": [
+            {
+              "color": {
+                "xy": {
+                  "x": 0.189,
+                  "y": 0.5037
+                }
+              },
+              "dimming": {
+                "brightness": 39.92
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.1711,
+                  "y": 0.6741
+                }
+              },
+              "dimming": {
+                "brightness": 39.92
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.5075,
+                  "y": 0.44
+                }
+              },
+              "dimming": {
+                "brightness": 39.92
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.523,
+                  "y": 0.3581
+                }
+              },
+              "dimming": {
+                "brightness": 39.92
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.6777,
+                  "y": 0.3085
+                }
+              },
+              "dimming": {
+                "brightness": 39.92
+              }
+            }
+          ],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 455
+              },
+              "dimming": {
+                "brightness": 39.92
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.6904762,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "945396e0-cd37-46d6-b09e-e8a226acaf27",
+      "Name": "Hal",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.5641,
+                  "y": 0.3328
+                }
+              },
+              "dimming": {
+                "brightness": 75.89
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.1589,
+                  "y": 0.2701
+                }
+              },
+              "dimming": {
+                "brightness": 75.89
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.5953,
+                  "y": 0.3092
+                }
+              },
+              "dimming": {
+                "brightness": 75.89
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "945396e0-cd37-46d6-b09e-e8a226acaf27",
+        "id_v1": "/scenes/I86Dc3J-xS-0vNe",
+        "metadata": {
+          "appdata": "9YZSl_r01",
+          "image": {
+            "rid": "10f1768a-5872-4b6f-bb6c-4d2db7bd2eae",
+            "rtype": "public_image"
+          },
+          "name": "Hal"
+        },
+        "palette": {
+          "color": [
+            {
+              "color": {
+                "xy": {
+                  "x": 0.1589,
+                  "y": 0.2701
+                }
+              },
+              "dimming": {
+                "brightness": 75.89
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.2135,
+                  "y": 0.2508
+                }
+              },
+              "dimming": {
+                "brightness": 75.89
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.5953,
+                  "y": 0.3092
+                }
+              },
+              "dimming": {
+                "brightness": 75.89
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.5657,
+                  "y": 0.3326
+                }
+              },
+              "dimming": {
+                "brightness": 100
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.4857,
+                  "y": 0.4437
+                }
+              },
+              "dimming": {
+                "brightness": 100
+              }
+            }
+          ],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 370
+              },
+              "dimming": {
+                "brightness": 75.89
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.6031746,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "bf207169-1623-43ef-a293-d50952159cd0",
+      "Name": "Crocus",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.4212,
+                  "y": 0.38
+                }
+              },
+              "dimming": {
+                "brightness": 79.84
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.3818,
+                  "y": 0.485
+                }
+              },
+              "dimming": {
+                "brightness": 79.84
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.4195,
+                  "y": 0.4216
+                }
+              },
+              "dimming": {
+                "brightness": 79.84
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "bf207169-1623-43ef-a293-d50952159cd0",
+        "id_v1": "/scenes/nYXSJUvV8hTosop",
+        "metadata": {
+          "appdata": "DNkl0_r01",
+          "image": {
+            "rid": "07591cf1-2594-4d6e-ae07-a032bc101ccc",
+            "rtype": "public_image"
+          },
+          "name": "Crocus"
+        },
+        "palette": {
+          "color": [
+            {
+              "color": {
+                "xy": {
+                  "x": 0.3809,
+                  "y": 0.486
+                }
+              },
+              "dimming": {
+                "brightness": 100
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.4195,
+                  "y": 0.4216
+                }
+              },
+              "dimming": {
+                "brightness": 79.84
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.4212,
+                  "y": 0.38
+                }
+              },
+              "dimming": {
+                "brightness": 79.84
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.2877,
+                  "y": 0.2519
+                }
+              },
+              "dimming": {
+                "brightness": 79.84
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.2194,
+                  "y": 0.1332
+                }
+              },
+              "dimming": {
+                "brightness": 79.84
+              }
+            }
+          ],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 310
+              },
+              "dimming": {
+                "brightness": 79.84
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.6269841,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    },
+    {
+      "Id": "2dc9265e-56d7-4fbb-9bc5-32ae6b26680c",
+      "Name": "Blossom",
+      "Type": "scene",
+      "Parent": {
+        "Id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "Name": "Master Bedroom",
+        "Type": "room",
+        "Parent": {
+          "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+          "Name": "HomeModel",
+          "Type": "bridge_home",
+          "Parent": null
+        }
+      },
+      "SceneService": null,
+      "HueData": {
+        "actions": [
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.24,
+                  "y": 0.2761
+                }
+              },
+              "dimming": {
+                "brightness": 79.84
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "a3b75739-97ab-4d5a-80a8-a2057349e5d6",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.3972,
+                  "y": 0.4025
+                }
+              },
+              "dimming": {
+                "brightness": 79.84
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "fa67d5d8-580e-4494-9a87-cfc63dcf9217",
+              "rtype": "light"
+            }
+          },
+          {
+            "action": {
+              "color": {
+                "xy": {
+                  "x": 0.5119,
+                  "y": 0.4249
+                }
+              },
+              "dimming": {
+                "brightness": 79.84
+              },
+              "on": {
+                "on": true
+              }
+            },
+            "target": {
+              "rid": "ac22a062-1d7e-412a-a297-7bb9d65c2076",
+              "rtype": "light"
+            }
+          }
+        ],
+        "auto_dynamic": false,
+        "group": {
+          "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+          "rtype": "room"
+        },
+        "id": "2dc9265e-56d7-4fbb-9bc5-32ae6b26680c",
+        "id_v1": "/scenes/yix7TVRAWwqUvP0",
+        "metadata": {
+          "appdata": "ECcxB_r01",
+          "image": {
+            "rid": "a8897dcb-5c90-4459-8e4a-02b984bd32b5",
+            "rtype": "public_image"
+          },
+          "name": "Blossom"
+        },
+        "palette": {
+          "color": [
+            {
+              "color": {
+                "xy": {
+                  "x": 0.24,
+                  "y": 0.2761
+                }
+              },
+              "dimming": {
+                "brightness": 79.84
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.2667,
+                  "y": 0.3001
+                }
+              },
+              "dimming": {
+                "brightness": 100
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.3986,
+                  "y": 0.4027
+                }
+              },
+              "dimming": {
+                "brightness": 100
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.4419,
+                  "y": 0.4164
+                }
+              },
+              "dimming": {
+                "brightness": 79.84
+              }
+            },
+            {
+              "color": {
+                "xy": {
+                  "x": 0.5119,
+                  "y": 0.4249
+                }
+              },
+              "dimming": {
+                "brightness": 79.84
+              }
+            }
+          ],
+          "color_temperature": [
+            {
+              "color_temperature": {
+                "mirek": 335
+              },
+              "dimming": {
+                "brightness": 79.84
+              }
+            }
+          ],
+          "dimming": [],
+          "effects": []
+        },
+        "speed": 0.6269841,
+        "status": {
+          "active": "inactive"
+        },
+        "type": "scene"
+      }
+    }
+  ],
+  "HueData": {
+    "children": [
+      {
+        "rid": "89c8ccf9-eeb0-49b8-993d-f353e5f41fb5",
+        "rtype": "device"
+      },
+      {
+        "rid": "9d94a707-a633-4357-a770-c4e75fa65249",
+        "rtype": "device"
+      },
+      {
+        "rid": "a21b7eef-da46-4a99-9d6e-b1ea85347c32",
+        "rtype": "device"
+      }
+    ],
+    "id": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+    "id_v1": "/groups/1",
+    "metadata": {
+      "archetype": "bedroom",
+      "name": "Master Bedroom"
+    },
+    "services": [
+      {
+        "rid": "55fabafb-c6f5-4fd0-bab5-414047531912",
+        "rtype": "grouped_light"
+      }
+    ],
+    "type": "room"
+  },
+  "GroupedLight": {
+    "Id": "55fabafb-c6f5-4fd0-bab5-414047531912",
+    "Name": "Grouped Light (Master Bedroom)",
+    "Type": "grouped_light",
+    "Parent": {
+      "Id": "175f2b60-3bd3-40c5-81d4-a8673d37c13b",
+      "Name": "HomeModel",
+      "Type": "bridge_home",
+      "Parent": null
+    },
+    "LightService": null,
+    "HueData": {
+      "alert": {
+        "action_values": [
+          "breathe"
+        ]
+      },
+      "dimming": {
+        "brightness": 75.1
+      },
+      "id": "55fabafb-c6f5-4fd0-bab5-414047531912",
+      "id_v1": "/groups/1",
+      "on": {
+        "on": true
+      },
+      "owner": {
+        "rid": "3b625dce-6537-4cb1-9e3d-742d46eaaabd",
+        "rtype": "room"
+      },
+      "signaling": {
+        "signal_values": [
+          "alternating",
+          "no_signal",
+          "on_off",
+          "on_off_color"
+        ]
+      },
+      "type": "grouped_light"
+    }
+  }
+}
