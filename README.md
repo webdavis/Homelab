@@ -4,12 +4,12 @@
 
 # Homelab
 
-This repo contains automation that bootstraps Raspberry Pis with services bound for my home
-network. The automation in this project includes the following:
+This repository automates the setup of Raspberry Pis with services for my home network. It
+makes use of the following tools:
 
-- [Ansible](https://www.ansible.com/) plays that manage the configuration of services on the device.
-- [Docker](https://docs.docker.com/get-started/) containers that host and run services.
-- Wrapper scripts that ease the usage of the Ansible commands.
+- **[Ansible](https://www.ansible.com/):** Playbooks to configure services on each device.
+- **[Docker](https://docs.docker.com/get-started/):** Containers that run and manage the services.
+- **Wrapper scripts:** Simplify working with Ansible and other tools in this project.
 
 ## Getting Started
 
