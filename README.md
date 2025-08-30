@@ -79,7 +79,29 @@ ssh-add ~/.ssh/id_rsa
 > _Other tools may provide an ssh-agent service. I personally use
 > [KeePassXC](https://keepassxc.org/)._
 
-### 5. Verify Node Connections using Ansible Ad-Hoc Commands
+### 5. Configure and Source an Ansible Vault Password
+
+Homelab uses [Ansible
+Vault](https://docs.ansible.com/ansible/latest/vault_guide/vault_using_encrypted_content.html)
+for managing secrets. Passwords are managed dynamically via
+[`vault.password.py`](./vault.password.py), which requires the `ANSIBLE_VAULT_PASSWORD`
+environment variable to be set in your current shell.
+
+Create a file `vault.secret` with the following contents:
+
+```bash
+#!/usr/bin/env bash
+
+export ANSIBLE_VAULT_PASSWORD='xxxxxxxxxxxxxx'
+```
+
+Then load it into your shell with:
+
+```bash
+source vault.secret
+```
+
+### 6. Verify Node Connections using Ansible Ad-Hoc Commands
 
 Before you do anything else, verify that you can connect to both the managing node (your
 `localhost`) and a managed node using Ansible's `ping` module:
