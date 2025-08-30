@@ -1,0 +1,24 @@
+---
+# This playbook should be executed from a managing node (most likely your localhost) to
+# bootstrap a Raspberry Pi with basic server security.
+#
+# Usage: this playbook can be run, as follows:
+#
+#    $ ./pw pdm run --venv in-project ansible-playbook bootstrap.yml
+
+- name: Configure basic server security
+  hosts: unprovisioned_yoshimo
+  become: true
+  gather_facts: true
+  tasks:
+    - name: Import ansible-prep role
+      ansible.builtin.import_role:
+        name: ansible_prep
+
+    - name: Import security role
+      ansible.builtin.import_role:
+        name: security
+
+    - name: Import remove-account role
+      ansible.builtin.import_role:
+        name: remove_account
