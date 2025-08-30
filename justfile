@@ -3,6 +3,7 @@ default:
 
 alias p := ansible-ping
 alias g := ansible-gather-facts
+alias ve := ansible-vault-edit
 alias l := ansible-lint
 alias c := ansible-list-collections
 alias t := ansible-playbook-test
@@ -13,6 +14,9 @@ ansible-ping target='unprovisioned_yoshimo':
 
 ansible-gather-facts target='unprovisioned_yoshimo':
     ./pw pdm run --venv in-project ansible {{ target }} -m setup
+
+ansible-vault-edit target:
+    ./pw pdm run --venv in-project ansible-vault edit {{ target }}
 
 ansible-vault-encrypt target:
     ./pw pdm run --venv in-project ansible-vault encrypt {{ target }}
