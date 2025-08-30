@@ -7,7 +7,7 @@
 #    $ ./pw pdm run --venv in-project ansible-playbook servers.yml
 
 - name: Configure basic server security
-  hosts: new_bob
+  hosts: unprovisioned_yoshimo
   become: true
   gather_facts: true
   tasks:
@@ -19,8 +19,12 @@
       ansible.builtin.import_role:
         name: security
 
-- name: Configure bob as time synchronization server
-  hosts: bob
+    - name: Import remove-account role
+      ansible.builtin.import_role:
+        name: remove_account
+
+- name: Configure time synchronization server
+  hosts: yoshimo
   become: true
   gather_facts: true
   tasks:
