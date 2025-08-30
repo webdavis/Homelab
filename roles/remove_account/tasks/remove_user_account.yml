@@ -1,11 +1,7 @@
 ---
 - name: Display the progress of this play
   ansible.builtin.debug:
-    msg: "Processing {{ ansible_loop.index }}/{{ ansible_loop.length }} user account(s)"
-
-- name: Display a message for each user
-  ansible.builtin.debug:
-    msg: "Processing user account: {{ username }}"
+    msg: "Processing {{ ansible_loop.index }}/{{ ansible_loop.length }}: {{ username }}"
 
 - name: Kill any processes owned by the default admin account
   ansible.builtin.command: "pkill -u {{ username }}"
