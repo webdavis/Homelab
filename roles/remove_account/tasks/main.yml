@@ -1,6 +1,6 @@
 ---
 - name: Attempt to remove the default admin account
-  when: remove_account_attempt_to_remove_default_account | bool
+  when: remove_account_default | bool
   block:
     - name: Check if running Raspberry Pi OS or some derivative of it
       ansible.builtin.stat:
