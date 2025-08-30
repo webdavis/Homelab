@@ -3,21 +3,14 @@
   ansible.builtin.debug:
     msg: "Processing {{ ansible_loop.index }}/{{ ansible_loop.length }}: {{ username }}"
 
-- name: Kill any processes owned by the default admin account
+- name: Kill any processes owned by the user account
   ansible.builtin.command: "pkill -u {{ username }}"
   register: pkill_result
   failed_when: pkill_result.rc > 1
   changed_when: false
 
-- name: Check for default user account
-  ansible.builtin.command: "id {{ username }}"
-  register: user_check
-  ignore_errors: true
-  changed_when: false
-
-- name: Remove default user account
+- name: Remove user account
   ansible.builtin.user:
     name: "{{ username }}"
     state: absent
     remove: true
-  when: not user_check.failed
