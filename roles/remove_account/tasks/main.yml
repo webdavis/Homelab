@@ -4,7 +4,7 @@
   block:
     - name: Check if running Raspberry Pi OS or some derivative of it
       ansible.builtin.stat:
-        path: /boot/firmware/config.txt
+        path: /etc/rpi-issue
       register: rpi
 
     - name: Include variables for Raspberry Pi OS
