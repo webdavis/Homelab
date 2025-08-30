@@ -20,7 +20,7 @@
         remove_account_usernames: "{{ remove_account_usernames + [remove_account_default_account] }}"
 
 - name: Include tasks for each user
-  ansible.builtin.include_tasks: remove_user_account.yml
+  ansible.builtin.include_tasks: remove_account.yml
   loop: "{{ remove_account_usernames }}"
   loop_control:
     loop_var: username
