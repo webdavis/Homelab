@@ -3,14 +3,24 @@
   ansible.builtin.debug:
     msg: "Processing {{ ansible_loop.index }}/{{ ansible_loop.length }}: {{ username }}"
 
-- name: Kill any processes owned by the user account
-  ansible.builtin.command: "pkill -u {{ username }}"
-  register: pkill_result
-  failed_when: pkill_result.rc > 1
-  changed_when: false
+- name: Check if the user exists
+  ansible.builtin.getent:
+    database: passwd
+    key: "{{ username }}"
+  register: user_info
+  ignore_errors: true
 
-- name: Remove user account
-  ansible.builtin.user:
-    name: "{{ username }}"
-    state: absent
-    remove: true
+- name: Kill processes and remove user if they exist
+  when: user_info is defined and user_info.keys | length > 0
+  block:
+    - name: Kill any processes owned by the user account
+      ansible.builtin.command: "pkill -u {{ username }}"
+      register: pkill_result
+      failed_when: pkill_result.rc > 1
+      changed_when: false
+
+    - name: Remove user account
+      ansible.builtin.user:
+        name: "{{ username }}"
+        state: absent
+        remove: true
