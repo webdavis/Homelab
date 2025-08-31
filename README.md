@@ -68,6 +68,41 @@ Install the dependencies:
 > The output should look something like:
 > `<path_to_this_project>/Homelab/.pyprojectx/venvs/main-ab061d9d4f9bea1cc2de64816d469baf-py3.13/bin/pdm`
 
+#### 3b. Fixing a Broken Virtual Environment After a Homebrew Update
+
+After updating Homebrew, running:
+
+```bash
++❯ ./pw pdm run --venv in-project ansible unprovisioned_yoshimo -m ping
+```
+
+may produce a `dyld` error like:
+
+```
+dyld[74408]: Library not loaded: /opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/Python
+...
+```
+
+**Cause:** the `.pyprojectx` environment was boostrapped _before activating pyenv_, so it used
+the Homebrew Python path. Then when Homebrew updated, that Python version was removed, breaking
+the virtual environment.
+
+**Fix:** Rebuild the `.pyprojectx` environment using pyenv:
+
+```bash
+# Activate pyenv:
+eval "$(pyenv init -)"
+
+# Remove the broken pyprojectx environment:
+rm -rf .pyprojectx/
+
+# Recreate the environment:
+pyprojectx bootstrap
+```
+
+After this, your virtual environment will use the pyenv-managed Python, avoiding
+Homebrew-related breaks.
+
 ### 4. Load the SSH Key
 
 Ansible uses SSH to connect to managed nodes.
