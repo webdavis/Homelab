@@ -18,4 +18,4 @@
 
 - name: Import unattended-upgrades email notifications configuration
   ansible.builtin.import_tasks: unattended_upgrades_email_notifications.yml
-  when: security_unattended_upgrades_email_notifications_enabled | bool
+  when: security_unattended_upgrades_email_notifications | bool

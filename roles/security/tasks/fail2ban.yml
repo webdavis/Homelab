@@ -36,4 +36,4 @@
 
 - name: Import fail2ban email notification configuration
   ansible.builtin.import_tasks: fail2ban_email_notifications.yml
-  when: security_fail2ban_email_notifications_enabled | bool
+  when: security_fail2ban_email_notifications | bool

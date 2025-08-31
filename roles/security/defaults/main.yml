@@ -85,7 +85,7 @@ security_fail2ban_backend: "systemd"
 security_fail2ban_bantime: "15m"
 security_fail2ban_findtime: "30m"
 security_fail2ban_maxretry: 3
-security_fail2ban_email_notifications_enabled: "no"
+security_fail2ban_email_notifications: "no"
 security_fail2ban_sender_email_address: "fail2ban@hostname.com"
 
 security_msmtp_email: "username@example.com"
@@ -103,11 +103,11 @@ security_unattended_upgrades_enabled: "yes"
 security_unattended_upgrades_auto_reboot: "false"
 security_unattended_upgrades_auto_reboot_time: "03:00"
 security_unattended_upgrades_package_blacklist: []
-security_unattended_upgrades_email_notifications_enabled: "no"
+security_unattended_upgrades_email_notifications: "no"
 security_unattended_upgrades_email_address: ""
 
-# Possible values: "only-on-error" or "on-change".
-security_unattended_upgrades_email_on_error: "on-change"
+# Possible values: "on-error" or "always".
+security_unattended_upgrades_email_report: "on-error"
 
 # WARNING: For the configuration options below, use 'true' or 'false' only.
 # Using 'yes' or 'no' will cause issues with unattended_upgrades.

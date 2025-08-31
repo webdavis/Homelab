@@ -22,12 +22,12 @@ security_ssh_allow_tcp_forwarding: "yes"
 security_ssh_gateway_ports: "yes"
 
 # MARK: Security: Fail2Ban configuration.
-security_fail2ban_email_notifications_enabled: "yes"
+security_fail2ban_email_notifications: "yes"
 security_fail2ban_sender_email_address: "fail2ban@yoshimo.com"
 security_msmtp_encrypt_password_on_the_fly: "yes"
 
 # MARK: Security: Unattended-upgrades configuration.
-security_unattended_upgrades_email_notifications_enabled: "yes"
+security_unattended_upgrades_email_notifications: "yes"
 security_unattended_upgrades_remove_unused_dependencies: "yes"
 
 # MARK: Security: apt-listchanges configuration.
