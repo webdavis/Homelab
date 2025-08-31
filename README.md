@@ -56,7 +56,7 @@ isolated environment:
 Install the dependencies:
 
 ```bash
-./pw pdm sync
+./pw pdm sync --no-update
 ```
 
 **Tip:** check which `pdm` is used:
