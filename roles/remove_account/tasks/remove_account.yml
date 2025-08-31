@@ -3,6 +3,21 @@
   ansible.builtin.debug:
     msg: "Processing {{ ansible_loop.index }}/{{ ansible_loop.length }}: {{ username }}"
 
+# If the user exists, then run pkill.
+#
+# pkill return codes:
+#   0 → processes killed successfully
+#   1 → the user exists but has no running processes (valid case)
+#   2 → invalid user (prevented by the getent check)
+#
+# '|| true' prevents task failure if no processes are running (rc 1).
+- name: Kill any processes owned by the user
+  ansible.builtin.shell: |
+    if getent passwd {{ username }} >/dev/null; then
+      pkill -u {{ username }} || true
+    fi
+  changed_when: false
+
 - name: Remove user account
   ansible.builtin.user:
     name: "{{ username }}"
