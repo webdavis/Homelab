@@ -2,7 +2,7 @@
 - name: Import localadmin tasks
   ansible.builtin.import_tasks: localadmin.yml
 
-- name: Import localadmin tasks
+- name: Import sudoers tasks
   ansible.builtin.import_tasks: sudoers.yml
 
 - name: Import SSH tasks
@@ -12,7 +12,7 @@
   ansible.builtin.import_tasks: fail2ban.yml
   when: security_fail2ban_enabled | bool
 
-- name: Import Unattended-upgrades tasks
+- name: Import unattended upgrades tasks
   ansible.builtin.import_tasks: unattended_upgrades.yml
   when: security_unattended_upgrades_enabled | bool
 
