@@ -4,8 +4,24 @@
 
 # Homelab
 
-This repository automates the setup of Raspberry Pis with services for my home network. It
-makes use of the following tools:
+This repository automates the setup of Raspberry Pis with services for my home network.
+
+## Table of Contents
+
+- [Technologies Used](#technologies-used)
+- [Essential Steps to Run Homelab](#essential-steps-to-run-homelab)
+  - [1. Install Prerequisites](#1-install-prerequisites)
+  - [2. Activate Python Version with Pyenv](#2-activate-python-version-with-pyevn)
+  - [3. Install Dependencies with Pyprojectx & PDM](#3-install-dependencies-with-pyprojectx--pdm)
+    - [3b. Fixing a Broken Virtual Environment](#3b-fixing-a-broken-virtual-environment-after-a-homebrew-update)
+  - [4. Load the SSH Key](#4-load-the-ssh-key)
+  - [5. Configure and Source an Ansible Vault Password](#5-configure-and-source-an-ansible-vault-password)
+  - [6. Verify Node Connections using Ansible Ad-Hoc Commands](#6-verify-node-connections-using-ansible-ad-hoc-commands)
+- [Ansible Role: Security](#ansible-role-security)
+
+## Technologies Used
+
+Homelab makes use of the following tools:
 
 - **[Ansible](https://www.ansible.com/):** Playbooks to configure services on each device.
 - **[Docker](https://docs.docker.com/get-started/):** Containers that run and manage the
