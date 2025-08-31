@@ -6,7 +6,7 @@ alias g := ansible-gather-facts
 alias ve := ansible-vault-edit
 alias l := ansible-lint
 alias c := ansible-list-collections
-alias d := ansible-playbook-devboards
+alias b := ansible-playbook-bootstrap
 
 ansible-ping target='unprovisioned_yoshimo':
     ./pw pdm run --venv in-project ansible {{ target }} -m ping
@@ -26,5 +26,5 @@ ansible-lint:
 ansible-list-collections:
     ./pw pdm run --venv in-project ansible-galaxy collection list
 
-ansible-playbook-devboards:
-    ./pw pdm run --venv in-project ansible-playbook devboards.yml
+ansible-playbook-bootstrap:
+    ./pw pdm run --venv in-project ansible-playbook bootstrap.yml
