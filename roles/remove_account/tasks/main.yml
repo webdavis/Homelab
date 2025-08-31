@@ -11,6 +11,10 @@
       ansible.builtin.include_vars: Raspios.yml
       when: rpi.stat.exists
 
+    - name: Include variables for Debian
+      ansible.builtin.include_vars: Debian.yml
+      when: ansible_distribution == 'Debian' and not rpi.stat.exists
+
     - name: Include variables for Ubuntu
       ansible.builtin.include_vars: Ubuntu.yml
       when: ansible_distribution == 'Ubuntu'
