@@ -18,6 +18,11 @@
     fi
   changed_when: false
 
+- name: Remove user from sudoers if present
+  ansible.builtin.file:
+    path: "/etc/sudoers.d/{{ username }}"
+    state: absent
+
 - name: Remove user account
   ansible.builtin.user:
     name: "{{ username }}"
