@@ -10,7 +10,17 @@
   hosts: unprovisioned_yoshimo
   become: true
   gather_facts: true
+  ignore_unreachable: true
   tasks:
+    - name: Check if host is reachable
+      ansible.builtin.ping:
+      register: ping_result
+      ignore_errors: true
+
+    - name: End play if host is unreachable
+      meta: end_play
+      when: ping_result is defined and ping_result.unreachable is defined and ping_result.unreachable
+
     - name: Import ansible-prep role
       ansible.builtin.import_role:
         name: ansible_prep
@@ -19,6 +29,11 @@
       ansible.builtin.import_role:
         name: security
 
+- name: Cleanup
+  hosts: yoshimo
+  become: true
+  gather_facts: true
+  tasks:
     - name: Import remove-account role
       ansible.builtin.import_role:
         name: remove_account
