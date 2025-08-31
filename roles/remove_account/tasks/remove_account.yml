@@ -23,6 +23,12 @@
     path: "/etc/sudoers.d/{{ username }}"
     state: absent
 
+- name: Remove user crontab if present
+  ansible.builtin.cron:
+    name: "all cron jobs"
+    user: "{{ username }}"
+    state: absent
+
 - name: Remove user account
   ansible.builtin.user:
     name: "{{ username }}"
