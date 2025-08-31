@@ -1,6 +1,6 @@
 ---
-# This playbook should be executed from a managing node (most likely your localhost) to
-# bootstrap a Raspberry Pi with basic server security.
+# Run this playbook from the managing node (usually localhost) to bootstrap a new Raspberry Pi
+# with essential system settings.
 #
 # Usage: this playbook can be run, as follows:
 #
