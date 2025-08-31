@@ -17,7 +17,8 @@ This repository automates the setup of Raspberry Pis with services for my home n
   - [4. Load the SSH Key](#4-load-the-ssh-key)
   - [5. Configure and Source an Ansible Vault Password](#5-configure-and-source-an-ansible-vault-password)
   - [6. Verify Node Connections using Ansible Ad-Hoc Commands](#6-verify-node-connections-using-ansible-ad-hoc-commands)
-- [Ansible Role: Security](#ansible-role-security)
+- [Ansible Roles](#ansible-roles)
+  - [Security](#security)
 
 ## Technologies Used
 
@@ -180,21 +181,27 @@ Now you should be good to go!
 Follow these steps every time you return to the project. Once done, you’re ready to run Ansible
 plays or work on the project safely.
 
-## Ansible Role: Security
+## Ansible Roles
+
+This project uses the following Ansible roles. Most of these will eventually be moved to their
+own repositories.
+
+### Security
 
 To run this role, your playbook must include the following:
 
-- **Elevated privileges:** set `become: yes` to execute tasks requiring administrative access.
-- **Collect system information:** set `gather_facts: yes` to collect essential system
-  details before executing tasks.
+- `become: yes`: required to execute tasks requiring administrative access.
+- `gather_facts: yes`: to collect essential system details before executing tasks.
 
 For example:
 
 ```yaml
-- hosts: servers
-  name: Configure security settings
+- name: Configure security settings
+  hosts: yoshimo
   become: yes
   gather_facts: yes
   tasks:
-    - import_role: name=security
+    - name: Import security role
+      ansible.builtin.import_role:
+        name: security
 ```
