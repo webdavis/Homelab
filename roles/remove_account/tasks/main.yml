@@ -29,3 +29,4 @@
   loop_control:
     loop_var: username
     extended: true
+  when: remove_account_usernames is defined and remove_account_usernames | length > 0
