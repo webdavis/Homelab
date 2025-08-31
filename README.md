@@ -29,11 +29,14 @@ a clean working state.
 This project uses [pyenv](https://github.com/pyenv/pyenv) to manage and track its Python
 version. The current version is specified in the [`.python-version`](./.python-version) file.
 
-Run this command to activate the correct Python version:
+Run this command to activate pyenv in your current shell:
 
 ```bash
 eval "$(pyenv init -)"
 ```
+
+Once pyenv is activated, it reads the `.python-version` file and activates the Python version
+specified there.
 
 > \[!Important\]
 > - This command must be run **every time you start a new terminal session** before working on
