@@ -38,6 +38,19 @@ log_message() {
   fi
 }
 
+function cleanup() {
+  # Exit with the status of the command that triggered this trap.
+  local status=$?
+
+  if [[ $status -gt 0 ]]; then
+    printf "\nFAILED: Script encountered an error.\n\n" >&2
+  else
+    printf "\nSUCCESS: Script ended successfully.\n\n"
+  fi
+
+  exit $status
+}
+
 function setup_signal_handling() {
     # Handle process interuption signals.
     trap cleanup SIGINT SIGTERM
@@ -342,19 +355,6 @@ parse_command_line_arguments() {
   elif [[ -n "$scene" ]]; then
     handle_scene_logic "$scene" "$room"
   fi
-}
-
-function cleanup() {
-  # Exit with the exit status of the last command before trap was triggered.
-  local status=$?
-
-  if [[ $status -gt 0 ]]; then
-    printf "FAILED: Script encountered an error.\n\n" >&2
-  else
-    printf "SUCCESS: Script ended successfully.\n\n"
-  fi
-
-  exit $status
 }
 
 main() {
