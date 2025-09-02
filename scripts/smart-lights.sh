@@ -129,7 +129,7 @@ get_static_scene() {
 
   local name
   name="$(openhue get scene --room "$room" --json | jq -r '.[] | select(.HueData.status.active == "static") | .Name')" || {
-    log_message "ERROR: Failed to get scene for room: '$room'" true
+    log_message "Error: Failed to get scene for room: '$room'" true
     return 1
   }
 
