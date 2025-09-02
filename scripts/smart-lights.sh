@@ -308,16 +308,14 @@ handle_scene_logic() {
 parse_command_line_arguments() {
   local short='pr:b:nls:'
   local long='power,room:,brightness:,next,last,scene:'
+  OPTIONS="$($GETOPT_CMD -o "$short" --long "$long" -- "$@")"
+  eval set -- "$OPTIONS"
 
   # Default values
   local power='false'
   local brightness=''
   local scene=''
   local room='Master Bedroom'
-
-  # Parse options
-  OPTIONS="$($GETOPT_CMD -o "$short" --long "$long" -- "$@")"
-  eval set -- "$OPTIONS"
 
   while true; do
     case "$1" in
