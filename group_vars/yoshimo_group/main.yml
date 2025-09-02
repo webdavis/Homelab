@@ -1,6 +1,6 @@
 ---
-# MARK: Ansible Prep configuration.
-ansible_prep_upgrade_type: "full"
+# MARK: Ansible Bootstrap configuration.
+ansible_bootstrap_upgrade_type: "full"
 
 # MARK: RPi Hardware configuration.
 rpi_hardware_upgrade_firmware: true

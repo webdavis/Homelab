@@ -10,32 +10,40 @@
 
     - name: Upgrade all packages
       ansible.builtin.apt:
-        upgrade: "{{ ansible_prep_upgrade_type }}"
+        upgrade: "{{ ansible_bootstrap_upgrade_type }}"
         force_apt_get: true
       tags: ['upgrade']
   rescue:
-    - name: Debugging error during initial system upgrade
+    - name: "Debug: error during initial system upgrade"
       ansible.builtin.debug:
         msg: "An error occurred during the initial system upgrade."
 
 - name: Install Ansible dependencies
   block:
-    - name: Ensure python3 is installed
+    - name: Ensure Python 3 is installed (required for Ansible)
       ansible.builtin.package:
-        name: "{{ item }}"
+        name: python3
         state: present
-      loop:
-        - libc-bin
+      tags: ['python3']
+
+    - name: Ensure python3-apt is installed (required for advanced package management)
+      ansible.builtin.package:
+        name: python3-apt
+        state: present
+      tags: ['python3-apt']
+
+    - name: Ensure libc-bin is installed (required for core system utilities)
+      ansible.builtin.package:
+        name: libc-bin
+        state: present
       tags: ['libc']
 
-    - name: Ensure ACL is installed
+    - name: Ensure ACL is installed (needed for advanced filesystem management)
       ansible.builtin.package:
-        name: "{{ item }}"
+        name: acl
         state: present
-      loop:
-        - acl
       tags: ['acl']
   rescue:
-    - name: Debugging error while install Ansible dependencies
+    - name: "Debug: error while install Ansible dependencies"
       ansible.builtin.debug:
         msg: "An error occurred while installing Ansible dependencies."
