@@ -14,7 +14,7 @@
         force_apt_get: true
       tags: ['upgrade']
   rescue:
-    - name: Debugging error during initial system upgrade
+    - name: "Debug: error during initial system upgrade"
       ansible.builtin.debug:
         msg: "An error occurred during the initial system upgrade."
 
@@ -38,6 +38,6 @@
         state: present
       tags: ['acl']
   rescue:
-    - name: Debugging error while install Ansible dependencies
+    - name: "Debug: error while install Ansible dependencies"
       ansible.builtin.debug:
         msg: "An error occurred while installing Ansible dependencies."
