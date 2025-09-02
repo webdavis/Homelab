@@ -20,6 +20,12 @@
 
 - name: Install Ansible dependencies
   block:
+    - name: Ensure Python 3 is installed
+      ansible.builtin.package:
+        name: python3
+        state: present
+      tags: ['python3']
+
     - name: Ensure libc-bin is installed
       ansible.builtin.package:
         name: "{{ item }}"
