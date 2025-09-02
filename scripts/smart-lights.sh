@@ -6,10 +6,7 @@
 #   - GNU getopt (https://formulae.brew.sh/formula/gnu-getopt)
 
 # Exit immediately if any command fails.
-set -e
-
-# Ensure the entire pipeline fails if any command in the pipeline fails.
-set -o pipefail
+set -euo pipefail
 
 set_debug_log() {
   # Capture all messages to the debug log.
@@ -39,6 +36,19 @@ log_message() {
     # echo "$message" > /dev/tty
     echo "$message" >&3
   fi
+}
+
+function cleanup() {
+  # Exit with the status of the command that triggered this trap.
+  local status=$?
+
+  if [[ $status -gt 0 ]]; then
+    printf "\nFAILED: Script encountered an error.\n\n" >&2
+  else
+    printf "\nSUCCESS: Script ended successfully.\n\n"
+  fi
+
+  exit $status
 }
 
 function setup_signal_handling() {
@@ -119,7 +129,7 @@ get_static_scene() {
 
   local name
   name="$(openhue get scene --room "$room" --json | jq -r '.[] | select(.HueData.status.active == "static") | .Name')" || {
-    log_message "ERROR: Failed to get scene for room: '$room'" true
+    log_message "Error: Failed to get scene for room: '$room'" true
     return 1
   }
 
@@ -298,16 +308,14 @@ handle_scene_logic() {
 parse_command_line_arguments() {
   local short='pr:b:nls:'
   local long='power,room:,brightness:,next,last,scene:'
+  OPTIONS="$($GETOPT_CMD -o "$short" --long "$long" -- "$@")"
+  eval set -- "$OPTIONS"
 
   # Default values
   local power='false'
   local brightness=''
   local scene=''
   local room='Master Bedroom'
-
-  # Parse options
-  OPTIONS="$($GETOPT_CMD -o "$short" --long "$long" -- "$@")"
-  eval set -- "$OPTIONS"
 
   while true; do
     case "$1" in
@@ -332,7 +340,7 @@ parse_command_line_arguments() {
         break
         ;;
       *)
-        log_message "Unknown option: $1" true
+        log_message "Invalid: Unknown option: $1" true
         exit 1
         ;;
     esac
@@ -345,19 +353,6 @@ parse_command_line_arguments() {
   elif [[ -n "$scene" ]]; then
     handle_scene_logic "$scene" "$room"
   fi
-}
-
-function cleanup() {
-  # Exit with the exit status of the last command before trap was triggered.
-  local status=$?
-
-  if [[ $status -gt 0 ]]; then
-    printf "FAILED: Script encountered an error.\n\n" >&2
-  else
-    printf "SUCCESS: Script ended successfully.\n\n"
-  fi
-
-  exit $status
 }
 
 main() {
