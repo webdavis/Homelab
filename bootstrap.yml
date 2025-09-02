@@ -18,7 +18,7 @@
       ignore_errors: true
 
     - name: End play if host is unreachable
-      meta: end_play
+      ansible.builtin.meta: end_play
       when: ping_result is defined and ping_result.unreachable is defined and ping_result.unreachable
 
     - name: Import ansible-prep role
