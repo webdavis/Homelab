@@ -5,15 +5,15 @@
     - name: Check if running Raspberry Pi OS or some derivative of it
       ansible.builtin.stat:
         path: /etc/rpi-issue
-      register: rpi
+      register: remove_account_rpi
 
     - name: Include variables for Raspberry Pi OS
       ansible.builtin.include_vars: Raspios.yml
-      when: rpi.stat.exists
+      when: remove_account_rpi.stat.exists
 
     - name: Include variables for Debian
       ansible.builtin.include_vars: Debian.yml
-      when: ansible_distribution == 'Debian' and not rpi.stat.exists
+      when: ansible_distribution == 'Debian' and not remove_account_rpi.stat.exists
 
     - name: Include variables for Ubuntu
       ansible.builtin.include_vars: Ubuntu.yml
