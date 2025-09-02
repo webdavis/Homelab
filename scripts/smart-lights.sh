@@ -6,10 +6,7 @@
 #   - GNU getopt (https://formulae.brew.sh/formula/gnu-getopt)
 
 # Exit immediately if any command fails.
-set -e
-
-# Ensure the entire pipeline fails if any command in the pipeline fails.
-set -o pipefail
+set -euo pipefail
 
 set_debug_log() {
   # Capture all messages to the debug log.
