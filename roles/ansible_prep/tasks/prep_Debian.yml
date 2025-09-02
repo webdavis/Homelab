@@ -26,6 +26,12 @@
         state: present
       tags: ['python3']
 
+    - name: Ensure python3-apt is installed (required for advanced package management)
+      ansible.builtin.package:
+        name: python3-apt
+        state: present
+      tags: ['python3-apt']
+
     - name: Ensure libc-bin is installed (required for core system utilities)
       ansible.builtin.package:
         name: libc-bin
