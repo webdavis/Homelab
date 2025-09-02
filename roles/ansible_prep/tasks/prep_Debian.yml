@@ -20,19 +20,19 @@
 
 - name: Install Ansible dependencies
   block:
-    - name: Ensure Python 3 is installed
+    - name: Ensure Python 3 is installed (required for Ansible)
       ansible.builtin.package:
         name: python3
         state: present
       tags: ['python3']
 
-    - name: Ensure libc-bin is installed
+    - name: Ensure libc-bin is installed (required for core system utilities)
       ansible.builtin.package:
         name: libc-bin
         state: present
       tags: ['libc']
 
-    - name: Ensure ACL is installed
+    - name: Ensure ACL is installed (needed for advanced filesystem management)
       ansible.builtin.package:
         name: acl
         state: present
