@@ -28,18 +28,14 @@
 
     - name: Ensure libc-bin is installed
       ansible.builtin.package:
-        name: "{{ item }}"
+        name: libc-bin
         state: present
-      loop:
-        - libc-bin
       tags: ['libc']
 
     - name: Ensure ACL is installed
       ansible.builtin.package:
-        name: "{{ item }}"
+        name: acl
         state: present
-      loop:
-        - acl
       tags: ['acl']
   rescue:
     - name: Debugging error while install Ansible dependencies
