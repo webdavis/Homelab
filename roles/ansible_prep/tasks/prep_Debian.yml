@@ -20,7 +20,7 @@
 
 - name: Install Ansible dependencies
   block:
-    - name: Ensure python3 is installed
+    - name: Ensure libc-bin is installed
       ansible.builtin.package:
         name: "{{ item }}"
         state: present
