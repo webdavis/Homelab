@@ -10,7 +10,7 @@
 
     - name: Upgrade all packages
       ansible.builtin.apt:
-        upgrade: "{{ ansible_prep_upgrade_type }}"
+        upgrade: "{{ ansible_bootstrap_upgrade_type }}"
         force_apt_get: true
       tags: ['upgrade']
   rescue:

@@ -21,9 +21,9 @@
       ansible.builtin.meta: end_play
       when: ping_result is defined and ping_result.unreachable is defined and ping_result.unreachable
 
-    - name: Import ansible-prep role
+    - name: Import ansible-bootstrap role
       ansible.builtin.import_role:
-        name: ansible_prep
+        name: ansible_bootstrap
 
     - name: Import security role
       ansible.builtin.import_role:

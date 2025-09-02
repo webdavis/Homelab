@@ -1,0 +1,2 @@
+---
+ansible_bootstrap_upgrade_type: "safe"
