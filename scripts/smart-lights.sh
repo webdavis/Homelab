@@ -340,7 +340,7 @@ parse_command_line_arguments() {
         break
         ;;
       *)
-        log_message "Unknown option: $1" true
+        log_message "Invalid: Unknown option: $1" true
         exit 1
         ;;
     esac
