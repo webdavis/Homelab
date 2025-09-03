@@ -4,7 +4,10 @@
 
 # Homelab
 
-This repository automates the setup of Raspberry Pis with services for my home network.
+This repository automates my home network setup.
+
+The automation is hardware-agnostic, but I like to run it on small single-board computers like
+Raspberry Pis. Think: small computers, big network!
 
 ## Table of Contents
 
@@ -19,6 +22,17 @@ This repository automates the setup of Raspberry Pis with services for my home n
   - [6. Verify Node Connections using Ansible Ad-Hoc Commands](#6-verify-node-connections-using-ansible-ad-hoc-commands)
 - [Ansible Roles](#ansible-roles)
   - [Security](#security)
+
+## Project Goals
+
+This project aims to:
+
+- [ ] Maintain a test environment that mirrors my home network for fast, safe deployment
+- [ ] Deploy across multiple OS and CPU architecture
+- [ ] Support both on-metal and cloud deployments
+- [ ] Ensure cross-OS service interoperability
+- [ ] Track [Ansible](https://www.ansible.com/) and [Salt](https://github.com/saltstack/salt)
+  configurations in parallel project branches for comparison
 
 ## Technologies Used
 
@@ -55,10 +69,11 @@ eval "$(pyenv init -)"
 Once pyenv is activated, it reads the `.python-version` file and activates the Python version
 specified there.
 
-> \[!Important\]
+> [!Important]
+>
 > - This command must be run **every time you start a new terminal session** before working on
 >   this project.
-> - You can run this command from any folder in the project.  
+> - You can run this command from any folder in the project.
 
 ### 3. Install Dependencies with Pyprojectx & PDM
 
@@ -68,7 +83,7 @@ isolated environment:
 
 - **Pyprojectx:** Provides the [`./pw`](./pw) wrapper script, ensuring all project tools run
   consistently without needing global installations (including PDM).
-- **PDM:** manages the Python dependencies used by this project (including Ansible).  
+- **PDM:** manages the Python dependencies used by this project (including Ansible).
 
 Install the dependencies:
 
@@ -76,13 +91,13 @@ Install the dependencies:
 ./pw pdm sync --no-update
 ```
 
-**Tip:** check which `pdm` is used:
+**Tip:** Make sure you're using the project's PDM, not a system-wide one:
 
 ```bash
 ./pw which pdm
 ```
 
-> The output should look something like:
+> The output should point to a path like:\
 > `<path_to_this_project>/Homelab/.pyprojectx/venvs/main-ab061d9d4f9bea1cc2de64816d469baf-py3.13/bin/pdm`
 
 #### 3b. Fixing a Broken Virtual Environment After a Homebrew Update
@@ -173,7 +188,7 @@ Before you do anything else, verify that you can connect to both the managing no
 ./pw pdm run --venv in-project ansible unprovisioned_yoshimo -m ping
 ```
 
-> \[!TIP\]
+> [!TIP]
 > See [`inventory.yml`](./inventory.yml) for other managed nodes.
 
 Now you should be good to go!
