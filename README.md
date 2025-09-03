@@ -79,13 +79,13 @@ Install the dependencies:
 ./pw pdm sync --no-update
 ```
 
-**Tip:** check which `pdm` is used:
+**Tip:** Make sure you're using the project's PDM, not a system-wide one:
 
 ```bash
 ./pw which pdm
 ```
 
-> The output should look something like:
+> The output should point to a path like:  
 > `<path_to_this_project>/Homelab/.pyprojectx/venvs/main-ab061d9d4f9bea1cc2de64816d469baf-py3.13/bin/pdm`
 
 #### 3b. Fixing a Broken Virtual Environment After a Homebrew Update
