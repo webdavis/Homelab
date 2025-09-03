@@ -4,7 +4,10 @@
 
 # Homelab
 
-This repository automates the setup of Raspberry Pis with services for my home network.
+This repository automates my home network setup.
+
+The automation is hardware-agnostic, but I like to run it on small single-board computers like
+Raspberry Pis. Think: small computers, big network!
 
 ## Table of Contents
 
