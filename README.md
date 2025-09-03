@@ -61,7 +61,7 @@ specified there.
 > \[!Important\]
 > - This command must be run **every time you start a new terminal session** before working on
 >   this project.
-> - You can run this command from any folder in the project.  
+> - You can run this command from any folder in the project.
 
 ### 3. Install Dependencies with Pyprojectx & PDM
 
@@ -71,7 +71,7 @@ isolated environment:
 
 - **Pyprojectx:** Provides the [`./pw`](./pw) wrapper script, ensuring all project tools run
   consistently without needing global installations (including PDM).
-- **PDM:** manages the Python dependencies used by this project (including Ansible).  
+- **PDM:** manages the Python dependencies used by this project (including Ansible).
 
 Install the dependencies:
 
