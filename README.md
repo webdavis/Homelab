@@ -23,6 +23,17 @@ Raspberry Pis. Think: small computers, big network!
 - [Ansible Roles](#ansible-roles)
   - [Security](#security)
 
+## Project Goals
+
+This project aims to:
+
+- [ ] Maintain a test environment that mirrors my home network for fast, safe deployment
+- [ ] Deploy across multiple OS and CPU architecture
+- [ ] Support both on-metal and cloud deployments
+- [ ] Ensure cross-OS service interoperability
+- [ ] Track [Ansible](https://www.ansible.com/) and [Salt](https://github.com/saltstack/salt)
+  configurations in parallel project branches for comparison
+
 ## Technologies Used
 
 Homelab makes use of the following tools:
