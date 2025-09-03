@@ -58,7 +58,8 @@ eval "$(pyenv init -)"
 Once pyenv is activated, it reads the `.python-version` file and activates the Python version
 specified there.
 
-> \[!Important\]
+> [!Important]
+>
 > - This command must be run **every time you start a new terminal session** before working on
 >   this project.
 > - You can run this command from any folder in the project.
@@ -85,7 +86,7 @@ Install the dependencies:
 ./pw which pdm
 ```
 
-> The output should point to a path like:  
+> The output should point to a path like:\
 > `<path_to_this_project>/Homelab/.pyprojectx/venvs/main-ab061d9d4f9bea1cc2de64816d469baf-py3.13/bin/pdm`
 
 #### 3b. Fixing a Broken Virtual Environment After a Homebrew Update
@@ -176,7 +177,7 @@ Before you do anything else, verify that you can connect to both the managing no
 ./pw pdm run --venv in-project ansible unprovisioned_yoshimo -m ping
 ```
 
-> \[!TIP\]
+> [!TIP]
 > See [`inventory.yml`](./inventory.yml) for other managed nodes.
 
 Now you should be good to go!
