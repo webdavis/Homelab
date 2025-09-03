@@ -7,7 +7,9 @@
 This repository automates my home network setup.
 
 The automation is hardware-agnostic, but I like to run it on small single-board computers like
-Raspberry Pis. Think: small computers, big network!
+Raspberry Pis.
+
+Think: small computers, big network!
 
 ## Table of Contents
 
@@ -28,7 +30,7 @@ Raspberry Pis. Think: small computers, big network!
 This project aims to:
 
 - [ ] Maintain a test environment that mirrors my home network for fast, safe deployment
-- [ ] Deploy across multiple OS and CPU architecture
+- [ ] Deploy across multiple operating-systems and CPU architectures
 - [ ] Support both on-metal and cloud deployments
 - [ ] Ensure cross-OS service interoperability
 - [ ] Track [Ansible](https://www.ansible.com/) and [Salt](https://github.com/saltstack/salt)
