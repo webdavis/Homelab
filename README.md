@@ -15,7 +15,7 @@ Think: small computers, big network!
 - [Essential Steps to Run Homelab](#essential-steps-to-run-homelab)
   - [1. Install Prerequisites](#1-install-prerequisites)
   - [2. Activate Python Version with Pyenv](#2-activate-python-version-with-pyevn)
-  - [3. Install Dependencies with Pyprojectx & PDM](#3-install-dependencies-with-pyprojectx--pdm)
+  - [3. Install Dependencies with Pyprojectx & Poetry](#3-install-dependencies-with-pyprojectx--poetry)
     - [3b. Fixing a Broken Virtual Environment](#3b-fixing-a-broken-virtual-environment-after-a-homebrew-update)
   - [4. Load the SSH Key](#4-load-the-ssh-key)
   - [5. Configure and Source an Ansible Vault Password](#5-configure-and-source-an-ansible-vault-password)
@@ -75,37 +75,37 @@ specified there.
 >   this project.
 > - You can run this command from any folder in the project.
 
-### 3. Install Dependencies with Pyprojectx & PDM
+### 3. Install Dependencies with Pyprojectx & Poetry
 
 This project uses [Pyprojectx](https://github.com/pyprojectx/pyprojectx) and
-[PDM](https://github.com/pdm-project/pdm) to manage Python dependencies in a consistent,
+[Poetry](https://github.com/python-poetry/poetry) to manage Python dependencies in a consistent,
 isolated environment:
 
 - **Pyprojectx:** Provides the [`./pw`](./pw) wrapper script, ensuring all project tools run
-  consistently without needing global installations (including PDM).
-- **PDM:** manages the Python dependencies used by this project (including Ansible).
+  consistently without needing global installations (including Poetry).
+- **Poetry:** manages the Python dependencies used by this project (including Ansible).
 
 Install the dependencies:
 
 ```bash
-./pw pdm sync --no-update
+./pw poetry install
 ```
 
-**Tip:** Make sure you're using the project's PDM, not a system-wide one:
+**Tip:** Make sure you're using the project's Poetry, not a system-wide one:
 
 ```bash
-./pw which pdm
+./pw which poetry
 ```
 
 > The output should point to a path like:\
-> `<path_to_this_project>/Homelab/.pyprojectx/venvs/main-ab061d9d4f9bea1cc2de64816d469baf-py3.13/bin/pdm`
+> `<path_to_this_project>/Homelab/.pyprojectx/venvs/main-ab061d9d4f9bea1cc2de64816d469baf-py3.13/bin/poetry`
 
 #### 3b. Fixing a Broken Virtual Environment After a Homebrew Update
 
 After updating Homebrew, running:
 
 ```bash
-+❯ ./pw pdm run --venv in-project ansible unprovisioned_yoshimo -m ping
++❯ ./pw poetry run ansible unprovisioned_yoshimo -m ping
 ```
 
 may produce a `dyld` error like:
@@ -179,13 +179,13 @@ Before you do anything else, verify that you can connect to both the managing no
 **Managing Node:**
 
 ```bash
-./pw pdm run --venv in-project ansible localhost -m ping
+./pw poetry run ansible localhost -m ping
 ```
 
 **Managed Node:**
 
 ```bash
-./pw pdm run --venv in-project ansible unprovisioned_yoshimo -m ping
+./pw poetry run ansible unprovisioned_yoshimo -m ping
 ```
 
 > [!TIP]

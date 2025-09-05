@@ -1,8 +1,6 @@
 [tool.pyprojectx]
-main = ["pdm"]
-
-[tool.pdm]
-distribution = false
+lock-python-version = "3.13.5"
+main = ["poetry"]
 
 [project]
 name = "Homelab"
@@ -11,12 +9,20 @@ description = "Default template for PDM package"
 authors = [
     {name = "Stephen A. Davis", email = "stephen@webdavis.io"},
 ]
-dependencies = ["ansible>=11.7.0", "passlib>=1.7.4"]
 requires-python = "==3.13.*"
+dependencies = [
+    "ansible (>=11.9.0,<12.0.0)",
+    "passlib (>=1.7.4,<2.0.0)"
+]
 readme = "README.md"
 license = {text = "MIT"}
 
-[dependency-groups]
-dev = [
-    "mdformat>=0.7.22",
-]
+[tool.poetry]
+package-mode = false
+
+[tool.poetry.group.dev.dependencies]
+mdformat = "^0.7.22"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
