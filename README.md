@@ -51,7 +51,7 @@ a clean working state.
 ### 1. Install Prerequisites
 
 > If this is your first time setting up the development environment, follow the instructions in
-> [ubuntu-dev-environment.md](./docs/ubuntu-dev-environment.md) first.
+> [mac-dev-environment.md](./docs/mac-dev-environment.md) first.
 >
 > The instructions below assume you've done this.
 
