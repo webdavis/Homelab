@@ -2,8 +2,8 @@
 
 To get started on this project, a few tools must be installed on your development machine.
 
-This document assumes that you are using a Apple Computer running at least Mac OS Sonoma Sonoma
-14.2 (23C64).
+This document assumes that you are using a Apple Computer running at least macOS Sequoia
+`version 15.5+`.
 
 > [!WARNING]
 > This probably works on earlier Mac OS versions? I have only tested it on the version listed
