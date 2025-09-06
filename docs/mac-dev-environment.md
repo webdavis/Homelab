@@ -32,6 +32,25 @@ Now switch to that version, like so:
 eval "$(pyenv init -)"
 ```
 
+### Bonus: Install direnv
+
+This project supports [direnv](https://direnv.net/) via the [`.envrc`](`../.envrc`) file.
+`direnv` provides the ability to automatically boot the Pyenv environment without having to run
+`eval "$(pyenv init -)"`.
+
+Install `direnv`:
+
+```bash
+brew install direnv
+```
+
+Then run instruct `direnv` to allow the project configuration in
+`.envrc`:
+
+```bash
+dirven allow
+```
+
 ## Install this projects Dependencies using Pyprojectx and PDM
 
 I have chosen to use PDM as this projects Python dependency manager, but there's no need to
