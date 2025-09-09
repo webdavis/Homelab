@@ -11,6 +11,7 @@ Think: small computers, big network!
 
 ## Table of Contents
 
+- [Project Goals](#project-goals)
 - [Technologies Used](#technologies-used)
 - [Essential Steps to Run Homelab](#essential-steps-to-run-homelab)
   - [1. Install Prerequisites](#1-install-prerequisites)
