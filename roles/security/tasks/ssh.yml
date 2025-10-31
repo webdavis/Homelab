@@ -19,8 +19,8 @@
     key: "{{ security_ssh_public_key }}"
   notify: Restart ssh
 
-# This task provides a sshd config with sane organization of settings.
 - name: Create the SSH daemon config file using a template
+  # This task provides a sshd config with sane organization of settings.
   ansible.builtin.template:
     src: sshd_config.j2
     dest: /etc/ssh/sshd_config
@@ -28,7 +28,7 @@
     group: root
     mode: u=rw,g=r,o=r
     backup: true
-    validate: 'sshd -T -f %s'
+    validate: "sshd -T -f %s"
   notify: Restart ssh
 
 - name: Configure process ID file for SSH daemon
@@ -48,7 +48,7 @@
         state: present
         create: true
         mode: u=rw,g=r,o=r
-        validate: 'sshd -T -f %s'
+        validate: "sshd -T -f %s"
       when: ssh_pid_result.stat.exists
 
 - name: Add HostKey configuration
@@ -59,9 +59,9 @@
       HostKey {{ item }}
       {% endfor %}
     marker: "# {mark} ANSIBLE MANAGED BLOCK FOR HostKey"
-    insertafter: '^MACs'
+    insertafter: "^MACs"
     mode: u=rw,g=r,o=r
-    validate: 'sshd -T -f %s'
+    validate: "sshd -T -f %s"
   when: security_ssh_host_keys | length > 0
   notify: Restart ssh
 
@@ -93,5 +93,5 @@
         marker: "# {mark} ANSIBLE MANAGED BLOCK FOR Match Group"
         insertafter: "^# === Conditional Configuration ===$"
         mode: u=rw,g=r,o=r
-        validate: 'sshd -T -f %s'
+        validate: "sshd -T -f %s"
       when: security_ssh_allowed_groups_permit_tty | bool

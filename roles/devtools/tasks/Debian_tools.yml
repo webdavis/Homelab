@@ -10,13 +10,13 @@
         update_cache: true
         cache_valid_time: 3600
         force_apt_get: true
-      tags: ['update']
+      tags: ["update"]
 
     - name: Upgrade all packages
       ansible.builtin.apt:
         upgrade: "{{ devtools_upgrade_type }}"
         force_apt_get: true
-      tags: ['upgrade']
+      tags: ["upgrade"]
   rescue:
     - name: Debugging error during package upgrades
       ansible.builtin.debug:

@@ -1,5 +1,4 @@
 ---
-
 # Slightly future proofing this (shrug).
 - name: Check if Raspberry Pi-Based OS
   ansible.builtin.stat:

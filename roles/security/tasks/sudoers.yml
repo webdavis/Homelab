@@ -6,7 +6,7 @@
     owner: root
     group: root
     mode: u=r,g=r,o=
-    validate: 'visudo --check --file=%s'
+    validate: "visudo --check --file=%s"
   when: security_sudoers_passwordless | bool
 
 # This seems redundant with the above sudoers.d entry, but is needed by polkit in case this

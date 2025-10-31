@@ -1,5 +1,4 @@
 ---
-
 - name: Enable Mini UART on GPIO pins 14 (Tx) and 15 (Rx)
   ansible.builtin.lineinfile:
     path: /boot/config.txt

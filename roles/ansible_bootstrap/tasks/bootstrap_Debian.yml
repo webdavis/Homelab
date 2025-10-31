@@ -6,13 +6,13 @@
         update_cache: true
         cache_valid_time: 3600
         force_apt_get: true
-      tags: ['update']
+      tags: ["update"]
 
     - name: Upgrade all packages
       ansible.builtin.apt:
         upgrade: "{{ ansible_bootstrap_upgrade_type }}"
         force_apt_get: true
-      tags: ['upgrade']
+      tags: ["upgrade"]
   rescue:
     - name: "Debug: error during initial system upgrade"
       ansible.builtin.debug:
@@ -24,25 +24,25 @@
       ansible.builtin.package:
         name: python3
         state: present
-      tags: ['python3']
+      tags: ["python3"]
 
     - name: Ensure python3-apt is installed (required for advanced package management)
       ansible.builtin.package:
         name: python3-apt
         state: present
-      tags: ['python3-apt']
+      tags: ["python3-apt"]
 
     - name: Ensure libc-bin is installed (required for core system utilities)
       ansible.builtin.package:
         name: libc-bin
         state: present
-      tags: ['libc']
+      tags: ["libc"]
 
     - name: Ensure ACL is installed (needed for advanced filesystem management)
       ansible.builtin.package:
         name: acl
         state: present
-      tags: ['acl']
+      tags: ["acl"]
   rescue:
     - name: "Debug: error while install Ansible dependencies"
       ansible.builtin.debug:

@@ -20,6 +20,6 @@
       mta = sendmail
       action = %(action_mwl)s
     marker: "# {mark} ANSIBLE MANAGED BLOCK FOR fail2ban sendmail config"
-    insertafter: '^maxretry'
+    insertafter: "^maxretry"
     mode: u=rw,g=r,o=r
   notify: Test fail2ban configuration

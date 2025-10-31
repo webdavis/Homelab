@@ -11,7 +11,6 @@ chrony_timezone: "Etc/UTC"
 chrony_cron_handler_enabled: "yes"
 
 chrony_servers: []
-
 chrony_nts_enabled: "no"
 chrony_nts_dumpdir: "/var/lib/chrony"
 
@@ -25,7 +24,6 @@ chrony_cmdport_enabled: "yes"
 chrony_driftfile: "/var/lib/chrony/drift"
 chrony_logdir: "/var/log/chrony"
 chrony_log_options: ["measurements", "statistics", "tracking"]
-
 chrony_keyfile_enabled: "no"
 chrony_key_id: 10
 # Replace this with your actual secret key.

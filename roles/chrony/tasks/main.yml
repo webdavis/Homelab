@@ -59,7 +59,7 @@
         common_name: "{{ ansible_fqdn }}"
         use_common_name_for_san: false
         basic_constraints:
-          - 'CA:TRUE'
+          - "CA:TRUE"
         basic_constraints_critical: true
         key_usage:
           - keyCertSign
@@ -154,8 +154,8 @@
 - name: Ensure hardware timestamping is enabled globally in Chrony
   ansible.builtin.lineinfile:
     path: /etc/chrony/chrony.conf
-    regexp: '^(#)?hwtimestamp \*$'
-    line: 'hwtimestamp *'
+    regexp: "^(#)?hwtimestamp \\*$"
+    line: "hwtimestamp *"
   notify:
     - Restart chrony
   when: chrony_hardware_timestamping_supported
