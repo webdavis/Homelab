@@ -4,7 +4,10 @@
 # Ignore the Ansible Vault password file. This file should be a Bash script that exports the
 # `ANSIBLE_VAULT_PASSWORD` environment variable.
 # Note: this file can be used to store other secrets as well.
-vault.secret
+vault.secret*
+
+# Ignore image files.
+*.img.xz
 
 # Ignore the project logs. (There's no way to reasonably version control these; it's
 # better to just catch them in backups, if possible.)

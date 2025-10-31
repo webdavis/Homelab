@@ -60,7 +60,7 @@ Follow these steps to ensure your environment is ready to work on this project:
 ### 1. Prerequisites
 
 > If this is your first time working on this project, follow the instructions in
-> [mac-dev-environment.md](./docs/mac-dev-environment.md) first.
+> [macos-dev-environment.md](./docs/macos-dev-environment.md) first.
 >
 > The instructions below assume you've done this.
 
