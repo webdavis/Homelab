@@ -160,7 +160,7 @@ export ANSIBLE_VAULT_PASSWORD='xxxxxxxxxxxxxx'
 Then, load it into your current shell session with:
 
 ```bash
-source vault.secret
+source vault.secrets
 ```
 
 ### 5. Verify Ansible Connection
