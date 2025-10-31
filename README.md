@@ -37,6 +37,7 @@ Think: small computers, big network!
 
 This project aims to:
 
+- [ ] Come with batteries included so that setup is quick and easy.
 - [ ] Maintain a test environment that mirrors my home network for fast, safe deployment.
 - [ ] Deploy across multiple operating-systems and CPU architectures.
 - [ ] Support both on-metal and cloud deployments.
