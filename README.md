@@ -13,18 +13,18 @@ Think: small computers, big network!
 
 <!-- table-of-contents GFM -->
 
-- [Project Goals](#project-goals)
-- [Technologies Used](#technologies-used)
-- [Development Environment](#development-environment)
-  - [1. Prerequisites](#1-prerequisites)
-  - [2. Set the Python Version](#2-set-the-python-version)
-  - [3. Install Project Dependencies](#3-install-project-dependencies)
-  - [4. Setup Credentials](#4-setup-credentials)
-    - [ssh-agent](#ssh-agent)
-    - [Ansible Vault Password](#ansible-vault-password)
-  - [5. Verify Ansible Connection](#5-verify-ansible-connection)
-- [Ansible Roles](#ansible-roles)
-  - [Security](#security)
+  - [Project Goals](#project-goals)
+  - [Technologies Used](#technologies-used)
+  - [Development Environment](#development-environment)
+    - [1. Prerequisites](#1-prerequisites)
+    - [2. Set the Python Version](#2-set-the-python-version)
+    - [3. Install Project Dependencies](#3-install-project-dependencies)
+    - [4. Setup Credentials](#4-setup-credentials)
+      - [ssh-agent](#ssh-agent)
+      - [Ansible Vault Password](#ansible-vault-password)
+    - [5. Verify Ansible Connection](#5-verify-ansible-connection)
+  - [Ansible Roles](#ansible-roles)
+    - [Security](#security)
 - [Problems & Solutions](#problems--solutions)
   - [You Upgraded Homebrew and it Broke your Python Virtual Environment](#you-upgraded-homebrew-and-it-broke-your-python-virtual-environment)
     - [Problem](#problem)
@@ -214,11 +214,11 @@ For example:
         name: security
 ```
 
-## Problems & Solutions
+# Problems & Solutions
 
-### You Upgraded Homebrew and it Broke your Python Virtual Environment
+## You Upgraded Homebrew and it Broke your Python Virtual Environment
 
-#### Problem
+### Problem
 
 After updating Homebrew, your `.pyprojectx/` environment may break. For example you might get a `dyld`
 error like this one:
@@ -230,12 +230,12 @@ dyld[74408]: Library not loaded: /opt/homebrew/Cellar/python@3.13/3.13.5/Framewo
 ...
 ```
 
-#### Cause
+### Cause
 
 The `.pyprojectx/` environment was created _before the correct Python version was activated with pyenv_,
 so it linked to a Homebrew-managed Python that may no longer exist after the update.
 
-#### Solution
+### Solution
 
 Rebuild the `.pyprojectx/` environment using the correct Python version.
 
