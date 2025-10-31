@@ -53,6 +53,8 @@ Homelab makes use of the following tools:
 - **[Docker](https://docs.docker.com/get-started/):** Containers that run and manage the
   services.
 - **Wrapper Scripts:** Simplify working with Ansible and other tools in this project.
+- **Raspberry Pi OS Lite Docker Image:**
+  [webdavis/docker-raspios-lite](https://github.com/webdavis/docker-raspios-lite)
 
 ## Development Environment
 
