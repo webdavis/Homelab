@@ -64,7 +64,7 @@ Follow these steps to ensure your environment is ready to work on this project:
 
 ### 1. Prerequisites
 
-> [!TIP]
+> [!Tip]
 >
 > If this is your first time working on this project, follow the instructions in
 > [macos-dev-environment.md](./docs/macos-dev-environment.md) first.
@@ -115,7 +115,9 @@ Install the dependencies:
 > The output should point to a path like:\
 > `<path_to_this_project>/Homelab/.pyprojectx/venvs/main-ab061d9d4f9bea1cc2de64816d469baf-py3.13/bin/poetry`
 
-> [!TIP] Having trouble? Check the [Problems and Solutions](#problems-and-solutions) section.
+> [!Tip]
+>
+> Having trouble? Check the [Problems and Solutions](#problems-and-solutions) section.
 
 ### 4. Setup Credentials
 
@@ -178,7 +180,9 @@ a managed node using Ansible's `ping` module:
 ./pw poetry run ansible unprovisioned_yoshimo -m ping
 ```
 
-> [!TIP] See [`inventory.yml`](./inventory.yml) for other managed nodes.
+> [!Tip]
+>
+> See [`inventory.yml`](./inventory.yml) for other managed nodes.
 
 Now you should be good to go!
 
