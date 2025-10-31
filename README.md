@@ -57,6 +57,9 @@ Homelab makes use of the following tools:
 
 ## Development Environment
 
+This project requires Python 3 and uses a [Pyprojectx](https://github.com/pyprojectx/pyprojectx) /
+[Poetry](https://github.com/python-poetry/poetry) combo to manage Ansible and related tools.
+
 Follow these steps to ensure your environment is ready to work on this project:
 
 ### 1. Prerequisites
@@ -68,13 +71,9 @@ Follow these steps to ensure your environment is ready to work on this project:
 >
 > The instructions below assume you've done this.
 
-In short, this project requires Python 3 and uses a
-[Pyprojectx](https://github.com/pyprojectx/pyprojectx) /
-[Poetry](https://github.com/python-poetry/poetry) combo to manage Ansible and related tools.
-
 ### 2. Set the Python Version
 
-This project uses [pyenv](https://github.com/pyenv/pyenv) to manage and track its Python version. The
+[pyenv](https://github.com/pyenv/pyenv) is used to manage and track this projects Python version. The
 current version is specified in the [`.python-version`](./.python-version) file.
 
 Run this command to activate pyenv in your current shell:
