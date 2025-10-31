@@ -4,7 +4,7 @@
 #
 # Usage: this playbook can be run, as follows:
 #
-#    $ ./pw pdm run --venv in-project ansible-playbook servers.yml
+#    $ ./pw poetry run ansible-playbook servers.yml
 
 - name: Configure time synchronization server
   hosts: yoshimo

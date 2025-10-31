@@ -4,7 +4,7 @@
 #
 # Usage: this playbook can be run, as follows:
 #
-#    $ ./pw pdm run --venv in-project ansible-playbook devboards.yml
+#    $ ./pw poetry run --venv in-project ansible-playbook devboards.yml
 
 - name: Configure hardware settings and (possibly) update the firmware of yoshimo
   hosts: unprovisioned_yoshimo
