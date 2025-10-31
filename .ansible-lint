@@ -2,4 +2,4 @@
 use_default_rules: true
 
 exclude_paths:
-  - '**/vault.yml'
+  - "**/vault.yml"

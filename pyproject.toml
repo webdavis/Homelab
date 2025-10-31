@@ -22,6 +22,9 @@ package-mode = false
 
 [tool.poetry.group.dev.dependencies]
 mdformat = "^0.7.22"
+mdformat-tables = "^1.0.0"
+mdformat-gfm = "^0.4.1"
+ansible-lint = "^25.9.0"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

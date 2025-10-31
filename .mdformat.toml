@@ -1,0 +1,13 @@
+# mdformat Configuration File
+
+# Options: "keep", "no", INTEGER
+wrap = 95
+
+# Turn off consecutive numbering for ordered lists.
+number = false
+
+# Use Linux/macOS line endings.
+end_of_line = "lf"
+
+# Validate that the rendered HTML is consistent.
+validate = true

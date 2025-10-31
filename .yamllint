@@ -1,5 +1,38 @@
 ---
-extends: default
+# Description: YAML linting configuration compatible with automatic formatting via `ansible-lint --fix`.
+#
+# Important:
+#
+#   `ansible-lint --fix` uses yamllint formmating rules, so a valid `.yammlint` file must be present
+#   for it to work.
+#
+#   See the official guide for formatting with `ansible-lint --fix`:
+#   https://ansible.readthedocs.io/projects/lint/rules/yaml/
+# ————————————————————————————————————————————————————————————————————————————————————————————————————————
 
+extends: default
 rules:
-  line-length: disable
+  comments:
+    # See: https://github.com/prettier/prettier/issues/6780
+    min-spaces-from-content: 1
+
+  # See: https://github.com/adrienverge/yamllint/issues/384
+  # Note: if this is set to `enable` then `ansible-lint --fix` won't automatically adjust. Instead it will throw an error.
+  comments-indentation: false
+
+  # 160 chars was the default used by old E204 rule.
+  line-length:
+    max: 160
+
+  # Add a space inside braces to align with Prettier and avoid conflicts with other linters.
+  braces:
+    min-spaces-inside: 0 # default: 0
+    max-spaces-inside: 1 # default: 0
+  key-duplicates:
+    forbid-duplicated-merge-keys: true # default: not enabled
+  octal-values:
+    forbid-implicit-octal: true # default: false
+    forbid-explicit-octal: true # default: false
+  quoted-strings:
+    quote-type: double
+    required: only-when-needed
