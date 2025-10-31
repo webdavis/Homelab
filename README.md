@@ -49,11 +49,11 @@ This project aims to:
 
 Homelab makes use of the following tools:
 
-- **[Ansible](https://www.ansible.com/):** Playbooks to configure services on each device.
-- **[Docker](https://docs.docker.com/get-started/):** Containers that run and manage the services.
-- **Wrapper Scripts:** Simplify working with Ansible and other tools in this project.
-- **Raspberry Pi OS Lite Docker Image:**
-  [webdavis/docker-raspios-lite](https://github.com/webdavis/docker-raspios-lite)
+- **[Ansible](https://www.ansible.com/):** playbooks to configure services on each device.
+- **[Docker](https://docs.docker.com/get-started/):** containers that run and manage the services:
+  - **[webdavis/docker-raspios-lite](https://github.com/webdavis/docker-raspios-lite):** a hand spun
+    Raspberry Pi OS Lite Docker Image
+- **[Scripts](./scripts):** these simplify working with Ansible and other tools in this project.
 
 ## Development Environment
 
