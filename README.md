@@ -4,7 +4,7 @@
 
 # Homelab
 
-This repository automates my home network setup. This automation is hardware-agnostic, but I like to run
+This repo automates my home network setup. This automation is hardware-agnostic, but I like to run
 it on small single-board computers like Raspberry Pis.
 
 Think: small computers, big network!
@@ -17,9 +17,9 @@ Think: small computers, big network!
   - [Technologies Used](#technologies-used)
   - [Development Environment](#development-environment)
     - [1. Prerequisites](#1-prerequisites)
-    - [2. Set the Python Version](#2-set-the-python-version)
-    - [3. Install Project Dependencies](#3-install-project-dependencies)
-    - [4. Setup Credentials](#4-setup-credentials)
+    - [2. pyenv](#2-pyenv)
+    - [3. Install Dependencies](#3-install-dependencies)
+    - [4. Credentials](#4-credentials)
       - [ssh-agent](#ssh-agent)
       - [Ansible Vault Password](#ansible-vault-password)
     - [5. Verify Ansible Connection](#5-verify-ansible-connection)
@@ -71,7 +71,7 @@ Follow these steps to ensure your environment is ready to work on this project:
 >
 > The instructions below assume you've done this.
 
-### 2. Set the Python Version
+### 2. pyenv
 
 [pyenv](https://github.com/pyenv/pyenv) is used to manage and track this projects Python version. The
 current version is specified in the [`.python-version`](./.python-version) file.
@@ -91,7 +91,7 @@ there.
 >   project.
 > - You can run this command from any folder in the project.
 
-### 3. Install Project Dependencies
+### 3. Install Dependencies
 
 This project uses Pyprojectx and Poetry to manage Python dependencies in a consistent, isolated
 environment:
@@ -106,20 +106,25 @@ Install the dependencies:
 ./pw poetry install
 ```
 
-**Tip:** Make sure you're using the project's Poetry, not a system-wide one:
+> [!Warning]
+>
+> Make sure you're using the project's Poetry, not a system-wide one:
 
 ```bash
 ./pw which poetry
 ```
 
-> The output should point to a path like:\
-> `<path_to_this_project>/Homelab/.pyprojectx/venvs/main-ab061d9d4f9bea1cc2de64816d469baf-py3.13/bin/poetry`
+> **Example Output:** the output should point to a path like:
+>
+> ```console
+> <path_to_this_project>/Homelab/.pyprojectx/venvs/main-ab061d9d4f9bea1cc2de64816d469baf-py3.13/bin/poetry
+> ```
 
 > [!Tip]
 >
 > Having trouble? Check the [Problems and Solutions](#problems-and-solutions) section.
 
-### 4. Setup Credentials
+### 4. Credentials
 
 #### ssh-agent
 
@@ -168,7 +173,7 @@ source vault.secrets
 Before you do anything else, verify that you can connect to both the managing node (your `localhost`) and
 a managed node using Ansible's `ping` module:
 
-**Managing Node:**
+**Manager Node:**
 
 ```bash
 ./pw poetry run ansible localhost -m ping
