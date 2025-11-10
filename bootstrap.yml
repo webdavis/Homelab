@@ -2,9 +2,8 @@
 # Run this playbook from the managing node (usually localhost) to bootstrap a new Raspberry Pi
 # with essential system settings.
 #
-# Usage: this playbook can be run, as follows:
-#
-#    $ ./pw poetry run --venv in-project ansible-playbook bootstrap.yml
+# Usage:
+#    $ uv run ansible-playbook bootstrap.yml
 
 - name: Configure basic server security
   hosts: unprovisioned_yoshimo

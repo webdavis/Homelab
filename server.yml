@@ -2,9 +2,8 @@
 # This playbook should be executed from a managing node (most likely your localhost) to setup
 # a Raspberry Pi with various services on a home network.
 #
-# Usage: this playbook can be run, as follows:
-#
-#    $ ./pw poetry run ansible-playbook servers.yml
+# Usage:
+#    $ uv run ansible-playbook servers.yml
 
 - name: Configure time synchronization server
   hosts: yoshimo

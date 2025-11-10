@@ -4,8 +4,8 @@
 
 # Homelab
 
-This repo automates my home network setup. This automation is hardware-agnostic, but I like to run
-it on small single-board computers like Raspberry Pis.
+This repo automates my home network setup. This automation is hardware-agnostic, but I like to run it on
+small single-board computers like Raspberry Pis.
 
 Think: small computers, big network!
 
@@ -13,23 +13,17 @@ Think: small computers, big network!
 
 <!-- table-of-contents GFM -->
 
-  - [Project Goals](#project-goals)
-  - [Technologies Used](#technologies-used)
-  - [Development Environment](#development-environment)
-    - [1. Prerequisites](#1-prerequisites)
-    - [2. pyenv](#2-pyenv)
-    - [3. Install Dependencies](#3-install-dependencies)
-    - [4. Credentials](#4-credentials)
-      - [ssh-agent](#ssh-agent)
-      - [Ansible Vault Password](#ansible-vault-password)
-    - [5. Verify Ansible Connection](#5-verify-ansible-connection)
-  - [Ansible Roles](#ansible-roles)
-    - [Security](#security)
-- [Problems & Solutions](#problems--solutions)
-  - [You Upgraded Homebrew and it Broke your Python Virtual Environment](#you-upgraded-homebrew-and-it-broke-your-python-virtual-environment)
-    - [Problem](#problem)
-    - [Cause](#cause)
-    - [Solution](#solution)
+- [Project Goals](#project-goals)
+- [Technologies Used](#technologies-used)
+- [Development Environment](#development-environment)
+  - [1. Prerequisites](#1-prerequisites)
+  - [2. Project Dependencies](#2-project-dependencies)
+  - [3. Credentials](#3-credentials)
+    - [ssh-agent](#ssh-agent)
+    - [Ansible Vault Password](#ansible-vault-password)
+  - [4. Verify Ansible Connection](#4-verify-ansible-connection)
+- [Ansible Roles](#ansible-roles)
+  - [Security](#security)
 
 <!-- table-of-contents -->
 
@@ -57,8 +51,7 @@ Homelab makes use of the following tools:
 
 ## Development Environment
 
-This project requires Python 3 and uses a [Pyprojectx](https://github.com/pyprojectx/pyprojectx) /
-[Poetry](https://github.com/python-poetry/poetry) combo to manage Ansible and related tools.
+This project uses [uv](https://docs.astral.sh/uv/) to manage Python, Ansible, and related tools.
 
 Follow these steps to ensure your environment is ready to work on this project:
 
@@ -71,60 +64,24 @@ Follow these steps to ensure your environment is ready to work on this project:
 >
 > The instructions below assume you've done this.
 
-### 2. pyenv
+### 2. Project Dependencies
 
-[pyenv](https://github.com/pyenv/pyenv) is used to manage and track this projects Python version. The
-current version is specified in the [`.python-version`](./.python-version) file.
+This project uses uv to manage Python dependencies in a consistent, isolated environment:
 
-Run this command to activate pyenv in your current shell:
-
-```bash
-eval "$(pyenv init -)"
-```
-
-Once pyenv is activated, it reads the `.python-version` file and activates the Python version specified
-there.
-
-> [!Important]
->
-> - This command must be run **every time you start a new terminal session** before working on this
->   project.
-> - You can run this command from any folder in the project.
-
-### 3. Install Dependencies
-
-This project uses Pyprojectx and Poetry to manage Python dependencies in a consistent, isolated
-environment:
-
-- **Pyprojectx:** Provides the [`./pw`](./pw) wrapper script, ensuring all project tools run consistently
-  without needing global installations (including Poetry).
-- **Poetry:** manages the Python dependencies used by this project (including Ansible).
-
-Install the dependencies:
+Install them like so:
 
 ```bash
-./pw poetry install
+uv sync
 ```
 
-> [!Warning]
->
-> Make sure you're using the project's Poetry, not a system-wide one:
+Verify they are available:
 
 ```bash
-./pw which poetry
+$ uv which ansible
+<path_to_this_project>/Homelab/.venv/bin/ansible
 ```
 
-> **Example Output:** the output should point to a path like:
->
-> ```console
-> <path_to_this_project>/Homelab/.pyprojectx/venvs/main-ab061d9d4f9bea1cc2de64816d469baf-py3.13/bin/poetry
-> ```
-
-> [!Tip]
->
-> Having trouble? Check the [Problems and Solutions](#problems-and-solutions) section.
-
-### 4. Credentials
+### 3. Credentials
 
 #### ssh-agent
 
@@ -140,21 +97,14 @@ ssh-add ~/.ssh/id_rsa
 
 #### Ansible Vault Password
 
-Homelab manages secrets with
+Homelab uses
 [Ansible Vault](https://docs.ansible.com/ansible/latest/vault_guide/vault_using_encrypted_content.html)
-Before executing any Playbooks, Ansible ensures it can access the vault.
+to managed its secrets. Before executing any Playbooks, Ansible will check that it can access the vault.
 
-Ansible Vault fetches the vault password using the \[`vault.password.py`\](./vault.password.py script,
-which reads it from the `ANSIBLE_VAULT_PASSWORD` environment variable.
+Ansible Vault fetches the vault password using the \[`vault.password.py`\](./vault.password.py) script,
+which locates it using the `ANSIBLE_VAULT_PASSWORD` environment variable.
 
-You can set this variable permanently by adding the following to your shell configuration file (e.g.,
-`~/.bashrc`):
-
-```bash
-export ANSIBLE_VAULT_PASSWORD='xxxxxxxxxxxxxx'
-```
-
-Alternatively, you can create a `vault.secret` file with the following contents:
+You can set this variable permanently by adding the password in the `vault.secret` file:
 
 ```bash
 #!/usr/bin/env bash
@@ -162,13 +112,13 @@ Alternatively, you can create a `vault.secret` file with the following contents:
 export ANSIBLE_VAULT_PASSWORD='xxxxxxxxxxxxxx'
 ```
 
-Then, load it into your current shell session with:
+If you aren't using `direnv`, then load it into your current shell session like so:
 
 ```bash
 source vault.secrets
 ```
 
-### 5. Verify Ansible Connection
+### 4. Verify Ansible Connection
 
 Before you do anything else, verify that you can connect to both the managing node (your `localhost`) and
 a managed node using Ansible's `ping` module:
@@ -176,13 +126,13 @@ a managed node using Ansible's `ping` module:
 **Manager Node:**
 
 ```bash
-./pw poetry run ansible localhost -m ping
+uv run ansible localhost -m ping
 ```
 
 **Managed Node:**
 
 ```bash
-./pw poetry run ansible unprovisioned_yoshimo -m ping
+uv run ansible unprovisioned_yoshimo -m ping
 ```
 
 > [!Tip]
@@ -218,49 +168,3 @@ For example:
       ansible.builtin.import_role:
         name: security
 ```
-
-# Problems & Solutions
-
-## You Upgraded Homebrew and it Broke your Python Virtual Environment
-
-### Problem
-
-After updating Homebrew, your `.pyprojectx/` environment may break. For example you might get a `dyld`
-error like this one:
-
-```bash
-$ ./pw poetry run ansible unprovisioned_yoshimo -m ping
-
-dyld[74408]: Library not loaded: /opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/Python
-...
-```
-
-### Cause
-
-The `.pyprojectx/` environment was created _before the correct Python version was activated with pyenv_,
-so it linked to a Homebrew-managed Python that may no longer exist after the update.
-
-### Solution
-
-Rebuild the `.pyprojectx/` environment using the correct Python version.
-
-1. Remove the broken environment:
-
-```bash
-rm -rf .pyprojectx/
-```
-
-2. Activate the shell environment for pyenv:
-
-```bash
-eval "$(pyenv init -)"
-```
-
-3. Recreate the environment:
-
-```bash
-pyprojectx bootstrap
-```
-
-After this, your Python virtual environment will use the pyenv-managed Python, resolving the
-Homebrew-related break.

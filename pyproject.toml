@@ -1,31 +1,21 @@
-[tool.pyprojectx]
-lock-python-version = "3.13.5"
-main = ["poetry"]
-
 [project]
-name = "Homelab"
+name = "homelab"
 version = "0.1.0"
-description = "Default template for PDM package"
-authors = [
-    {name = "Stephen A. Davis", email = "stephen@webdavis.io"},
-]
-requires-python = "==3.13.*"
-dependencies = [
-    "ansible (>=11.9.0,<12.0.0)",
-    "passlib (>=1.7.4,<2.0.0)"
-]
+description = "My home network configuration/automation."
 readme = "README.md"
-license = {text = "MIT"}
+requires-python = ">=3.13.5"
+dependencies = [
+    "ansible>=12.2.0",
+    "passlib>=1.7.4",
+]
 
-[tool.poetry]
-package-mode = false
-
-[tool.poetry.group.dev.dependencies]
-mdformat = "^0.7.22"
-mdformat-tables = "^1.0.0"
-mdformat-gfm = "^0.4.1"
-ansible-lint = "^25.9.0"
-
-[build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
+[dependency-groups]
+dev = [
+  {include-group = "lint"},
+]
+lint = [
+    "ansible-lint>=25.9.2",
+    "mdformat>=0.7.22",
+    "mdformat-gfm>=1.0.0",
+    "mdformat-tables>=1.0.0",
+]

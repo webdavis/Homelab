@@ -15,10 +15,10 @@
     - [flash](#flash)
   - [Boot the Pi](#boot-the-pi)
 - [Development Environment Setup](#development-environment-setup)
-  - [pyenv](#pyenv)
-  - [Bonus: Install direnv](#bonus-install-direnv)
-  - [Install Project Dependencies](#install-project-dependencies)
+  - [Python](#python)
+  - [Project Dependencies](#project-dependencies)
   - [ssh-agent](#ssh-agent)
+  - [direnv](#direnv)
 - [Verify Ansible Connection](#verify-ansible-connection)
 
 <!-- table-of-contents -->
@@ -38,11 +38,21 @@ Add your sensitive information to the variables in [`vault.secrets`](../vault.se
 ```bash
 #!/usr/bin/env bash
 
-export ANSIBLE_VAULT_PASSWORD=''
-export PUBLIC_SSH_KEY=''
-export PI_HOSTNAME='raspberrypi'
+# Put your Ansible Vault Password here:
+export ANSIBLE_VAULT_PASSWORD='vault_password'
+
+# Put your SSH Public Key here:
+export PUBLIC_SSH_KEY='your_ssh_public_key'
+
+# Whatever you want the default Raspberry Pi OS hostname to be. Will most likely be changed by
+# the Ansible 'security' role:
+export PI_HOSTNAME='unprovisioned_yoshimo'
+
+# Put your default Raspberry Pi OS username here (also will be updated by 'security'):
 export PI_USERNAME='pi'
-# This is the default Raspberry Pi password ('raspberry') hashed using crypt SHA-256 ($5$).
+
+# The hashed version of the default Raspberry Pi password ('raspberry').
+# Hashed using crypt SHA-256 ($5$).
 export PI_PASSWORD_HASH='$5$.yEhkKP.78$j2APhF51Ok.r.tC/wPrtEnnF2uJK4Z.BRRiCLJbgEk9'
 ```
 
@@ -86,8 +96,8 @@ https --download https://downloads.raspberrypi.com/raspios_lite_arm64/images/ras
 
 ### Attach Storage Device
 
-Plug a MicroSD card (or some other storage device) into your host machine. You can locate the
-block device using `diskutil list`.
+Plug a MicroSD card (or some other storage device) into your host machine. You can locate the block
+device using `diskutil list`.
 
 For example, my `32 GB` MicroSD card is attached to `/dev/disk60`:
 
@@ -103,8 +113,7 @@ $ diskutil list
 
 ### Flash the Image
 
-From the project root folder, run the following command to flash the image to your storage
-device:
+From the project root folder, run the following command to flash the image to your storage device:
 
 ```bash
 /Applications/Raspberry\ Pi\ Imager.app/Contents/MacOS/rpi-imager \
@@ -118,8 +127,8 @@ device:
 > [!NOTE]
 >
 > 1. Replace `/dev/disk60` with the actual device identifier of your storage media.
-> 1. `rpi-imager` will prompt you for your password to allow it to write to your storage
->    device. Enter it and watch it go to work.
+> 2. `rpi-imager` will prompt you for your password to allow it to write to your storage device. Enter it
+>    and watch it go to work.
 
 ### Eject
 
@@ -129,13 +138,12 @@ Once the flashing process completes, eject the device:
 diskutil eject /dev/disk60
 ```
 
-Now you can unplug the MicroSD card from your host machine and insert it into your Raspberry
-Pi.
+Now you can unplug the MicroSD card from your host machine and insert it into your Raspberry Pi.
 
 ### Bonus: Justfile Shortcuts
 
-This project provides a [`justfile`](../justfile) with some
-[just](https://github.com/casey/just) shortcuts to automate some of the previous steps.
+This project provides a [`justfile`](../justfile) with some [just](https://github.com/casey/just)
+shortcuts to automate some of the previous steps.
 
 #### Install just
 
@@ -163,14 +171,14 @@ just flash /dev/disk60
 >
 > - If you don’t provide a block device, `flash` will prompt you to enter one.
 >   - ⚠️ Make sure to provide the correct block device to avoid overwriting other drives.
-> - If the Raspberry Pi OS image hasn’t been downloaded yet, `flash` will automatically
->   download it first.
+> - If the Raspberry Pi OS image hasn’t been downloaded yet, `flash` will automatically download it
+>   first.
 
 ### Boot the Pi
 
 1. Link your Raspberry Pi to your router using an Ethernet cable
    - (If you configured networking during the flashing process, this step can be skipped.)
-1. Connect your Raspberry Pi to a power source and it should boot!
+2. Connect your Raspberry Pi to a power source and it should boot!
 
 ## Development Environment Setup
 
@@ -181,38 +189,56 @@ To get started on this project, a few tools must be installed on your developmen
 > This document assumes that you are using an Apple Computer running at least macOS Sequoia
 > `version 15.5+`.
 >
-> This probably works on earlier Mac OS versions, but I've only tested it on versions later
-> than the one listed above 🤷🏼‍.
+> This probably works on earlier Mac OS versions, but I've only tested it on versions later than the one
+> listed above 🤷🏼‍.
 
-### pyenv
+### Python
 
-It's recommended to use [pyenv](https://github.com/pyenv/pyenv) to manage Python versions.
+[uv](https://docs.astral.sh/uv/) is able to install and manage Python versions.
 
 Install it with Homebrew:
 
 ```bash
-brew install pyenv
+brew install uv
 ```
 
-Install the Python version tracked in [`.python-version`](../.python-version):
+Then install the Python version tracked in [`.python-version`](../.python-version):
 
 ```bash
-cat .python-version | pyenv install
+uv python install
 ```
 
-Now switch to that Python version, like so:
+### Project Dependencies
+
+uv also manages Python dependencies. Install your dependencies/make sure they are in-sync with this
+project ([`uv.lock`](../uv.lock)):
 
 ```bash
-eval "$(pyenv init -)"
+uv sync
 ```
 
-### Bonus: Install direnv
+> [!NOTE]
+>
+> uv settings and top-level dependencies are defined in [pyproject.toml](../pyproject.toml).
+
+### ssh-agent
+
+Ansible connects to managed nodes via SSH.
+
+Assuming you enabled SSH and added your SSH public key to your Raspberry Pi OS image, load your SSH
+private key into `ssh-agent`:
+
+```bash
+ssh-add ~/.ssh/id_rsa
+```
+
+### direnv
 
 This project comes with a [`.envrc`](../.envrc) file.
 
-[direnv](https://direnv.net/) provides the ability to automatically source this file, which
-sets the Python environment without having to run `eval "$(pyenv init -)"` every time you open
-a new terminal.
+[direnv](https://direnv.net/) provides the ability to automatically source this file, which sets
+environment variables without having to source [`vault.secrets`](../vault.secrets) every time you open a
+new terminal window.
 
 Install `direnv`:
 
@@ -220,57 +246,27 @@ Install `direnv`:
 brew install direnv
 ```
 
-Then allow direnv to use the `.envrc` file:
+Then permit direnv to use the `.envrc` file provided by this project:
 
 ```bash
 dirven allow
 ```
 
-### Install Project Dependencies
-
-This project uses Poetry to manage its Python dependencies, but there's no need to
-install it. Everything is handled by [Pyprojectx](https://pyprojectx.github.io/), an
-all-inclusive bootstrapping tool, which provides the `pw` script.
-
-Simply run the following command to ensure everything is in working order (`pyprojectx` will do
-the heavy lifting for you):
-
-```bash
-./pw poetry sync
-```
-
-> [!NOTE]
->
-> Poetry settings and top-level dependencies are defined in the
-> [pyproject.toml](../pyproject.toml).
-
-### ssh-agent
-
-Ansible connects to managed nodes via SSH.
-
-Assuming you enabled SSH and added your SSH public key to your Raspberry Pi OS image, load
-your SSH private key into `ssh-agent`:
-
-```bash
-ssh-add ~/.ssh/id_rsa
-```
-
 ## Verify Ansible Connection
 
-Use the following ad hoc Ansible command to ping the control node (probably your `localhost`)
-and verify the connection:
+Use the following ad hoc Ansible command to ping the control node (probably your `localhost`) and verify
+the connection:
 
 ```bash
-./pw poetry run ansible localhost -m ping
+uv run ansible localhost -m ping
 ```
 
 Then ping the managed node:
 
 ```bash
-./pw poetry run ansible pi -m ping
+uv run ansible pi -m ping
 ```
 
 > [!NOTE]
 >
-> All of the nodes managed by this project can be found in the
-> [`inventory.yml`](../inventory.yml) file.
+> All of the nodes managed by this project can be found in the [`inventory.yml`](../inventory.yml) file.

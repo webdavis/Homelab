@@ -39,22 +39,22 @@ flash target_disk=`read -p "Enter target storage device (e.g., /dev/disk60): " d
         {{ target_disk }}
 
 ansible-ping target='unprovisioned_yoshimo':
-    ./pw poetry run ansible {{ target }} -m ping
+    uv run ansible {{ target }} -m ping
 
 ansible-gather-facts target='unprovisioned_yoshimo':
-    ./pw poetry run ansible {{ target }} -m setup
+    uv run ansible {{ target }} -m setup
 
 ansible-vault-edit target:
-    ./pw poetry run ansible-vault edit {{ target }}
+    uv run ansible-vault edit {{ target }}
 
 ansible-vault-encrypt target:
-    ./pw poetry run ansible-vault encrypt {{ target }}
+    uv run ansible-vault encrypt {{ target }}
 
 ansible-lint:
-    ./pw poetry run ansible-lint
+    uv run ansible-lint
 
 ansible-list-collections:
-    ./pw poetry run ansible-galaxy collection list
+    uv run ansible-galaxy collection list
 
 ansible-playbook-bootstrap:
-    ./pw poetry run ansible-playbook bootstrap.yml
+    uv run ansible-playbook bootstrap.yml
